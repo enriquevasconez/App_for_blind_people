@@ -3,7 +3,7 @@
 
 ## Objetivo General 
 
-Desarrollar una aplicación web para oferta y demanda de servicios para personas con algún grado de discapacidad visual 
+Desarrollo de una aplicación web para oferta y demanda de servicios para personas con algún grado de discapacidad visual 
 
 ### Objetivos Específicos 
 
