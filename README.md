@@ -1,9 +1,9 @@
 ![epn logo](EPN_logo_big.jpg)
-# App_for_blind_people
+# Desarrollo de una aplicación web para oferta y demanda de servicios para personas con algún grado de discapacidad visual 
 
 ## Objetivo General 
 
-Desarrollo de una aplicación web para oferta y demanda de servicios para personas con algún grado de discapacidad visual 
+Desarrollar una aplicación web para oferta y demanda de servicios para personas con algún grado de discapacidad visual 
 
 ### Objetivos Específicos 
 
