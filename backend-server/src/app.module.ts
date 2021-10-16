@@ -18,6 +18,7 @@ import { CommentModule } from './comment/comment.module';
       isGlobal: true,
     }),
     TypeOrmModule.forRoot({
+      name:'default',
       type: 'mysql',
       host: process.env.DATABASE_HOST,
       port: parseInt(process.env.DATABASE_PORT),
