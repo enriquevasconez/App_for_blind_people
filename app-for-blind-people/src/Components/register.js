@@ -3,13 +3,14 @@ import 'C:/Users/USER/Desktop/Universidad/App_Tesis/App_for_blind_people/app-for
 const Register = () => {
     return (
 
-        <section class="vh-100 gradient-custom">
-        <div class="container py-5 h-100">
+      <body>
+      <section class="vh-100   gradient-custom">
+        <div id="container" class= "container py-5 h-100">
           <div class="row justify-content-center align-items-center h-100">
             <div class="col-12 col-lg-9 col-xl-7">
               <div id="card" class="card shadow-2-strong card-registration" >
                 <div class="card-body p-4 p-md-5">
-                  <h3 class="mb-4 pb-2 pb-md-0 mb-md-5">Registration Form</h3>
+                  <h3 class="mb-4 pb-2 pb-md-0 mb-md-5">Llenar campos</h3>
                   <form>
       
                     <div class="row">
@@ -79,7 +80,7 @@ const Register = () => {
                         <div class="form-outline">
                             <br/>
                             
-                        <input id="Submit" class="btn btn-primary btn-lg" type="submit" value="Submit" />
+                        <input id="Submit" class="btn btn-primary btn-lg" type="submit" value="Crear" />
                             </div>
                         </div>
 
@@ -91,7 +92,10 @@ const Register = () => {
             </div>
           </div>
         </div>
+        
       </section>
+      </body>
+      
     );
 }
 export default Register;
