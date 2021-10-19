@@ -92,7 +92,7 @@ const Register = () => {
             </div>
           </div>
         </div>
-        
+      
       </section>
       </body>
       

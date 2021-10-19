@@ -10,16 +10,20 @@ import {
 } from "react-router-dom";
 import Login from './Components/login';
 import Register from './Components/register';
+import SiderBar from './Components/sidebar';
+import { useState } from 'react';
+
 
 
 function App() {
+
   return (
-    <Router>
+    <Router> 
     <div className="App">
+   
       <header className="App-header">
         <Navbar />
       </header>
-
       <Switch>
                <Route exact path ="/register" >
                     <Register/>
@@ -31,18 +35,14 @@ function App() {
               <Route exact path ="/login">
                 
                 <Login/>
-             
+
               </Route>
               
             </Switch>
-       
          
-       
-       
-        <Footer />
-            
-      
-    </div>
+          {/* <Footer/> */}
+           
+      </div>
     </Router>
 
   );

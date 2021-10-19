@@ -1,5 +1,5 @@
 import React from "react";
-import 'C:/Users/USER/Desktop/Universidad/App_Tesis/App_for_blind_people/app-for-blind-people/src/App.css'
+import '../App.css'
 
 const Login = () => {
     return (

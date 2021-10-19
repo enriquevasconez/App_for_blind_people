@@ -65,11 +65,14 @@
 
 
 footer {
-  position:ab;
+  position:sticky;
   bottom:0;
   width:100%;
- 
 
-
-  
 }
+
+.sidebar{
+  margin-top: 20px;
+ 
+}
+
