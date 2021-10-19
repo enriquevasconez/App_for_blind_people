@@ -8,7 +8,7 @@ import {
   Route,
   Link
 } from "react-router-dom";
-import Registro from './Registro';
+import Login from './Components/login';
 import Register from './Components/register';
 
 
@@ -28,6 +28,11 @@ function App() {
                 <Route exact path ="/" >
                    
                 </Route>
+              <Route exact path ="/login">
+                
+                <Login/>
+             
+              </Route>
               
             </Switch>
        

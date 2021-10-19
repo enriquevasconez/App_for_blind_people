@@ -1,6 +1,7 @@
 import React from "react"
 import'./register'
 import '../App'
+import'./login'
 import 'C:/Users/USER/Desktop/Universidad/App_Tesis/App_for_blind_people/app-for-blind-people/src/App.css'
 
 
@@ -47,9 +48,9 @@ const Navbar = () => {
                             </Link>
                         </li>
                         <li class="nav-item active">
-                            <a href="#" class="nav-link">
+                            < Link to="/login" class="nav-link">
                                 Iniciar sesión
-                            </a>
+                            </Link>
                         </li>
                     </ul>
 

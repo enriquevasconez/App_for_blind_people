@@ -80,7 +80,7 @@ const Register = () => {
                         <div class="form-outline">
                             <br/>
                             
-                        <input id="Submit" class="btn btn-primary btn-lg" type="submit" value="Crear" />
+                        <input id="Submit" class=" container btn btn-primary btn-lg" type="submit" value="Crear" />
                             </div>
                         </div>
 
