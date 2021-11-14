@@ -5,7 +5,7 @@
 
  /* Register css */
 #card{
-  margin-top: 20px;
+  margin-top: 40px;
   border-radius: 50px;
   
  }
@@ -58,6 +58,41 @@
   to {
     transform: rotate(360deg);
   }
+}
+
+/* Home section */
+#menu-tile, #specials-tile, #map-tile{
+  height: 250px;
+  width: 100%;
+  margin-bottom: 15px;
+  position: relative;
+  border: 2px solid #3f0c1f;
+  overflow: hidden;   
+}
+
+#menu-tile:hover, #specials-tile:hover, #map-tile:hover{
+  box-shadow: 0 1px 5px 1px #cccccc;
+  text-decoration: none;
+}
+
+#menu-tile{
+
+  background-position: center;
+}
+
+
+
+#menu-tile span, #specials-tile span, #map-tile span{
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  width: 100%;
+  text-align: center;
+  font-size: 1.6em;
+  text-transform: uppercase;
+  background-color: #000;
+  color: #fff;
+  opacity: .8 ;
 }
 
 /* Footer section */

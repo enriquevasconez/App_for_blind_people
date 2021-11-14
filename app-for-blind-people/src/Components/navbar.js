@@ -1,26 +1,30 @@
-import React from "react"
+import React, { Component } from "react"
 import './register'
 import '../App'
 import './login'
+
+
 import { useState } from 'react'
 import 'C:/Users/USER/Desktop/Universidad/App_Tesis/App_for_blind_people/app-for-blind-people/src/App.css'
-
-
-import {
-    BrowserRouter as Router,
-    Switch,
-    Route,
-    Link,
-    NavLink
-} from "react-router-dom";
+import {   Link, useHistory } from "react-router-dom";
 
 
 const Navbar = () => {
 
 
 
-    return (
+    let user = JSON.parse(localStorage.getItem('user-info'))
 
+
+    const history = useHistory();
+
+    function logOut() {
+        localStorage.clear() 
+        history.push("/home")
+    } 
+
+    return (
+        
         <nav class="navbar fixed-top navbar-expand-md navbar-dark bg-primary  ">
             <div class="container  d-flex  justify-content-between ">
                 <Link to="/" class="navbar-brand mb-0 h1 "> Blind Service  </Link>
@@ -45,34 +49,46 @@ const Navbar = () => {
                     </button>
 
                     <div class="collapse navbar-collapse" id="navbarNav">
-                        <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+                        {
+                            localStorage.getItem('user-info') ?
+                                <>
+                                    <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+                                        <li >
+                                            <Link to="/register" class="nav-link" title={user.user_name} >
+                                                {user.user_name}
+                                            </Link>
+                                            
+                                        </li>
+                                        <li class="nav-item active">
+                                            < Link to="/home" class="nav-link" onClick={logOut}>
+                                                Cerrar Sesión
+                                            </Link>
+                                        </li>
+                                    </ul>
+                                </>
+                                :
+                                <>
+                                 <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+                                        <li >
+                                            <Link to="/register" class="nav-link"  >
+                                                Registrarse
+                                            </Link>
+                                        </li>
+                                        <li class="nav-item active">
+                                            < Link to="/login" class="nav-link">
+                                                Iniciar Sesión
+                                            </Link>
+                                        </li>
+                                    </ul>
+                                </>
+                        }
 
-
-                            <li >
-
-                                <Link to="/register" class="nav-link" >
-                                    Registrase
-                                </Link>
-                            </li>
-                            <li class="nav-item active">
-                                < Link to="/login" class="nav-link">
-                                    Iniciar sesión
-                                </Link>
-                            </li>
-
-                        </ul>
                     </div>
 
-                
-
                 </div>
-
             </div>
-        </nav>
+       </nav>
 
     );
-
 }
-
-
 export default Navbar;
