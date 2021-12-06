@@ -16,11 +16,12 @@ const useForm =  (callback, validate) => {
     const [values, setValues] = useState({
 
         user_name:'',
-        email: '',
+        user_email: '',
         password: '',
         password2:'',
         user_phone:'',
-        error: '',
+     
+       
        
 
     })

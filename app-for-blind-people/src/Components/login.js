@@ -33,7 +33,6 @@ const Login = () => {
           console.log(resp);
           
           setPassError("Usuario no encontrado verificar que correo y contraseña sean las correctas")
-          errors.error = "Usuario no encontrado"
     
       } else {
         setPassError("")
@@ -185,7 +184,7 @@ const Login = () => {
                           //onChange={e => setPassword(e.target.value)}
                            />
                            {errors.password && <p>{errors.password}</p>}
-                           {errors.error && <p>{errors.error}</p>}
+               
                       
                            
                           {/* {passError && <p>{passError}</p> } */}

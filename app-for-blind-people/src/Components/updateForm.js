@@ -12,13 +12,16 @@ const UpdateForm =  (callback, validate) => {
    
     let user = JSON.parse(localStorage.getItem('user-info'))
    
-    
+    const { password, ...result } = user;
+
     const [values, setValues] = useState({
 
         user_name: user.user_name,
-        email: user.user_email,
+        user_email: user.user_email,
         user_phone:user.user_phone,
-     
+        password:'',
+        password2:'',
+        access_token:''
 
     })
 

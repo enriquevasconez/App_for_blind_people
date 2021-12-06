@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 
 import 'C:/Users/USER/Desktop/Universidad/App_Tesis/App_for_blind_people/app-for-blind-people/src/App.css'
 import './login'
-
+import './footer'
 
 import {
   BrowserRouter as Router,
@@ -17,6 +17,7 @@ import { Redirect } from 'react-router-dom';
 import validate from "./validateRegister";
 import useForm from "./useForm";
 import { useHistory } from 'react-router-dom'
+import Footer from "./footer";
 
 
 
@@ -34,7 +35,7 @@ const Register = () => {
       headers: { 'Content-type': 'application/json', "x-api-key": "420f77de-2cea-4e13-841a-b43ca729a7a9" },
       body: JSON.stringify({
         user_name: values.user_name,
-        user_email: values.email,
+        user_email: values.user_email,
         password: values.password,
         user_phone: values.user_phone,
         //blind_discapacity_percentage
@@ -175,6 +176,7 @@ const Register = () => {
 
 
   return (
+    <div>
     <section  className="vh-100   gradient-custom">
       <Navbar />
       <div id="container" className="container py-5 h-100">
@@ -214,9 +216,9 @@ const Register = () => {
                       <div className="form-outline w-100">
                         <label className="form-label" htmlFor="emailAddress">Correo</label>
                         <input type="text" id="emailAddress" className="form-control form-control-lg"
-                          name="email"
+                          name="user_email"
                           placeholder=" Ingrese Correo" 
-                          value={values.email}
+                          value={values.user_email}
                           onChange={handleChange}
                           />
                           {errors.email && <p>{errors.email}</p>}
@@ -316,8 +318,11 @@ const Register = () => {
           </div>
         </div>
       </div>
-
+   
+          
     </section>
+   
+    </div>
 
   );
 }

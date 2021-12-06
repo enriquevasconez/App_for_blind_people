@@ -8,13 +8,13 @@ export default function validateRegister(values) {
     }
 
 
-    if (!values.email) {
+    if (!values.user_email) {
 
         errors.email = "Campo no puede estar vacío"
 
 
     } else {
-        if (!/^[a-zA-Z0-9._:$!%-]+@[a-zA-Z0-9.-]+.[a-zA-Z]$/.test(values.email)) {
+        if (!/^[a-zA-Z0-9._:$!%-]+@[a-zA-Z0-9.-]+.[a-zA-Z]$/.test(values.user_email)) {
 
             errors.email = "El correo no es válido";
         }
