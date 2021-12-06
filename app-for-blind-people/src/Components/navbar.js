@@ -2,6 +2,7 @@ import React, { Component } from "react"
 import './register'
 import '../App'
 import './login'
+import './editProfile'
 
 
 import { useState } from 'react'
@@ -25,14 +26,14 @@ const Navbar = () => {
 
     return (
         
-        <nav class="navbar fixed-top navbar-expand-md navbar-dark bg-primary  ">
-            <div class="container  d-flex  justify-content-between ">
-                <Link to="/" class="navbar-brand mb-0 h1 "> Blind Service  </Link>
+        <nav className="navbar fixed-top navbar-expand-md navbar-dark bg-primary  ">
+            <div className="container  d-flex  justify-content-between ">
+                <Link to="/" className="navbar-brand mb-0 h1 "> Blind Service  </Link>
 
                 <div>
-                    <form id="searchbox" class=" d-flex">
-                        <input type="text" class="form-control  me-2 " type="search" placeholder="Search..." aria-label="Search" />
-                        <button typle="submit" class="btn btn-outline-success  "> Search </button>
+                    <form id="searchbox" className=" d-flex">
+                        <input type="text" className="form-control  me-2 " type="search" placeholder="Search..." aria-label="Search" />
+                        <button typle="submit" className="btn btn-outline-success  "> Search </button>
                     </form>
                 </div>
                 <div>
@@ -45,22 +46,22 @@ const Navbar = () => {
                         aria-expanded="false"
                         aria-label="Toggle navigation"
                     >
-                        <span class="navbar-toggler-icon"></span>
+                        <span className="navbar-toggler-icon"></span>
                     </button>
 
-                    <div class="collapse navbar-collapse" id="navbarNav">
+                    <div className="collapse navbar-collapse" id="navbarNav">
                         {
                             localStorage.getItem('user-info') ?
                                 <>
-                                    <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+                                    <ul className="navbar-nav ms-auto mb-2 mb-lg-0">
                                         <li >
-                                            <Link to="/register" class="nav-link" title={user.user_name} >
+                                            <Link to="/editProfile" className="nav-link" title={user.user_name} >
                                                 {user.user_name}
                                             </Link>
                                             
                                         </li>
                                         <li class="nav-item active">
-                                            < Link to="/home" class="nav-link" onClick={logOut}>
+                                            < Link to="/home" className="nav-link" onClick={logOut}>
                                                 Cerrar Sesión
                                             </Link>
                                         </li>
@@ -68,14 +69,14 @@ const Navbar = () => {
                                 </>
                                 :
                                 <>
-                                 <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+                                 <ul className="navbar-nav ms-auto mb-2 mb-lg-0">
                                         <li >
-                                            <Link to="/register" class="nav-link"  >
+                                            <Link to="/register" className="nav-link"  >
                                                 Registrarse
                                             </Link>
                                         </li>
-                                        <li class="nav-item active">
-                                            < Link to="/login" class="nav-link">
+                                        <li className="nav-item active">
+                                            < Link to="/login" className="nav-link">
                                                 Iniciar Sesión
                                             </Link>
                                         </li>

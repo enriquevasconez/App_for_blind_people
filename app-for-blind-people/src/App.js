@@ -1,7 +1,5 @@
 import './App.css';
-import React, { useEffect, useState} from 'react';
-import Navbar from './Components/navbar';
-import Footer from './Components/footer';
+
 import Login from './Components/login';
 import Register from './Components/register';
 import Home from './Components/home';
@@ -10,9 +8,10 @@ import Home from './Components/home';
 import {
   BrowserRouter as Router,
   Switch,
-  Route,
-  Link
+  Route
+
 } from "react-router-dom";
+import Profile from './Components/editProfile';
 
 
 
@@ -22,7 +21,7 @@ import {
  
    return (
     <Router>
-      <div className="App">
+      <div className="App" className="App">
 
         <header className="App-header">
          {/* <Navbar /> */}
@@ -40,6 +39,13 @@ import {
             <Login />
                      
           </Route>
+
+          <Route exact path="/editProfile">
+            
+            <Profile />
+
+          </Route>
+
           <Route exact path="/home">
             <Home/>
                      
@@ -50,6 +56,8 @@ import {
             <serviceList />
 
           </Route>
+        
+
         </Switch>
         
 

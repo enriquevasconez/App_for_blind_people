@@ -26,28 +26,27 @@ const Home = () => {
     return (
 
 
-        <div>
+        <div className="home">
 
             <Navbar />
-            <div id="main-content" class="container">
+            <div id="main-content" className="container">
 
 
-                <div id="box" class="p-.5 mb-4 rounded-3">
-                    <div id="jumbotron" class="container-fluid bg-light py-4">
+                <div id="box" className="p-.5 mb-4 rounded-3">
+                    <div id="jumbotron" className="container-fluid bg-light py-4">
 
                     </div>
                 </div>
-                <div id="home-titles" class="row p-.5 mb-4">
+                <div id="home-titles" className="row p-.5 mb-4">
 
-                    <div class="col-md-4 col-sm-6 col-xs-12  ">
+                    <div className="col-md-4 col-sm-6 col-xs-12  ">
 
                         <a href="menu-categories.html">
 
                             <div id="menu-tile">
 
                                 <img src="https://usmile581.github.io/Bistro_Restaurant/images/menu-tile.jpg" alt="Restaurant"
-                                    class="img " />
-
+                                    className="img " />
                                 {
                                       data.map((user) =>
                                      <>
@@ -57,22 +56,13 @@ const Home = () => {
                                      </>
                                  
                                     ) 
-
-
                                 }
-
                             </div>
-
                         </a>
                     </div>
-
                 </div>
             </div>
-
         </div>
-
-
     );
-
 }
 export default Home;

@@ -17,7 +17,7 @@
 .card-registration .select-input.form-control[readonly]:not([disabled]) {
   font-size: 1rem;
   line-height: 4.15;
-  padding-left: .75em;
+  padding-left: .80em;
   padding-right: .75em;
 }
 .card-registration .select-arrow {
@@ -83,7 +83,7 @@
 
 
 #menu-tile span, #specials-tile span, #map-tile span{
-  position: absolute;
+  position: sticky;
   bottom: 0;
   right: 0;
   width: 100%;
