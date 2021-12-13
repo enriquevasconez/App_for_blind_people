@@ -38,7 +38,7 @@ const Register = () => {
         user_email: values.user_email,
         password: values.password,
         user_phone: values.user_phone,
-        //blind_discapacity_percentage
+   
       })
     })
       .then((resp) => {

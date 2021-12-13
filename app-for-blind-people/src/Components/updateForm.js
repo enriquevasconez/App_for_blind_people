@@ -11,14 +11,14 @@ const UpdateForm =  (callback, validate) => {
     //const [redirect, setRedirect] = useState(false)
    
     let user = JSON.parse(localStorage.getItem('user-info'))
-   
-    const { password, ...result } = user;
+
 
     const [values, setValues] = useState({
 
         user_name: user.user_name,
         user_email: user.user_email,
         user_phone:user.user_phone,
+        user_id: user.user_id,
         password:'',
         password2:'',
         access_token:''

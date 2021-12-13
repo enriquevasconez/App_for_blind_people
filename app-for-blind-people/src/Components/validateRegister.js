@@ -1,3 +1,4 @@
+
 export default function validateRegister(values) {
 
 
@@ -20,8 +21,6 @@ export default function validateRegister(values) {
         }
 
     }
-
-
 
 
 
@@ -53,5 +52,7 @@ export default function validateRegister(values) {
         }
 
     }
+  
+
     return errors;
 }

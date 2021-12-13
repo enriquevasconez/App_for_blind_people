@@ -60,6 +60,12 @@ const Navbar = () => {
                                             </Link>
                                             
                                         </li>
+                                        <li >
+                                            <Link to="/serviceRegister" className="nav-link"  >
+                                                Vender
+                                            </Link>
+                                            
+                                        </li>
                                         <li class="nav-item active">
                                             < Link to="/home" className="nav-link" onClick={logOut}>
                                                 Cerrar Sesión

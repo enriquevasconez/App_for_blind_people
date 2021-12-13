@@ -4,7 +4,6 @@ import Login from './Components/login';
 import Register from './Components/register';
 import Home from './Components/home';
 
-
 import {
   BrowserRouter as Router,
   Switch,
@@ -12,6 +11,7 @@ import {
 
 } from "react-router-dom";
 import Profile from './Components/editProfile';
+import Service from './Components/serviceRegister';
 
 
 
@@ -56,8 +56,13 @@ import Profile from './Components/editProfile';
             <serviceList />
 
           </Route>
-        
 
+          <Route exact path= "/serviceRegister">
+            
+            <Service />
+
+          </Route>
+      
         </Switch>
         
 

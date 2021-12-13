@@ -1,36 +1,24 @@
 import { useState, useEffect } from "react";
 
-//import { useHistory } from 'react-router-dom';
+const useForm = (callback, validate) => {
 
-
-const useForm =  (callback, validate) => {
-
-
-    //-const history = useHistory();
-
-    //const [redirect, setRedirect] = useState(false)
-   
-    let user = JSON.parse(localStorage.getItem('user-info'))
-   
-    
     const [values, setValues] = useState({
 
-        user_name:'',
+        user_name: '',
         user_email: '',
         password: '',
-        password2:'',
-        user_phone:'',
-     
-       
-       
+        password2: '',
+        user_phone: '',
 
     })
 
-    const [errors, setErrors] = useState({});
+ 
+     const [errors, setErrors] = useState({});
     const [isSubmitting, setIsSubmitting] = useState(false)
 
-
-    const handleChange =  e => {
+   
+    
+    const handleChange = e => {
         const { name, value } = e.target
         setValues({
             ...values,
@@ -38,34 +26,30 @@ const useForm =  (callback, validate) => {
         })
     }
 
-    const handleSubmit =  e => {
+    const handleSubmit = e => {
         e.preventDefault();
 
         setErrors(validate(values));
-         
+
         setIsSubmitting(true);
 
 
     };
 
-    
 
-    useEffect( () => {
 
-       
-        
+    useEffect(() => {
+
         if (Object.keys(errors).length === 0 && isSubmitting) {
-            
+
             callback();
-        
+
         }
     },
-    [errors]
+        [errors]
     )
-
     return { handleChange, values, handleSubmit, errors }
 };
-
 
 export default useForm;
 
