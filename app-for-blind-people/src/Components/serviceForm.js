@@ -7,7 +7,8 @@ const ServiceForm = (callback, validate) => {
         service_name: '',
         service_description: '',
         service_price: 'Por defecto',
-        type:''
+        type:'',
+        img:''
        
     })
 
@@ -16,13 +17,21 @@ const ServiceForm = (callback, validate) => {
     const [selectedCity, setSelectedCity] = useState("");
 
     const countries = {
-        France: ["Paris", "Marseille", "Lille", "Lyon"],
-        Usa: ["New York", "San Francisco", "Austin", "Dallas"],
+        Esmeraldas: ["Atacames", "Eloy Alfaro", "Esmeraldas", "La Concordia","Muisne","Quinindé",
+        "Rioverde","San Lorenzo"],
+        Pichincha: ["Cayambe", "Machachi", "Tabacundo", "  Pedro Vicente Maldonado","  Puerto Quito",
+        "Quito","Sangolquí", "San Miguel De Los Bancos"],
+       
         Brazil: ["São Paulo", "Rio de Janeiro", "Salvador"]
     };
 
     const [errors, setErrors] = useState({});
     const [isSubmitting, setIsSubmitting] = useState(false)
+
+    const [imgPreview, setImgPreview] = useState({
+        file:[],
+        filepreview:null,
+    });
 
     const countryList = Object.keys(countries).map(key => ({
         name: key
@@ -51,6 +60,16 @@ const ServiceForm = (callback, validate) => {
         })
     }
 
+    const handeInputChange = (event) => {
+        setImgPreview({
+            ...imgPreview,
+            file: event.target.files[0],
+            filepreview: URL.createObjectURL(event.target.files[0]),
+        })
+      }
+  
+    
+
     const handleSubmit = e => {
         e.preventDefault();
 
@@ -73,7 +92,7 @@ const ServiceForm = (callback, validate) => {
     },
         [errors]
     )
-    return { handleChange, values, handleSubmit, cities,selectedCity, selectedCounty, countryList, handleCountrySelect ,handleCitySelect, errors }
+    return { handleChange, values, handleSubmit, cities,selectedCity, selectedCounty, countryList, handleCountrySelect ,handleCitySelect, imgPreview,handeInputChange ,errors }
 };
 
 export default ServiceForm;

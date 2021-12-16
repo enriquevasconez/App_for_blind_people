@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 
 
 import './footer'
@@ -13,12 +13,15 @@ import { useHistory } from 'react-router-dom'
 const Service = () => {
 
     const { handleChange, values, cities, selectedCity, selectedCounty, countryList,
-        handleSubmit, handleCountrySelect, handleCitySelect, errors } = ServiceForm(submit, validate);
+        handleSubmit, handleCountrySelect, handleCitySelect, imgPreview, handeInputChange,errors } = ServiceForm(submit, validate);
 
     const [redirect, setRedirect] = useState(false)
     const [passError, setPassError] = useState("")
+  
+
     let user = JSON.parse(localStorage.getItem('user-info'))
 
+    
     async function submit() {
 
         const response = await fetch('https://blind-people-app-backend.herokuapp.com/service', {
@@ -36,20 +39,21 @@ const Service = () => {
                 if (resp.status >= 300) {
 
                     console.log(resp)
-                    setPassError("Este correo ya está siendo utilizado");
-
-                    alert("no funciona")
+                    setPassError("Error inesperado compruebe su conexión a internet");
 
                 } else {
                     setRedirect(true);
                     console.log(values.type);
                     console.log(selectedCounty)
                     console.log(selectedCity)
+                    console.log(imgPreview.file)
                 }
             }).catch((error) => {
                 console.log(error)
             });
     }
+
+
 
     const history = useHistory();
     useEffect(() => {
@@ -65,7 +69,11 @@ const Service = () => {
 
     }
 
+    function borrar() {
+        imgPreview.imgPreview = null
+    }
 
+  
     return (
 
         <div>
@@ -73,10 +81,30 @@ const Service = () => {
             <div className="container" >
                 <hr></hr>
                 <form onSubmit={handleSubmit}>
+                {passError && <p> {passError} </p>}
                     <div className="row">
-                        <div className="col-xs-4 item-photo">
-                            <img style={{ maxWidth: '100%' }} src="https://ak1.ostkcdn.com/images/products/8818677/Samsung-Galaxy-S4-I337-16GB-AT-T-Unlocked-GSM-Android-Cell-Phone-85e3430e-6981-4252-a984-245862302c78_600.jpg" />
+                        <div className="  col-md-12 col-xs-4 item-photo mb-5">
+                            {/* <img style={{ maxWidth: '100%' }} src="https://ak1.ostkcdn.com/images/products/8818677/Samsung-Galaxy-S4-I337-16GB-AT-T-Unlocked-GSM-Android-Cell-Phone-85e3430e-6981-4252-a984-245862302c78_600.jpg" /> */}
+                            <input class="form-control" type="file" id="formFile" 
+                           
+                            onChange={handeInputChange}
+                           />
+
                         </div>
+
+                            {imgPreview.filepreview !==null ?
+                             <img className="previewimg" src ={imgPreview.filepreview} alt="uploadimage"/>: null
+                            }
+
+                        <div className="  col-md-2  mb-5">
+
+                            <input id="Submit" className=" container btn btn-primary btn-lg" type="delete" value="Borrar" />
+                        </div>
+
+
+
+                        <img id="frame" src="" class="img-fluid" />
+
                         <div className="col-md-4  mb-4" style={{ border: '0px solid gray' }}>
                             {/* <!-- Datos del vendedor y titulo del producto --> */}
 
@@ -202,7 +230,7 @@ const Service = () => {
                     </div>
 
                     <div className="col-xs-9">
-                        <ul className="menu-items">
+                        <ul className="menu-items list-inline">
                             <li className="active">Detalle del producto</li>
 
                         </ul>

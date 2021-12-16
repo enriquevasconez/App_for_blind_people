@@ -1,7 +1,7 @@
 ul > li{margin-right:25px;font-weight:lighter;cursor:pointer}
 
+.item-photo{margin-top: 5% ;justify-content:center;align-items:center;border-right:1px} */
 
-.item-photo{margin-top: 5% ;display:flex;justify-content:center;align-items:center;border-right:1px solid #f6f6f6;}
 .menu-items{list-style-type:none;font-size:11px;display:inline-flex;margin-bottom:0;margin-top:20px}
 
 .section{width:100%;margin-left:-15px;padding:2px;padding-left:15px;padding-right:15px;background:#f8f9f9}
