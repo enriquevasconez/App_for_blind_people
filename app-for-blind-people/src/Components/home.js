@@ -1,27 +1,123 @@
 import React, { useEffect, useState } from "react";
 import Navbar from './navbar'
+import ReactPaginate from 'react-paginate';
+import { Link, useHistory } from "react-router-dom";
 
 const Home = () => {
 
-    const [data, setData] = useState([]);
+    const [users, setUsers] = useState([]);
+
+    const [redirect, setRedirect] = useState(false)
+    const [pageCount, setpageCount] = useState(0)
+
     useEffect(async () => {
 
-        let result = await fetch(
-            "https://blind-people-app-backend.herokuapp.com/user",
+        const res = await fetch(
+            `https://blind-people-app-backend.herokuapp.com/service?_page=1&_limit=12`,
             {
                 headers: {
                     'Content-type': 'application/json',
                     "x-api-key": "420f77de-2cea-4e13-841a-b43ca729a7a9"
                 }
+
             }
 
-        );
+        ).then((resp) => {
+            if (resp.status >= 300) {
 
-        result = await result.json();
-        setData(result)
-        console.log(setData)
+                console.log(resp)
+                //  setPassError("Error inesperado compruebe su conexión a internet");
+
+            } else {
+
+                setRedirect(true);
+
+
+                const total = resp.headers.get('content-length');
+
+                console.log('total:' + total);
+
+
+                return resp.json();
+
+            }
+        }).then(data => {
+
+
+            setUsers(data)
+            console.log(data)
+
+
+
+        }).catch((error) => {
+            console.log(error)
+        });
+
     }, [])
 
+
+    let content = null
+
+    if (users) {
+
+
+        content = users.map((service, key) =>
+
+
+            <div key={service.service_id} class="col-md-4 mb-3">
+                <Link style={{ "color": "black" }} to={"/serviceDetail/" + service.service_id} className="nav-link"  >
+                <div class="card">
+
+
+
+                   
+                        <img
+                            src={service.service_image}
+                            class="card-img-top"
+                            alt={service.service_name}
+                        />
+                        <div class="card-body">
+                            <h5 class="card-title">{service.service_name}</h5>
+                            <p class="card-text">
+                                {service.service_id}
+
+                            </p>
+                        </div>
+                  
+                </div>
+                </Link>
+            </div>
+
+
+        )
+    } else {
+        content = "Error inesperado"
+    }
+
+
+    const fetchComments = async (currentPage) => {
+        const res = await fetch(
+            `https://blind-people-app-backend.herokuapp.com/service?_page=${currentPage}&_limit=12`, {
+            headers: {
+                'Content-type': 'application/json',
+                "x-api-key": "420f77de-2cea-4e13-841a-b43ca729a7a9"
+            }
+        }
+        );
+        const data = await res.json();
+        return data;
+    }
+
+    const handlePageClick = async (data) => {
+      
+
+        let currentPage = data.selected + 1
+        console.log(currentPage)
+
+        const commentsFormServer = await fetchComments(currentPage);
+
+        setUsers(commentsFormServer)
+    }
 
     return (
 
@@ -29,39 +125,41 @@ const Home = () => {
         <div className="home">
 
             <Navbar />
-            <div id="main-content" className="container">
 
 
-                <div id="box" className="p-.5 mb-4 rounded-3">
-                    <div id="jumbotron" className="container-fluid bg-light py-4">
+            <div id="main-content" style={{ 'margin': '50px' }} className="py-5 p-.5  mb-4">
 
-                    </div>
+                <div id="box" className="row">
+
+
+                    {content}
+
                 </div>
-                <div id="home-titles" className="row p-.5 mb-4">
 
-                    <div className="col-md-4 col-sm-6 col-xs-12  ">
-
-                        <a href="menu-categories.html">
-
-                            <div id="menu-tile">
-
-                                <img src="https://usmile581.github.io/Bistro_Restaurant/images/menu-tile.jpg" alt="Restaurant"
-                                    className="img " />
-                                {
-                                      data.map((user) =>
-                                     <>
-                                    
-                                        <span> {user.user_id} </span>
-                                       
-                                     </>
-                                 
-                                    ) 
-                                }
-                            </div>
-                        </a>
-                    </div>
-                </div>
             </div>
+        <nav aria-label="Page navigation example">
+            <ReactPaginate
+
+                previousLabel={'Previous'}
+                nextAriaLabel={'Next'}
+                breakLabel={'...'}
+                pageCount={15}
+                marginPagesDisplayed={2}
+                pageRangeDisplayed={3}
+                onPageChange={handlePageClick}
+                containerClassName={'pagination justify-content-center'}
+                pageClassName={'page-item'}
+                pageLinkClassName={'page-link'}
+                previousClassName={'page-item'}
+                previousLinkClassName={'page-link'}
+                nextClassName={'page-item'}
+                nextLinkClassName={'page-link'}
+                breakClassName={'page-item'}
+                breakLinkClassName={'page-link'}
+                activeClassName={'active'}
+            />
+            
+        </nav>
         </div>
     );
 }

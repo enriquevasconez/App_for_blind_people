@@ -12,19 +12,23 @@ const ServiceForm = (callback, validate) => {
        
     })
 
-    const [cities, setCities] = useState([]);
-    const [selectedCounty, setSelectedCountry] = useState("");
-    const [selectedCity, setSelectedCity] = useState("");
-
     const countries = {
         Esmeraldas: ["Atacames", "Eloy Alfaro", "Esmeraldas", "La Concordia","Muisne","Quinindé",
         "Rioverde","San Lorenzo"],
+        Manabí: [" Atahualpa", "Chone", "El Carmen", "Flavio Alfaro", "Flavio Alfaro", "Jipijapa",
+        "Junín", "Manta", "Paján","Pedernales","Portoviejo"],
         Pichincha: ["Cayambe", "Machachi", "Tabacundo", "  Pedro Vicente Maldonado","  Puerto Quito",
         "Quito","Sangolquí", "San Miguel De Los Bancos"],
        
-        Brazil: ["São Paulo", "Rio de Janeiro", "Salvador"]
+      
     };
 
+    const [cities, setCities] = useState([""]);
+    const [selectedCounty, setSelectedCountry] = useState("");
+    const [selectedCity, setSelectedCity] = useState("");
+    
+    
+ 
     const [errors, setErrors] = useState({});
     const [isSubmitting, setIsSubmitting] = useState(false)
 
@@ -44,6 +48,7 @@ const ServiceForm = (callback, validate) => {
         setSelectedCountry(countrySel);
         setCities(citiesSel);
         setSelectedCity("");
+      
     }
 
     const handleCitySelect = e => {
@@ -68,7 +73,15 @@ const ServiceForm = (callback, validate) => {
         })
       }
   
-    
+      const handeDelteChange = (event) => {
+       
+        setImgPreview({
+            ...imgPreview,
+            file:[],
+            filepreview: null,
+        })
+      }  
+  
 
     const handleSubmit = e => {
         e.preventDefault();
@@ -92,7 +105,7 @@ const ServiceForm = (callback, validate) => {
     },
         [errors]
     )
-    return { handleChange, values, handleSubmit, cities,selectedCity, selectedCounty, countryList, handleCountrySelect ,handleCitySelect, imgPreview,handeInputChange ,errors }
+    return { handleChange,handeDelteChange ,values, handleSubmit, cities,selectedCity, selectedCounty, countryList,handleCountrySelect ,handleCitySelect, imgPreview,handeInputChange ,errors }
 };
 
 export default ServiceForm;

@@ -12,6 +12,7 @@ import {
 } from "react-router-dom";
 import Profile from './Components/editProfile';
 import Service from './Components/serviceRegister';
+import ServiceDetail from './Components/serviceDetail';
 
 
 
@@ -61,6 +62,12 @@ import Service from './Components/serviceRegister';
             
             <Service />
 
+          </Route>
+
+          <Route exact path="/serviceDetail/:service_id">
+
+          <ServiceDetail />
+            
           </Route>
       
         </Switch>

@@ -6,24 +6,24 @@ export default function validateService(values , selectedCounty, selectedCity) {
 
     
     if(!values.service_name){
-        errors.service_name ="Campo no puede estar vacio"
+        errors.service_name ="Ingrese el nombre del servicio"
     }
 
     if(!values.service_description){
-        errors.service_description ="Campo no puede estar vacio"
+        errors.service_description ="Debe agregar una descripción"
     }
 
     if(!values.type){
-        errors.type ="Campo no puede estar vacio"
+        errors.type ="Seleccione el tipo de servicio"
     }
 
     
     if(!selectedCounty){
-        errors.selectedCounty ="Campo no puede estar vacio"
+        errors.selectedCounty ="Seleccione una provicnia"
     }
 
     if(!selectedCity){
-        errors.selectedCity ="Campo no puede estar vacio"
+        errors.selectedCity ="Seleccione una ciudad"
     }
 
     return errors;
