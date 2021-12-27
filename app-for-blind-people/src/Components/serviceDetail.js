@@ -17,9 +17,9 @@ const ServiceDetail = (props) => {
     const [redirect, setRedirect] = useState(false)
 
 
-    useEffect(async () => {
+    useEffect( () => {
 
-        const res = await fetch(
+        const res =  fetch(
             `https://blind-people-app-backend.herokuapp.com/service/${props.match.params.service_id} `,
             {
                 headers: {
@@ -233,7 +233,6 @@ const ServiceDetail = (props) => {
                     </div>
                 </form>
             </div>
-
 
 
         </div>

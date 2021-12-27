@@ -3,12 +3,18 @@ import Navbar from './navbar'
 import ReactPaginate from 'react-paginate';
 import { Link, useHistory } from "react-router-dom";
 
+import Service from "./serviceRegister";
 const Home = () => {
 
-    const [users, setUsers] = useState([]);
 
+
+    const [servicios, setServicios] = useState([]);
+    const [tablaUsuarios, setTablaUsuarios]= useState([]);
+    const [buscar, setBuscar] = useState("");
+    const [busqueda, setBusqueda]= useState("");
     const [redirect, setRedirect] = useState(false)
     const [pageCount, setpageCount] = useState(0)
+ 
 
     useEffect(async () => {
 
@@ -44,24 +50,25 @@ const Home = () => {
         }).then(data => {
 
 
-            setUsers(data)
-            console.log(data)
-
+            setServicios(data);
+            setTablaUsuarios(data);
+           
+            console.log(data);
 
 
         }).catch((error) => {
-            console.log(error)
+            console.log(error);
         });
 
     }, [])
 
-
+    
     let content = null
 
-    if (users) {
+    if (servicios) {
 
 
-        content = users.map((service, key) =>
+        content = servicios.map((service, key) =>
 
 
             <div key={service.service_id} class="col-md-4 mb-3">
@@ -108,27 +115,43 @@ const Home = () => {
         return data;
     }
 
+
+
     const handlePageClick = async (data) => {
       
-
         let currentPage = data.selected + 1
         console.log(currentPage)
 
         const commentsFormServer = await fetchComments(currentPage);
 
-        setUsers(commentsFormServer)
+        setServicios(commentsFormServer)
     }
+    
 
-    return (
+    const filtrar=(terminoBusqueda)=>{
+        var resultadosBusqueda=tablaUsuarios.filter((elemento)=>{
+          if(elemento.service_name.toString().toLowerCase().includes(terminoBusqueda.toLowerCase())
+          || elemento.service_id.toString().toLowerCase().includes(terminoBusqueda.toLowerCase())
+          ){
+            return elemento;
+          }
+        });
+        setServicios(resultadosBusqueda);
+      }
+
+    return  (
 
 
         <div className="home">
 
-            <Navbar />
+            <Navbar placeholder = "Buscar..." handleChange= {(e)  => {  e.preventDefault(); setBusqueda(e.target.value);
+            filtrar(e.target.value)}} value={busqueda} />
 
 
             <div id="main-content" style={{ 'margin': '50px' }} className="py-5 p-.5  mb-4">
-
+                <div>
+                    <h1>Servicios Disponibles</h1>
+                </div>
                 <div id="box" className="row">
 
 
@@ -162,5 +185,6 @@ const Home = () => {
         </nav>
         </div>
     );
-}
+  
+};
 export default Home;

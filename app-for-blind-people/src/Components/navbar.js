@@ -1,38 +1,48 @@
-import React, { Component } from "react"
+import React, { useEffect } from "react"
 import './register'
 import '../App'
 import './login'
 import './editProfile'
 
+import Home from './home'
+
 
 import { useState } from 'react'
 import 'C:/Users/USER/Desktop/Universidad/App_Tesis/App_for_blind_people/app-for-blind-people/src/App.css'
-import {   Link, useHistory } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
 
 
-const Navbar = () => {
-
-
+const Navbar = (props) => {
 
     let user = JSON.parse(localStorage.getItem('user-info'))
+
+
+
 
 
     const history = useHistory();
 
     function logOut() {
-        localStorage.clear() 
+        localStorage.clear()
         history.push("/home")
-    } 
+    }
+
 
     return (
-        
+
         <nav className="navbar fixed-top navbar-expand-md navbar-dark bg-primary  ">
             <div className="container  d-flex  justify-content-between ">
                 <Link to="/" className="navbar-brand mb-0 h1 "> Blind Service  </Link>
 
                 <div>
                     <form id="searchbox" className=" d-flex">
-                        <input type="text" className="form-control  me-2 " type="search" placeholder="Search..." aria-label="Search" />
+                        <input type="text" className="form-control  me-2 " type="search"
+                            value={props.value}
+                            placeholder={props.placeholder}
+                            onChange={props.handleChange}
+                            aria-label="Search"
+                        />
+
                         <button typle="submit" className="btn btn-outline-success  "> Search </button>
                     </form>
                 </div>
@@ -58,13 +68,13 @@ const Navbar = () => {
                                             <Link to="/editProfile" className="nav-link" title={user.user_name} >
                                                 {user.user_name}
                                             </Link>
-                                            
+
                                         </li>
                                         <li >
                                             <Link to="/serviceRegister" className="nav-link"  >
                                                 Vender
                                             </Link>
-                                            
+
                                         </li>
                                         <li class="nav-item active">
                                             < Link to="/home" className="nav-link" onClick={logOut}>
@@ -75,7 +85,7 @@ const Navbar = () => {
                                 </>
                                 :
                                 <>
-                                 <ul className="navbar-nav ms-auto mb-2 mb-lg-0">
+                                    <ul className="navbar-nav ms-auto mb-2 mb-lg-0">
                                         <li >
                                             <Link to="/register" className="nav-link"  >
                                                 Registrarse
@@ -94,7 +104,7 @@ const Navbar = () => {
 
                 </div>
             </div>
-       </nav>
+        </nav>
 
     );
 }
