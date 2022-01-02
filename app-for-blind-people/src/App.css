@@ -111,3 +111,18 @@ footer {
  
 }
 
+/* img home */
+
+.ListItem-main-card {
+  width: 320px;
+  height: 415px;
+}
+
+.ListItem-img {
+  height: auto;
+  max-height: 200px;
+  width: auto;
+  max-width: 500px;
+}
+
+

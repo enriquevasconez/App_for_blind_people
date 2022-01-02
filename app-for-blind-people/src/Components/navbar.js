@@ -4,6 +4,8 @@ import '../App'
 import './login'
 import './editProfile'
 
+
+
 import Home from './home'
 
 
@@ -34,18 +36,7 @@ const Navbar = (props) => {
             <div className="container  d-flex  justify-content-between ">
                 <Link to="/" className="navbar-brand mb-0 h1 "> Blind Service  </Link>
 
-                <div>
-                    <form id="searchbox" className=" d-flex">
-                        <input type="text" className="form-control  me-2 " type="search"
-                            value={props.value}
-                            placeholder={props.placeholder}
-                            onChange={props.handleChange}
-                            aria-label="Search"
-                        />
-
-                        <button typle="submit" className="btn btn-outline-success  "> Search </button>
-                    </form>
-                </div>
+             
                 <div>
                     <button
                         type="button"
