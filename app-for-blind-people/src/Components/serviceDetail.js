@@ -114,6 +114,7 @@ useLayoutEffect(() => {
                                 placeholder=" Ingrese Nombre"
                                 className="form-control form-control-lg"
                                 value={service.service_name}
+                                style={{"backgroundColor":"white"}}
                             />
 
 
@@ -127,6 +128,7 @@ useLayoutEffect(() => {
                                 className="form-control form-control-lg"
                                 value={"hola"}
                                 readOnly
+                                style={{"backgroundColor":"white"}}
 
                             />
 
@@ -138,6 +140,7 @@ useLayoutEffect(() => {
                                 readOnly
                                 className="form-control form-control-lg"
                                 value={service?.user?.user_phone}
+                                style={{"backgroundColor":"white"}}
 
                             />
                         </div>
@@ -153,6 +156,7 @@ useLayoutEffect(() => {
 
                                 className="form-control form-control-lg" readOnly
                                 value={service.service_price}
+                                style={{"backgroundColor":"white"}}
 
                             />
                         </div>
@@ -166,6 +170,7 @@ useLayoutEffect(() => {
                                 readOnly
                                 className="form-control form-control-lg"
                                 value={"asdasd"}
+                                style={{"backgroundColor":"white"}}
 
                             />
 
@@ -183,6 +188,7 @@ useLayoutEffect(() => {
 
                                 className="form-control form-control-lg" readOnly
                                 value={"asdasd"}
+                                style={{"backgroundColor":"white"}}
 
                             />
 
@@ -202,6 +208,7 @@ useLayoutEffect(() => {
                                 placeholder=" Seleccione provincia"
                                 className="form-control form-control-lg" readOnly
                                 value={"hola"}
+                                style={{"backgroundColor":"white"}}
                             />
                         </div>
 
@@ -218,7 +225,7 @@ useLayoutEffect(() => {
                                     readOnly
                                     name="service_description"
                                     value={service.service_description}
-                                    style={{"resize":"none","height":"300px" }}
+                                    style={{"resize":"none","height":"300px","backgroundColor":"white" }}
                                 />
                             </p>
                         </div>

@@ -80,11 +80,7 @@ const Service = () => {
 
     }
 
-    const reset = () => {
-        ref.current.value = "";
-
-
-    };
+   
 
     function borrar() {
         ref.current.value = "";
