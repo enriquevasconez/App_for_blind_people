@@ -124,5 +124,14 @@ footer {
   width: auto;
   max-width: 500px;
 }
+.ServiceItem-img {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  height: auto;
+  max-height: 1000px;
+  width: auto;
+  max-width: 1000px;
+}
 
 

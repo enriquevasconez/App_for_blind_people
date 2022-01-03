@@ -86,7 +86,7 @@ const ServiceDetail = (props) => {
                             <div class="card-body">
                                 <img
                                     src={service.service_image}
-                                    class="card-img-top"
+                                    className="card-img-top ServiceItem-img"
                                     alt={service.service_name}
                                     
                                 />
