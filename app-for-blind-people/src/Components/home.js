@@ -141,6 +141,7 @@ const Home = () => {
         var resultadosBusqueda = tablaUsuarios.filter((elemento) => {
             if (elemento.service_name.toString().toLowerCase().includes(terminoBusqueda.toLowerCase())
                 || elemento.service_id.toString().toLowerCase().includes(terminoBusqueda.toLowerCase())
+                || elemento.service_description.toString().toLowerCase().includes(terminoBusqueda.toLowerCase()) 
             ) {
                 return elemento;
             }
@@ -178,7 +179,7 @@ const Home = () => {
                 </div>
 
                 <div className="row">
-                    <div class="col-md-12">
+                    <div className="col-md-12">
                     <h1>Servicios Disponibles</h1>
                     </div>
                 </div>

@@ -17,6 +17,7 @@ const Service = () => {
 
     const [redirect, setRedirect] = useState(false)
     const [passError, setPassError] = useState("")
+    
 
     const ref = useRef()
 
@@ -117,7 +118,7 @@ const Service = () => {
                         <div className="row">
                             <div className="  col-md-2  mb-5">
 
-                                <input id="Submit" onClick={() => { handeDelteChange(); borrar() }} className=" container btn btn-primary btn-lg" type="delete" value="Borrar" />
+                                <button  onClick={() => { handeDelteChange(); borrar() }} className=" container btn btn-primary btn-lg" type="button" value="Borrar" >Borrar</button>
                             </div>
                         </div>
 
@@ -152,9 +153,9 @@ const Service = () => {
 
                                 {/* <option selected >Open this select menu</option> */}
                                 <option value="titulo" selected hidden> Seleccione opcion </option>
-                                <option value="One">One</option>
-                                <option value='Two'>Two</option>
-                                <option value='Three'>Three</option>
+                                <option value="Reparaciones - Técnicos">Reparaciones - Técnicos</option>
+                                <option value='Clases-Cursos'>Clases-Cursos</option>
+                                <option value='Mudanzas-Transporte'>Mudanzas-Transporte</option>
                             </select>
                             {errors.type && <p>  {errors.type}</p>}
 
@@ -163,8 +164,9 @@ const Service = () => {
                             <label className="form-label" htmlFor="phone"> Teléfono</label>
                             <input type="text" id="phone"
 
-                                placeholder=" Por convenir"
+                                
                                 className="form-control form-control-lg" readOnly
+                                value={user.user_phone}
                             />
                         </div>
                     </div>
