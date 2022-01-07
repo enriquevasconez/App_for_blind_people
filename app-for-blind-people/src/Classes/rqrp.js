@@ -70,4 +70,4 @@ export class RQRS {
 }
 
 // let test = new RQRS("user");
-// test.get({ subResourse: 1 });
+// test.get({ subResourse: 1, queryParams:{from:0, size:10} });
