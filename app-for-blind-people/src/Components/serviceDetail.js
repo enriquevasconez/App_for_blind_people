@@ -1,26 +1,30 @@
-import React, { useState, useEffect, useRef } from "react";
+import React, { useState, useEffect, useRef, useLayoutEffect } from "react";
 
 
 import './footer'
 import Navbar from './navbar'
 import './service.css'
 import { Redirect, withRouter } from 'react-router-dom';
-import { useHistory } from 'react-router-dom'
+import { useHistory, useParams } from 'react-router-dom'
 
 
-const ServiceDetail = (props) => {
+const ServiceDetail = () => {
 
-
+    const { service_id } = useParams(); 
 
     const [service, setService] = useState([]);
 
     const [redirect, setRedirect] = useState(false)
+//{props.match.params.service_id}
 
+useLayoutEffect(() => {
+    window.scrollTo(0, 0)
+});
 
-    useEffect(async () => {
+    useEffect( () => {
 
-        const res = await fetch(
-            `https://blind-people-app-backend.herokuapp.com/service/${props.match.params.service_id} `,
+        const res =  fetch(
+            `https://blind-people-app-backend.herokuapp.com/service/${service_id } `,
             {
                 headers: {
                     'Content-type': 'application/json',
@@ -52,7 +56,7 @@ const ServiceDetail = (props) => {
             console.log(error)
         });
 
-    }, [URL])
+    }, [service_id])
 
     // let content = null;
 
@@ -86,7 +90,7 @@ const ServiceDetail = (props) => {
                             <div class="card-body">
                                 <img
                                     src={service.service_image}
-                                    class="card-img-top"
+                                    className="card-img-top ServiceItem-img"
                                     alt={service.service_name}
                                     
                                 />
@@ -105,11 +109,12 @@ const ServiceDetail = (props) => {
                             {/* <!-- Datos del vendedor y titulo del producto --> */}
 
                             <label className="form-label" htmlFor="serviceName"> Nombre del servicio</label>
-                            <input readonly class="form-control-plaintext" type="text" id="serviceName"
+                            <input readOnly class="form-control-plaintext" type="text" id="serviceName"
                                 name="service_name"
                                 placeholder=" Ingrese Nombre"
                                 className="form-control form-control-lg"
                                 value={service.service_name}
+                                style={{"backgroundColor":"white"}}
                             />
 
 
@@ -118,11 +123,12 @@ const ServiceDetail = (props) => {
                         {/* <!-- Precios --> */}
                         <div className='col-md-4  mb-4'>
                             <label className="form-label" htmlFor="type"> Tipo de servicio</label>
-                            <input readonly class="form-control-plaintext" type="text" id="serviceName"
+                            <input   type="text" id="serviceName"
                                 name="type"
-                                placeholder=" Ingrese Nombre"
                                 className="form-control form-control-lg"
                                 value={"hola"}
+                                readOnly
+                                style={{"backgroundColor":"white"}}
 
                             />
 
@@ -133,7 +139,8 @@ const ServiceDetail = (props) => {
                             <input type="text" id="user_phone"
                                 readOnly
                                 className="form-control form-control-lg"
-                                value={"service.user.user_phone"}
+                                value={service?.user?.user_phone}
+                                style={{"backgroundColor":"white"}}
 
                             />
                         </div>
@@ -149,6 +156,7 @@ const ServiceDetail = (props) => {
 
                                 className="form-control form-control-lg" readOnly
                                 value={service.service_price}
+                                style={{"backgroundColor":"white"}}
 
                             />
                         </div>
@@ -162,6 +170,7 @@ const ServiceDetail = (props) => {
                                 readOnly
                                 className="form-control form-control-lg"
                                 value={"asdasd"}
+                                style={{"backgroundColor":"white"}}
 
                             />
 
@@ -179,6 +188,7 @@ const ServiceDetail = (props) => {
 
                                 className="form-control form-control-lg" readOnly
                                 value={"asdasd"}
+                                style={{"backgroundColor":"white"}}
 
                             />
 
@@ -198,6 +208,7 @@ const ServiceDetail = (props) => {
                                 placeholder=" Seleccione provincia"
                                 className="form-control form-control-lg" readOnly
                                 value={"hola"}
+                                style={{"backgroundColor":"white"}}
                             />
                         </div>
 
@@ -214,6 +225,7 @@ const ServiceDetail = (props) => {
                                     readOnly
                                     name="service_description"
                                     value={service.service_description}
+                                    style={{"resize":"none","height":"300px","backgroundColor":"white" }}
                                 />
                             </p>
                         </div>
@@ -233,7 +245,6 @@ const ServiceDetail = (props) => {
                     </div>
                 </form>
             </div>
-
 
 
         </div>
