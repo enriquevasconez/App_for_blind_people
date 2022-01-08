@@ -12,7 +12,7 @@ import {
 } from 'react-router-dom'
 
 import Navbar from './navbar'
-import { Redirect } from 'react-router-dom';
+import { Navigate } from 'react-router-dom';
 import validate from "./validateRegister";
 import useForm from "./useForm";
 import { useHistory } from 'react-router-dom'
@@ -167,7 +167,7 @@ const Register = () => {
   
 
   if (redirect) {
-    return <Redirect to="/login" />
+    return <Navigate to="/login" />
 
   }
 

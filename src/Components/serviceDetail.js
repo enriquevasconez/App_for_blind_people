@@ -4,7 +4,7 @@ import React, { useState, useEffect, useRef, useLayoutEffect } from "react";
 import './footer'
 import Navbar from './navbar'
 import './service.css'
-import { Redirect, withRouter } from 'react-router-dom';
+import { Navigate, withRouter } from 'react-router-dom';
 import { useHistory, useParams } from 'react-router-dom'
 
 
