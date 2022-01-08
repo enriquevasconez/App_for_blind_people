@@ -36,53 +36,15 @@ const app = initializeApp(firebaseConfig);
          {/* <Navbar /> */}
         </header>
         <Routes>
-          <Route  path="/register" >
-            <Register />
-          </Route>
-          <Route exact path="/" >
-             <Home />
- 
-          </Route>
-          <Route exact path="/login">
-         
-            <Login />
-                     
-          </Route>
-
-          <Route exact path="/editProfile">
-            
-            <Profile />
-
-          </Route>
-
-          <Route exact path="/home">
-            <Home/>
-                     
-          </Route>
-
-          <Route exact path="/serviceList">
-            
-            <serviceList />
-
-          </Route>
-
-          <Route exact path= "/serviceRegister">
-            
-            <Service />
-
-          </Route>
-
-          <Route exact path="/serviceDetail/:service_id">
-
-          <ServiceDetail />
-            
-          </Route>
-      
+          <Route  path="/register" element={<Register />}/>
+          <Route exact path="/" element={<Home />}/>
+          <Route exact path="/login" element={<Login />}/>
+          <Route exact path="/editProfile" element={<Profile />}/>
+          <Route exact path="/home" element={<Home/>}/>
+          <Route exact path="/serviceList" element={<serviceList />}/>
+          <Route exact path= "/serviceRegister" element={<Service />}/>
+          <Route exact path="/serviceDetail/:service_id" element={<ServiceDetail />}/>
         </Routes>
-        
-
-        {/* <Footer/> */}
-       
       </div>
     </Router>
     

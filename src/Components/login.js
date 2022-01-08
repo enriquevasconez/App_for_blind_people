@@ -1,6 +1,5 @@
 import React, { useEffect, useState,  } from "react";
 import { Navigate } from 'react-router-dom';
-import '../App.css'
 import { validEmail, validPassword } from './Regex.js';
 import Navbar from './navbar';
 import Home from './home'
@@ -43,7 +42,7 @@ const Login = () => {
 
                   localStorage.setItem("user-info", JSON.stringify(response_json))
                   console.log(response_json)
-                  history.push("/")
+                  history("/")
               })
       }
   }).catch((error) => {
@@ -62,7 +61,7 @@ const Login = () => {
   const history = useNavigate();
   useEffect(() => {
     if (localStorage.getItem('user-info')) {
-      history.push("/")
+      history("/")
     }
   }, [])
 
@@ -112,7 +111,7 @@ const Login = () => {
 
                   localStorage.setItem("user-info", JSON.stringify(response_json))
                   console.log(response_json)
-                  history.push("/")
+                  history("/")
 
                 })
 

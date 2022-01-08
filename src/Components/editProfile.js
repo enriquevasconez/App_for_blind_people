@@ -51,7 +51,7 @@ const Profile = () => {
               const { password, password2, ...result } = values;
               localStorage.setItem("user-info", JSON.stringify(result))
               console.log(response_json);
-              history.push("/");
+              history("/");
             })
         }
       }).catch((error) => {
@@ -64,7 +64,7 @@ const Profile = () => {
 
   useEffect(() => {
     if (!localStorage.getItem('user-info')) {
-      history.push("/")
+      history("/")
     }
   }, [])
 
@@ -76,7 +76,7 @@ const Profile = () => {
   }
 
   function cancel() {
-    history.push("/")
+    history("/")
   }
 
 

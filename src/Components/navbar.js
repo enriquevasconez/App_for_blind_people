@@ -25,7 +25,7 @@ const Navbar = (props) => {
 
     function logOut() {
         localStorage.clear()
-        history.push("/home")
+        history("/home")
     }
 
 
