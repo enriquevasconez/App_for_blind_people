@@ -4,7 +4,7 @@ import React, { useState, useEffect, useRef } from "react";
 import './footer'
 import Navbar from './navbar'
 import './service.css'
-import { Navigate } from 'react-router-dom';
+import { Redirect } from 'react-router-dom';
 import validate from "./validateService";
 import ServiceForm from "./serviceForm";
 import { useHistory } from 'react-router-dom'
@@ -76,7 +76,7 @@ const Service = () => {
 
 
     if (redirect) {
-        return <Navigate to="/login" />
+        return <Redirect to="/login" />
 
     }
 

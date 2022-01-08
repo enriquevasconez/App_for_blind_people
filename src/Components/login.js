@@ -1,5 +1,5 @@
 import React, { useEffect, useState,  } from "react";
-import { Navigate } from 'react-router-dom';
+import { Redirect } from 'react-router-dom';
 import '../App.css'
 import { validEmail, validPassword } from './Regex.js';
 import Navbar from './navbar';
@@ -128,7 +128,7 @@ const Login = () => {
       }
 
     if (redirect) {
-      return <Navigate to="/home" />
+      return <Redirect to="/home" />
     }
 
   }

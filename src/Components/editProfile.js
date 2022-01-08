@@ -4,7 +4,7 @@ import './login'
 
 
 import Navbar from './navbar'
-import { Navigate } from 'react-router-dom';
+import { Redirect } from 'react-router-dom';
 import validate from "./validateRegister";
 import UpdateForm from "./updateForm";
 import { useHistory } from 'react-router-dom'
@@ -71,7 +71,7 @@ const Profile = () => {
 
 
   if (redirect) {
-    return <Navigate to="/login" />
+    return <Redirect to="/login" />
 
   }
 
