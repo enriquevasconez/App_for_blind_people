@@ -4,7 +4,6 @@ import React, { useState, useEffect, useRef, useLayoutEffect } from "react";
 import './footer'
 import Navbar from './navbar'
 import './service.css'
-import { Navigate, withRouter } from 'react-router-dom';
 import { useNavigate, useParams } from 'react-router-dom'
 
 
@@ -252,4 +251,4 @@ useLayoutEffect(() => {
     );
 }
 
-export default withRouter(ServiceDetail);
+export default ServiceDetail;
