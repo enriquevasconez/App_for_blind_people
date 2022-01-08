@@ -1,5 +1,5 @@
 import React, { useEffect, useState,  } from "react";
-import { Redirect } from 'react-router-dom';
+import { Navigate } from 'react-router-dom';
 import '../App.css'
 import { validEmail, validPassword } from './Regex.js';
 import Navbar from './navbar';
@@ -7,7 +7,7 @@ import Home from './home'
 import useForm from "./useForm";
 import validate from "./validateInfo";
 
-import { useHistory } from 'react-router-dom'
+import { useNavigate } from 'react-router-dom'
 
 const Login = () => {
   
@@ -59,7 +59,7 @@ const Login = () => {
   const [emailEmty, setEmailEmpty] = useState("");
   const [passError, setPassError] = useState(""); */
 
-  const history = useHistory();
+  const history = useNavigate();
   useEffect(() => {
     if (localStorage.getItem('user-info')) {
       history.push("/")
@@ -128,7 +128,7 @@ const Login = () => {
       }
 
     if (redirect) {
-      return <Redirect to="/home" />
+      return <Navigate to="/home" />
     }
 
   }

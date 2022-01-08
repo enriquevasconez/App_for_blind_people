@@ -6,7 +6,7 @@ import Home from './Components/home';
 
 import {
   BrowserRouter as Router,
-  Switch,
+  Routes,
   Route
 
 } from "react-router-dom";
@@ -35,7 +35,7 @@ const app = initializeApp(firebaseConfig);
         <header className="App-header">
          {/* <Navbar /> */}
         </header>
-        <Switch>
+        <Routes>
           <Route  path="/register" >
             <Register />
           </Route>
@@ -78,7 +78,7 @@ const app = initializeApp(firebaseConfig);
             
           </Route>
       
-        </Switch>
+        </Routes>
         
 
         {/* <Footer/> */}

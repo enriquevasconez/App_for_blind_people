@@ -3,19 +3,11 @@ import React, { useState, useEffect } from "react";
 import './login'
 import './footer'
 
-import {
-  BrowserRouter as Router,
-  Switch,
-  Route,
-  Link,
-  NavLink
-} from 'react-router-dom'
-
 import Navbar from './navbar'
-import { Redirect } from 'react-router-dom';
+import { Navigate } from 'react-router-dom';
 import validate from "./validateRegister";
 import useForm from "./useForm";
-import { useHistory } from 'react-router-dom'
+import { useNavigate } from 'react-router-dom'
 import Footer from "./footer";
 
 
@@ -156,7 +148,7 @@ const Register = () => {
 
   } onSubmit={submit} */
   
-  const history = useHistory();
+  const history = useNavigate();
   
   useEffect(() => {
     if (localStorage.getItem('user-info')) {
@@ -167,7 +159,7 @@ const Register = () => {
   
 
   if (redirect) {
-    return <Redirect to="/login" />
+    return <Navigate to="/login" />
 
   }
 

@@ -4,10 +4,10 @@ import './login'
 
 
 import Navbar from './navbar'
-import { Redirect } from 'react-router-dom';
+import { Navigate } from 'react-router-dom';
 import validate from "./validateRegister";
 import UpdateForm from "./updateForm";
-import { useHistory } from 'react-router-dom'
+import { useNavigate } from 'react-router-dom'
 
 
 
@@ -60,7 +60,7 @@ const Profile = () => {
   }
 
 
-  const history = useHistory();
+  const history = useNavigate();
 
   useEffect(() => {
     if (!localStorage.getItem('user-info')) {
@@ -71,7 +71,7 @@ const Profile = () => {
 
 
   if (redirect) {
-    return <Redirect to="/login" />
+    return <Navigate to="/login" />
 
   }
 

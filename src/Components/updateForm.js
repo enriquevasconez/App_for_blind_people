@@ -1,12 +1,12 @@
 import { useState, useEffect } from "react";
 
-//import { useHistory } from 'react-router-dom';
+//import { useNavigate } from 'react-router-dom';
 
 
 const UpdateForm =  (callback, validate) => {
 
 
-    //-const history = useHistory();
+    //-const history = useNavigate();
 
     //const [redirect, setRedirect] = useState(false)
    

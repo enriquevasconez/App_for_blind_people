@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import Navbar from './navbar'
 import ReactPaginate from 'react-paginate';
-import { Link, useHistory } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faSearch } from '@fortawesome/free-solid-svg-icons';
 import Service from "./serviceRegister";

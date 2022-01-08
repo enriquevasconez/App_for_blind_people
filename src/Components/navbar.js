@@ -10,7 +10,7 @@ import Home from './home'
 
 
 import { useState } from 'react'
-import { Link, useHistory } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 
 const Navbar = (props) => {
@@ -21,7 +21,7 @@ const Navbar = (props) => {
 
 
 
-    const history = useHistory();
+    const history = useNavigate();
 
     function logOut() {
         localStorage.clear()

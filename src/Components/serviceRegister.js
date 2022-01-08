@@ -4,10 +4,10 @@ import React, { useState, useEffect, useRef } from "react";
 import './footer'
 import Navbar from './navbar'
 import './service.css'
-import { Redirect } from 'react-router-dom';
+import { Navigate } from 'react-router-dom';
 import validate from "./validateService";
 import ServiceForm from "./serviceForm";
-import { useHistory } from 'react-router-dom'
+import { useNavigate } from 'react-router-dom'
 
 
 const Service = () => {
@@ -66,7 +66,7 @@ const Service = () => {
 
 
 
-    const history = useHistory();
+    const history = useNavigate();
     useEffect(() => {
         if (!localStorage.getItem('user-info')) {
             history.push("/")
@@ -76,7 +76,7 @@ const Service = () => {
 
 
     if (redirect) {
-        return <Redirect to="/login" />
+        return <Navigate to="/login" />
 
     }
 
