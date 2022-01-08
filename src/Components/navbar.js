@@ -10,7 +10,6 @@ import Home from './home'
 
 
 import { useState } from 'react'
-import 'C:/Users/USER/Desktop/Universidad/App_Tesis/App_for_blind_people/app-for-blind-people/src/App.css'
 import { Link, useHistory } from "react-router-dom";
 
 
