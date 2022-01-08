@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useContext } from "react";
 import Navbar from './navbar'
 import ReactPaginate from 'react-paginate';
 import { Link, useNavigate } from "react-router-dom";
@@ -6,10 +6,12 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faSearch } from '@fortawesome/free-solid-svg-icons';
 import Service from "./serviceRegister";
 
+import GlobalContext from '../globals/globalContext'
 
 const Home = () => {
 
-
+    // const  {serviceValues}  = useContext(GlobalContext);
+    // console.log("usando contexto", GlobalContext);
 
     const [servicios, setServicios] = useState([]);
     const [tablaUsuarios, setTablaUsuarios] = useState([]);
@@ -75,7 +77,7 @@ const Home = () => {
 
             <div key={service.service_id} class="col-md-4 mb-3">
                 <Link style={{ "color": "black" }} to={"/serviceDetail/" + service.service_id} className="nav-link"  >
-                    <div   class="card">
+                    <div class="card">
 
                         <img
                             style={{ "maxwidth": "250", "maxheight": "250" }}
@@ -129,7 +131,7 @@ const Home = () => {
 
 
     const handleChange = (e) => {
-        e.preventDefault(); 
+        e.preventDefault();
         setBusqueda(e.target.value);
         filtrar(e.target.value)
     }
@@ -140,7 +142,7 @@ const Home = () => {
         var resultadosBusqueda = tablaUsuarios.filter((elemento) => {
             if (elemento.service_name.toString().toLowerCase().includes(terminoBusqueda.toLowerCase())
                 || elemento.service_id.toString().toLowerCase().includes(terminoBusqueda.toLowerCase())
-                || elemento.service_description.toString().toLowerCase().includes(terminoBusqueda.toLowerCase()) 
+                || elemento.service_description.toString().toLowerCase().includes(terminoBusqueda.toLowerCase())
             ) {
                 return elemento;
             }
@@ -160,7 +162,7 @@ const Home = () => {
 
             <div id="main-content" style={{ 'margin': '50px' }} className="py-5 p-.5  mb-4">
 
-                <div class="row"  className="  row height d-flex justify-content-end align-items-center ">
+                <div class="row" className="  row height d-flex justify-content-end align-items-center ">
                     <div class="col-md-6" >
                         <form id="searchbox" className=" d-flex" onSubmit={e => { e.preventDefault(); }}>
 
@@ -179,7 +181,7 @@ const Home = () => {
 
                 <div className="row">
                     <div className="col-md-12">
-                    <h1>Servicios Disponibles</h1>
+                        <h1>Servicios Disponibles</h1>
                     </div>
                 </div>
 

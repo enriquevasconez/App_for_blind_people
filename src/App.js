@@ -14,6 +14,8 @@ import Profile from './Components/editProfile';
 import Service from './Components/serviceRegister';
 import ServiceDetail from './Components/serviceDetail';
 
+import GlobalProvider from './globals/globalContext'
+
 import { initializeApp } from "firebase/app";
 const firebaseConfig = {
   apiKey: "AIzaSyDs1syJw90-lcmWdeF6yofajvaKMhk1iY0",
@@ -25,29 +27,32 @@ const firebaseConfig = {
 };
 const app = initializeApp(firebaseConfig);
 
- function App () {
+function App() {
 
- 
-   return (
-    <Router>
-      <div className="App" className="App">
 
-        <header className="App-header">
-         {/* <Navbar /> */}
-        </header>
-        <Routes>
-          <Route  path="/register" element={<Register />}/>
-          <Route exact path="/" element={<Home />}/>
-          <Route exact path="/login" element={<Login />}/>
-          <Route exact path="/editProfile" element={<Profile />}/>
-          <Route exact path="/home" element={<Home/>}/>
-          <Route exact path="/serviceList" element={<serviceList />}/>
-          <Route exact path= "/serviceRegister" element={<Service />}/>
-          <Route exact path="/serviceDetail/:service_id" element={<ServiceDetail />}/>
-        </Routes>
-      </div>
-    </Router>
-    
+  return (
+    <div>
+      <GlobalProvider>
+        <Router>
+          <div className="App" className="App">
+
+            <header className="App-header">
+              {/* <Navbar /> */}
+            </header>
+            <Routes>
+              <Route path="/register" element={<Register />} />
+              <Route exact path="/" element={<Home />} />
+              <Route exact path="/login" element={<Login />} />
+              <Route exact path="/editProfile" element={<Profile />} />
+              <Route exact path="/home" element={<Home />} />
+              <Route exact path="/serviceList" element={<serviceList />} />
+              <Route exact path="/serviceRegister" element={<Service />} />
+              <Route exact path="/serviceDetail/:service_id" element={<ServiceDetail />} />
+            </Routes>
+          </div>
+        </Router>
+      </GlobalProvider>
+    </div>
 
   );
 }
