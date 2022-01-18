@@ -7,7 +7,8 @@ import './service.css'
 import { Navigate } from 'react-router-dom';
 import validate from "./validateService";
 import ServiceForm from "./serviceForm";
-import { useNavigate } from 'react-router-dom'
+
+import { useNavigate, Link } from 'react-router-dom'
 import { FirebaseCnn } from "../Classes/firebase.base"
 
 const Service = () => {
@@ -17,6 +18,8 @@ const Service = () => {
 
     const [redirect, setRedirect] = useState(false)
     const [passError, setPassError] = useState("")
+    const [categorias, setCategorias] = useState([]);
+    const [get_redirect, setGet_Redirect] = useState(false);
     const firebase = new FirebaseCnn();
 
     const ref = useRef()
@@ -25,17 +28,61 @@ const Service = () => {
     let user = JSON.parse(localStorage.getItem('user-info'))
     //'application/json', 'Content-type':'application/json'  }), 
 
+    useEffect(async () => {
+
+        const res = await fetch(
+            `https://blind-people-app-backend.herokuapp.com/service-category`,
+            {
+                headers: {
+                    'Content-type': 'application/json',
+                    "x-api-key": "420f77de-2cea-4e13-841a-b43ca729a7a9"
+                }
+
+            }
+
+        ).then((resp) => {
+            if (resp.status >= 300) {
+
+                console.log(resp)
+                //  setPassError("Error inesperado compruebe su conexión a internet");
+
+            } else {
+
+                setGet_Redirect(true);
+                return resp.json();
+
+            }
+        }).then(data => {
+
+
+            setCategorias(data);
+            console.log(data);
+
+
+        }).catch((error) => {
+            console.log(error);
+        });
+
+    }, [])
+
+
+
+
+
+
+
+
+
     async function submit() {
         const formData = new FormData();
 
-        // formData.append('service_name', values.service_name);
-        // formData.append('service_description', values.service_description);
-        // formData.append('service_price', values.service_price);
         // formData.append('service_image', 'https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d1994.9056586446607!2d-78.47027376508179!3d-0.10735069635238306!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x91d58ff788cdc717%3A0x21a2388f2fae63c1!2sGADERE!5e0!3m2!1ses!2sec!4v1624144214641!5m2!1ses!2sec');
         // formData.append('user',user.user_id);
+
         await firebase.uploadImage(imgPreview.file)
             .then(
                 url => {
+
                     const response = fetch('https://blind-people-app-backend.herokuapp.com/service', {
                         method: 'POST',
                         headers: { 'Content-type': 'application/json', "x-api-key": "420f77de-2cea-4e13-841a-b43ca729a7a9" },
@@ -47,7 +94,7 @@ const Service = () => {
                                 service_image: url,
                                 user: user.user_id,
                                 city: 1,
-                                sc: 1
+                                sc: values.sc,
                             })
                     })
                         .then((resp) => {
@@ -73,6 +120,7 @@ const Service = () => {
                     alert(err);
                 }
             )
+
     }
 
 
@@ -128,8 +176,6 @@ const Service = () => {
                                 <button onClick={() => { handeDelteChange(); borrar() }} className=" container btn btn-primary btn-lg" type="button" value="Borrar" >Borrar</button>
                             </div>
                         </div>
-
-
                     </div>
 
                     <div className="row">
@@ -152,26 +198,26 @@ const Service = () => {
                         <div className='col-md-4  mb-4'>
                             <label className="form-label" htmlFor="type"> Tipo de servicio</label>
                             <select className="form-select form-select-lg mb-3"
-                                aria-label=".form-select-lg example"
-                                name="type"
-                                value={values.type}
+                                aria-label="ciudad"
+                                name="sc"
+                                value={values.sc}
                                 onChange={handleChange}
                             >
+                                <option selected hidden >Seleccione Categoría</option>
+                                {categorias.map((category, key) => (
+                                    <option key={category.sc_id} value={category.sc_id}>
+                                        {category.sc_name}
+                                    </option>
 
-                                {/* <option selected >Open this select menu</option> */}
-                                <option value="titulo" selected hidden> Seleccione opcion </option>
-                                <option value="Reparaciones - Técnicos">Reparaciones - Técnicos</option>
-                                <option value='Clases-Cursos'>Clases-Cursos</option>
-                                <option value='Mudanzas-Transporte'>Mudanzas-Transporte</option>
+                                ))}
                             </select>
                             {errors.type && <p>  {errors.type}</p>}
 
+
                         </div>
-                        <div className='col-md-4 mb-4'>
+                        <div title="El teléfono fue definido en su perfil de usuario" className='col-md-4 mb-4'>
                             <label className="form-label" htmlFor="phone"> Teléfono</label>
                             <input type="text" id="phone"
-
-
                                 className="form-control form-control-lg" readOnly
                                 value={user.user_phone}
                             />
@@ -180,22 +226,20 @@ const Service = () => {
                     <div className="row">
                         {/* <!-- Detalles especificos del producto --> */}
 
-                        <div className='col-md-6 mb-4'>
+                        <div className='col-md-4 mb-4'>
                             <label className="title-attr" htmlFor="price" style={{ marginTop: '15px' }} ><small>Precio</small></label>
 
                             <input type="text" id="price"
                                 name="service_price"
-
-                                className="form-control form-control-lg" readOnly
+                                className="form-control form-control-lg"
                                 value={values.service_price}
                                 onChange={handleChange}
-
                             />
+                            {errors.service_price && <p> {errors.service_price}</p>}
                         </div>
 
-                        <div className='col-md-6  mb-4'>
-                            <label className="title-attr" htmlFor="privincia" style={{ marginTop: '15px' }} ><small>Provincia</small></label>
-
+                        <div className='col-md-4  mb-4'>
+                            <label className="title-attr" htmlFor="provincia" style={{ marginTop: '15px' }} ><small>Provincia</small></label>
                             <select className="form-select form-select-lg mb-3"
                                 aria-label=".form-select-lg example"
                                 name="Countries"
@@ -204,7 +248,7 @@ const Service = () => {
 
                             >
                                 {/* <option selected >Open this select menu</option> */}
-                                <option value="titulo" selected hidden> Seleccione opcion </option>
+                                <option value="titulo" selected hidden> Seleccione provincia </option>
                                 {countryList.map((country, key) => (
                                     <option key={key} value={country.name}>
                                         {country.name}
@@ -214,23 +258,18 @@ const Service = () => {
                             {errors.selectedCounty && <p> {errors.selectedCounty}</p>}
 
                         </div>
-
-                    </div>
-                    <div className="row">
-                        {/* <!-- Detalles especificos del producto --> */}
-
-                        <div className='col-md-6 mb-4'>
+                        <div className='col-md-4 mb-4'>
                             <label className="title-attr" htmlFor="ciudad" style={{ marginTop: '15px' }} ><small>Ciudad</small></label>
 
                             <select className="form-select form-select-lg mb-3"
-                                aria-label=".form-select-lg example"
+                                aria-label="ciudad"
                                 name="Cities"
                                 value={selectedCity}
                                 onChange={handleCitySelect}
 
                             >
                                 {/* <option selected >Open this select menu</option> */}
-                                <option value="titulo" selected hidden> Seleccione opcion </option>
+                                <option value="titulo" selected hidden> Seleccione ciudad </option>
                                 {cities.map((city, key) => (
                                     <option key={key} value={city}>
                                         {city}
@@ -246,17 +285,8 @@ const Service = () => {
                             /> */}
                         </div>
 
-                        <div className='col-md-6  mb-4'>
-                            <label className="title-attr" htmlFor="direccion" style={{ marginTop: '15px' }} ><small>Dirección</small></label>
-
-                            <input type="text" id="direccion"
-
-                                placeholder=" Seleccione provincia"
-                                className="form-control form-control-lg" readOnly
-                            />
-                        </div>
-
                     </div>
+
 
                     <div className="col-xs-9">
                         <ul className="menu-items list-inline">

@@ -125,7 +125,7 @@ useLayoutEffect(() => {
                             <input   type="text" id="serviceName"
                                 name="type"
                                 className="form-control form-control-lg"
-                                value={"hola"}
+                                value={service?.sc?.sc_name}
                                 readOnly
                                 style={{"backgroundColor":"white"}}
 
