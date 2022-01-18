@@ -147,7 +147,7 @@ useLayoutEffect(() => {
                     <div className="row">
                         {/* <!-- Detalles especificos del producto --> */}
 
-                        <div className='col-md-6 mb-4'>
+                        <div className='col-md-4 mb-4'>
                             <label className="title-attr" htmlFor="price" style={{ marginTop: '15px' }} ><small>Precio</small></label>
 
                             <input type="text" id="price"
@@ -160,7 +160,7 @@ useLayoutEffect(() => {
                             />
                         </div>
 
-                        <div className='col-md-6  mb-4'>
+                        <div className='col-md-4  mb-4'>
                             <label className="title-attr" htmlFor="privincia" style={{ marginTop: '15px' }} ><small>Provincia</small></label>
 
 
@@ -174,12 +174,7 @@ useLayoutEffect(() => {
                             />
 
                         </div>
-
-                    </div>
-                    <div className="row">
-                        {/* <!-- Detalles especificos del producto --> */}
-
-                        <div className='col-md-6 mb-4'>
+                        <div className='col-md-4 mb-4'>
                             <label className="title-attr" htmlFor="ciudad" style={{ marginTop: '15px' }} ><small>Ciudad</small></label>
 
                             <input type="text" id="price"
@@ -192,26 +187,11 @@ useLayoutEffect(() => {
                             />
 
 
-                            {/* <input type="text" id="ciudad"
-
-                        placeholder=" Por convenir"
-                        className="form-control form-control-lg" readOnly
-                    /> */}
-                        </div>
-
-                        <div className='col-md-6  mb-4'>
-                            <label className="title-attr" htmlFor="direccion" style={{ marginTop: '15px' }} ><small>Dirección</small></label>
-
-                            <input type="text" id="direccion"
-
-                                placeholder=" Seleccione provincia"
-                                className="form-control form-control-lg" readOnly
-                                value={"hola"}
-                                style={{"backgroundColor":"white"}}
-                            />
+                 
                         </div>
 
                     </div>
+                    
 
                     <div className="col-xs-9">
                         <ul className="menu-items list-inline">
