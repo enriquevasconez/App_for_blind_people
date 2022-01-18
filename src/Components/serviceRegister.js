@@ -7,9 +7,9 @@ import './service.css'
 import { Navigate } from 'react-router-dom';
 import validate from "./validateService";
 import ServiceForm from "./serviceForm";
+
 import { useNavigate, Link } from 'react-router-dom'
-
-
+import { FirebaseCnn } from "../Classes/firebase.base"
 
 const Service = () => {
 
@@ -20,7 +20,7 @@ const Service = () => {
     const [passError, setPassError] = useState("")
     const [categorias, setCategorias] = useState([]);
     const [get_redirect, setGet_Redirect] = useState(false);
-
+    const firebase = new FirebaseCnn();
 
     const ref = useRef()
 
@@ -67,8 +67,8 @@ const Service = () => {
 
 
 
-  
-       
+
+
 
 
 
@@ -78,39 +78,49 @@ const Service = () => {
 
         // formData.append('service_image', 'https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d1994.9056586446607!2d-78.47027376508179!3d-0.10735069635238306!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x91d58ff788cdc717%3A0x21a2388f2fae63c1!2sGADERE!5e0!3m2!1ses!2sec!4v1624144214641!5m2!1ses!2sec');
         // formData.append('user',user.user_id);
-        const response = await fetch('https://blind-people-app-backend.herokuapp.com/service', {
-            method: 'POST',
-            headers: { 'Content-type': 'application/json', "x-api-key": "420f77de-2cea-4e13-841a-b43ca729a7a9" },
-            body:
-                JSON.stringify({
-                    service_name: values.service_name,
-                    service_description: values.service_description,
-                    service_price: values.service_price,
-                    user: user.user_id,
-                    sc: values.sc,
-                    city:'1'
-                
-                })
 
-        })
-            .then((resp) => {
-                if (resp.status >= 300) {
+        await firebase.uploadImage(imgPreview.file)
+            .then(
+                url => {
 
-                    console.log(resp)
-                    setPassError("Error inesperado compruebe su conexión a internet");
-                    console.log( values.sc);
+                    const response = fetch('https://blind-people-app-backend.herokuapp.com/service', {
+                        method: 'POST',
+                        headers: { 'Content-type': 'application/json', "x-api-key": "420f77de-2cea-4e13-841a-b43ca729a7a9" },
+                        body:
+                            JSON.stringify({
+                                service_name: values.service_name,
+                                service_description: values.service_description,
+                                service_price: values.service_price,
+                                service_image: url,
+                                user: user.user_id,
+                                city: 1,
+                                sc: values.sc,
+                            })
+                    })
+                        .then((resp) => {
+                            if (resp.status >= 300) {
 
-                } else {
-                    setRedirect(true);
-                    console.log("La key es"+ values.sc);
-                    // console.log(selectedCounty)
-                    // console.log(selectedCity)
-                    // console.log(imgPreview.file)
+                                console.log(resp)
+                                setPassError("Error inesperado compruebe su conexión a internet");
+
+                            } else {
+                                setRedirect(true);
+                                console.log(values.type);
+                                console.log(selectedCounty)
+                                console.log(selectedCity)
+                                console.log(imgPreview.file)
+                            }
+                        }).catch((error) => {
+                            console.log("ERROR", error)
+                        });
                 }
-            }).catch((error) => {
-                console.log(error)
-                console.log("la key es"+ values.sc)
-            });
+            )
+            .catch(
+                err => {
+                    alert(err);
+                }
+            )
+
     }
 
 
@@ -166,8 +176,6 @@ const Service = () => {
                                 <button onClick={() => { handeDelteChange(); borrar() }} className=" container btn btn-primary btn-lg" type="button" value="Borrar" >Borrar</button>
                             </div>
                         </div>
-
-
                     </div>
 
                     <div className="row">
@@ -189,29 +197,27 @@ const Service = () => {
                         {/* <!-- Precios --> */}
                         <div className='col-md-4  mb-4'>
                             <label className="form-label" htmlFor="type"> Tipo de servicio</label>
-                             <select className="form-select form-select-lg mb-3"
-                                aria-label=".form-select-lg example"
+                            <select className="form-select form-select-lg mb-3"
+                                aria-label="ciudad"
                                 name="sc"
                                 value={values.sc}
                                 onChange={handleChange}
                             >
-                                 <option selected hidden >Seleccione Categoría</option> 
-                                 {categorias.map((category, key) => (
+                                <option selected hidden >Seleccione Categoría</option>
+                                {categorias.map((category, key) => (
                                     <option key={category.sc_id} value={category.sc_id}>
                                         {category.sc_name}
                                     </option>
-                                   
-                                ))}  
+
+                                ))}
                             </select>
-                            {errors.type && <p>  {errors.type}</p>} 
-                            
+                            {errors.type && <p>  {errors.type}</p>}
+
 
                         </div>
-                        <div className='col-md-4 mb-4'>
+                        <div title="El teléfono fue definido en su perfil de usuario" className='col-md-4 mb-4'>
                             <label className="form-label" htmlFor="phone"> Teléfono</label>
                             <input type="text" id="phone"
-
-
                                 className="form-control form-control-lg" readOnly
                                 value={user.user_phone}
                             />
@@ -220,22 +226,20 @@ const Service = () => {
                     <div className="row">
                         {/* <!-- Detalles especificos del producto --> */}
 
-                        <div className='col-md-6 mb-4'>
+                        <div className='col-md-4 mb-4'>
                             <label className="title-attr" htmlFor="price" style={{ marginTop: '15px' }} ><small>Precio</small></label>
 
                             <input type="text" id="price"
                                 name="service_price"
-
-                                className="form-control form-control-lg" readOnly
+                                className="form-control form-control-lg"
                                 value={values.service_price}
                                 onChange={handleChange}
-
                             />
+                            {errors.service_price && <p> {errors.service_price}</p>}
                         </div>
 
-                        <div className='col-md-6  mb-4'>
+                        <div className='col-md-4  mb-4'>
                             <label className="title-attr" htmlFor="provincia" style={{ marginTop: '15px' }} ><small>Provincia</small></label>
-
                             <select className="form-select form-select-lg mb-3"
                                 aria-label=".form-select-lg example"
                                 name="Countries"
@@ -254,16 +258,11 @@ const Service = () => {
                             {errors.selectedCounty && <p> {errors.selectedCounty}</p>}
 
                         </div>
-
-                    </div>
-                    <div className="row">
-                        {/* <!-- Detalles especificos del producto --> */}
-
-                        <div className='col-md-6 mb-4'>
+                        <div className='col-md-4 mb-4'>
                             <label className="title-attr" htmlFor="ciudad" style={{ marginTop: '15px' }} ><small>Ciudad</small></label>
 
                             <select className="form-select form-select-lg mb-3"
-                                aria-label=".form-select-lg example"
+                                aria-label="ciudad"
                                 name="Cities"
                                 value={selectedCity}
                                 onChange={handleCitySelect}
@@ -286,17 +285,8 @@ const Service = () => {
                             /> */}
                         </div>
 
-                        <div className='col-md-6  mb-4'>
-                            <label className="title-attr" htmlFor="direccion" style={{ marginTop: '15px' }} ><small>Dirección</small></label>
-
-                            <input type="text" id="direccion"
-
-                                placeholder=" Seleccione provincia"
-                                className="form-control form-control-lg" readOnly
-                            />
-                        </div>
-
                     </div>
+
 
                     <div className="col-xs-9">
                         <ul className="menu-items list-inline">
