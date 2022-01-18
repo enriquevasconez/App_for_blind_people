@@ -11,16 +11,39 @@ export class RQRS {
             "x-api-key": this.APIKEY
         }
     }
+    excectPromise = (promise) => {
+        return new Promise(
+            (resolve, reject) => {
+                promise
+                    .then(
+                        resp => {
+                            if (resp.status >= 300) {
+                                reject("Validate your internet connection");
+                            }
+                            else {
+                                resolve(resp);
+                            }
+                        }
+                    ).catch(
+                        err => {
+                            reject("ERROR", err);
+                        }
+                    )
+            }
+        );
+    }
 
     get = (params) => {
         const queryParams = params.queryParams || {}
         const subResourse = params.subResourse || undefined
         const uri = this.parseUri(queryParams, subResourse);
-        return fetch(
-            uri,
-            {
-                headers: this.headers
-            }
+        return excectPromise(
+            fetch(
+                uri,
+                {
+                    headers: this.headers
+                }
+            )
         );
     }
 
