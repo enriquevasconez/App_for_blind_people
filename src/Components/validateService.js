@@ -13,7 +13,7 @@ export default function validateService(values , selectedCounty, selectedCity) {
         errors.service_description ="Debe agregar una descripción"
     }
 
-    if(!values.type){
+    if(!values.sc){
         errors.type ="Seleccione el tipo de servicio"
     }
 
