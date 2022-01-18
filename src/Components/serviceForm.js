@@ -6,8 +6,8 @@ const ServiceForm = (callback, validate) => {
 
         service_name: '',
         service_description: '',
-        service_price: 'Por defecto',
-        type:'',
+        service_price: '',
+        sc:'',
         img:''
        
     })

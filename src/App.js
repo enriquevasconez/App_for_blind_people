@@ -15,20 +15,10 @@ import Service from './Components/serviceRegister';
 import ServiceDetail from './Components/serviceDetail';
 
 import GlobalProvider from './globals/globalContext'
-
-import { initializeApp } from "firebase/app";
-const firebaseConfig = {
-  apiKey: "AIzaSyDs1syJw90-lcmWdeF6yofajvaKMhk1iY0",
-  authDomain: "blind-people-image-storage.firebaseapp.com",
-  projectId: "blind-people-image-storage",
-  storageBucket: "blind-people-image-storage.appspot.com",
-  messagingSenderId: "951998931962",
-  appId: "1:951998931962:web:ff1c42da54540b8dc57a43"
-};
-const app = initializeApp(firebaseConfig);
+import { FirebaseCnn } from "./Classes/firebase.base"
 
 function App() {
-
+  const firebase = new FirebaseCnn().init();
 
   return (
     <div>
