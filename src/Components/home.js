@@ -32,9 +32,12 @@ const Home = () => {
                 }
 
             );
-            const data = await res.json()["result"];
-
-           // console.log('total:' + total);
+            const response=await res.json();
+            const data = response.result;
+            const count= response.count;
+            console.log(data, count);
+            setpageCount(Math.ceil(count/12));
+            // console.log('total:' + total);
 
             //const total = res.body.get('x-total-count');
 
@@ -42,7 +45,6 @@ const Home = () => {
 
 
             setTablaUsuarios(data);
-            console.log(data)
 
         };
         getComments();
@@ -118,7 +120,7 @@ const Home = () => {
         content = "Error inesperado"
     }
 
-   
+
 
 
 
@@ -146,9 +148,9 @@ const Home = () => {
 
         const commentsFormServer = await fetchComments(currentPage);
 
-        
+
         window.scrollTo(0, 0)
-       
+
 
         setServicios(commentsFormServer)
         setTablaUsuarios(commentsFormServer)
@@ -172,7 +174,7 @@ const Home = () => {
             }
         });
         setServicios(resultadosBusqueda);
-      
+
     }
 
 
@@ -226,7 +228,7 @@ const Home = () => {
                     previousLabel={'Previous'}
                     nextAriaLabel={'Next'}
                     breakLabel={'...'}
-                    pageCount={50}
+                    pageCount={pageCount}
                     marginPagesDisplayed={2}
                     pageRangeDisplayed={3}
                     onPageChange={handlePageClick}
