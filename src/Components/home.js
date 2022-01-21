@@ -135,7 +135,7 @@ const Home = () => {
         );
         const data = await res.json();
 
-        return data;
+        return data.result;
     }
 
 
