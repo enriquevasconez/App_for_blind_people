@@ -20,10 +20,10 @@ const Home = () => {
     const [pageCount, setpageCount] = useState(0)
 
 
-    useEffect(async () => {
-
+    useEffect( () => {
+        const getComments = async ()=>{
         const res = await fetch(
-            `https://blind-people-app-backend.herokuapp.com/service?_page=1&_limit=12`,
+            `https://blind-people-app-backend.herokuapp.com/service?order=desc&take=12&skip=1`,
             {
                 headers: {
                     'Content-type': 'application/json',
@@ -32,37 +32,53 @@ const Home = () => {
 
             }
 
-        ).then((resp) => {
-            if (resp.status >= 300) {
+        );
+        const data = await res.json();
 
-                console.log(resp)
-                //  setPassError("Error inesperado compruebe su conexión a internet");
+        // const total = res.headers.get('x-total-count');
+        // console.log('total:' + total);
 
-            } else {
+      
 
-                setRedirect(true);
-
-
-                const total = resp.headers.get('content-length');
-
-                console.log('total:' + total);
+        setServicios(data);
 
 
-                return resp.json();
+        setTablaUsuarios(data);
 
-            }
-        }).then(data => {
+    };
+    getComments();
+
+        // .then((resp) => {
+        //     if (resp.status >= 300) {
+
+        //         console.log(resp)
+        //         //  setPassError("Error inesperado compruebe su conexión a internet");
+
+        //     } else {
+
+        //         setRedirect(true);
+
+        //         const total = resp.headers.get('X-Total-Count');
+
+        //         console.log('total:' + total);
+
+        //         setpageCount(Math.ceil(total));
+
+        //         return resp.json();
+
+        //     }
+        // }).then(data => {
 
 
-            setServicios(data);
-            setTablaUsuarios(data);
+        //     setServicios(data);
+        //     setTablaUsuarios(data);
 
-            console.log(data);
+        //     console.log(data);
 
 
-        }).catch((error) => {
-            console.log(error);
-        });
+        // }).catch((error) => {
+        //     console.log(error);
+        // });
 
     }, [])
 
@@ -106,7 +122,7 @@ const Home = () => {
 
     const fetchComments = async (currentPage) => {
         const res = await fetch(
-            `https://blind-people-app-backend.herokuapp.com/service?_page=${currentPage}&_limit=12`, {
+            `https://blind-people-app-backend.herokuapp.com/service?order=desc&take=12&skip=${currentPage}`, {
             headers: {
                 'Content-type': 'application/json',
                 "x-api-key": "420f77de-2cea-4e13-841a-b43ca729a7a9"
@@ -114,6 +130,7 @@ const Home = () => {
         }
         );
         const data = await res.json();
+        
         return data;
     }
 
@@ -122,7 +139,7 @@ const Home = () => {
     const handlePageClick = async (data) => {
 
         let currentPage = data.selected + 1
-        console.log(currentPage)
+     
 
         const commentsFormServer = await fetchComments(currentPage);
 
@@ -193,13 +210,13 @@ const Home = () => {
                 </div>
 
             </div>
-            <nav aria-label="Page navigation example">
+            <nav aria-label="Sección de paginación ">
                 <ReactPaginate
 
                     previousLabel={'Previous'}
                     nextAriaLabel={'Next'}
                     breakLabel={'...'}
-                    pageCount={15}
+                    pageCount={25}
                     marginPagesDisplayed={2}
                     pageRangeDisplayed={3}
                     onPageChange={handlePageClick}
