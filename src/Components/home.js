@@ -20,33 +20,32 @@ const Home = () => {
     const [pageCount, setpageCount] = useState(0)
 
 
-    useEffect( () => {
-        const getComments = async ()=>{
-        const res = await fetch(
-            `https://blind-people-app-backend.herokuapp.com/service?order=desc&take=12&skip=1`,
-            {
-                headers: {
-                    'Content-type': 'application/json',
-                    "x-api-key": "420f77de-2cea-4e13-841a-b43ca729a7a9"
+    useEffect(() => {
+        const getComments = async () => {
+            const res = await fetch(
+                `https://blind-people-app-backend.herokuapp.com/service?order=desc&take=12&skip=0`,
+                {
+                    headers: {
+                        'Content-type': 'application/json',
+                        "x-api-key": "420f77de-2cea-4e13-841a-b43ca729a7a9"
+                    }
+
                 }
 
-            }
+            );
+            const data = await res.json();
 
-        );
-        const data = await res.json();
-
-        // const total = res.headers.get('x-total-count');
-        // console.log('total:' + total);
-
-      
-
-        setServicios(data);
+            // const total = res.headers.get('x-total-count');
+            // console.log('total:' + total);
 
 
-        setTablaUsuarios(data);
+            setServicios(data);
 
-    };
-    getComments();
+            setTablaUsuarios(data);
+            console.log(data)
+
+        };
+        getComments();
 
         // .then((resp) => {
         //     if (resp.status >= 300) {
@@ -119,6 +118,9 @@ const Home = () => {
         content = "Error inesperado"
     }
 
+   
+
+
 
     const fetchComments = async (currentPage) => {
         const res = await fetch(
@@ -130,7 +132,7 @@ const Home = () => {
         }
         );
         const data = await res.json();
-        
+
         return data;
     }
 
@@ -138,14 +140,15 @@ const Home = () => {
 
     const handlePageClick = async (data) => {
 
-        let currentPage = data.selected + 1
-     
+        let currentPage = data.selected * 12
+
+        console.log("Current page is" + currentPage)
 
         const commentsFormServer = await fetchComments(currentPage);
 
         setServicios(commentsFormServer)
-    }
-
+        setTablaUsuarios(commentsFormServer)
+    };
 
     const handleChange = (e) => {
         e.preventDefault();
@@ -165,7 +168,10 @@ const Home = () => {
             }
         });
         setServicios(resultadosBusqueda);
+      
     }
+
+
 
 
 
@@ -216,7 +222,7 @@ const Home = () => {
                     previousLabel={'Previous'}
                     nextAriaLabel={'Next'}
                     breakLabel={'...'}
-                    pageCount={25}
+                    pageCount={50}
                     marginPagesDisplayed={2}
                     pageRangeDisplayed={3}
                     onPageChange={handlePageClick}
