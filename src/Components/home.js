@@ -1,4 +1,4 @@
-import React, { useEffect, useState, useContext } from "react";
+import React, { useEffect, useState } from "react";
 import Navbar from './navbar'
 import ReactPaginate from 'react-paginate';
 import { Link, useNavigate } from "react-router-dom";
@@ -6,7 +6,6 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faSearch } from '@fortawesome/free-solid-svg-icons';
 import Service from "./serviceRegister";
 
-import GlobalContext from '../globals/globalContext'
 
 const Home = () => {
 
@@ -33,13 +32,14 @@ const Home = () => {
                 }
 
             );
-            const data = await res.json();
+            const data = await res.json()["result"];
 
-            // const total = res.headers.get('x-total-count');
-            // console.log('total:' + total);
+           // console.log('total:' + total);
 
+            //const total = res.body.get('x-total-count');
 
             setServicios(data);
+
 
             setTablaUsuarios(data);
             console.log(data)
@@ -145,6 +145,10 @@ const Home = () => {
         console.log("Current page is" + currentPage)
 
         const commentsFormServer = await fetchComments(currentPage);
+
+        
+        window.scrollTo(0, 0)
+       
 
         setServicios(commentsFormServer)
         setTablaUsuarios(commentsFormServer)
