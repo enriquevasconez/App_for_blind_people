@@ -33,7 +33,7 @@ const Navbar = (props) => {
 
         <nav className="navbar fixed-top navbar-expand-md navbar-dark bg-primary  ">
             <div className="container  d-flex  justify-content-between ">
-                <Link to="/" className="navbar-brand mb-0 h1 "> Blind Service  </Link>
+                <Link to="/" onClick={() => window.location.reload()} className="navbar-brand mb-0 h1 "> Blind Service  </Link>
 
              
                 <div>

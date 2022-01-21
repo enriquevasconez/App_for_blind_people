@@ -13,16 +13,16 @@ const Home = () => {
     // console.log("usando contexto", GlobalContext);
 
     const [servicios, setServicios] = useState([]);
-    const [tablaUsuarios, setTablaUsuarios] = useState([]);
     const [busqueda, setBusqueda] = useState("");
-    const [redirect, setRedirect] = useState(false)
-    const [pageCount, setpageCount] = useState(0)
+    const [redirect, setRedirect] = useState(false);
+    const [pageCount, setpageCount] = useState(0);
+    const [filtro, setFiltro] = useState(busqueda);
 
 
     useEffect(() => {
         const getComments = async () => {
             const res = await fetch(
-                `https://blind-people-app-backend.herokuapp.com/service?order=desc&take=12&skip=0`,
+                `https://blind-people-app-backend.herokuapp.com/service?service_name=${filtro}&order=desc&take=12&skip=0`,
                 {
                     headers: {
                         'Content-type': 'application/json',
@@ -37,14 +37,9 @@ const Home = () => {
             const count= response.count;
             console.log(data, count);
             setpageCount(Math.ceil(count/12));
-            // console.log('total:' + total);
-
-            //const total = res.body.get('x-total-count');
 
             setServicios(data);
 
-
-            setTablaUsuarios(data);
 
         };
         getComments();
@@ -81,7 +76,7 @@ const Home = () => {
         //     console.log(error);
         // });
 
-    }, [])
+    }, [filtro])
 
 
     let content = null
@@ -126,7 +121,7 @@ const Home = () => {
 
     const fetchComments = async (currentPage) => {
         const res = await fetch(
-            `https://blind-people-app-backend.herokuapp.com/service?order=desc&take=12&skip=${currentPage}`, {
+            `https://blind-people-app-backend.herokuapp.com/service?service_name=${filtro}&order=desc&take=12&skip=${currentPage}`, {
             headers: {
                 'Content-type': 'application/json',
                 "x-api-key": "420f77de-2cea-4e13-841a-b43ca729a7a9"
@@ -147,35 +142,26 @@ const Home = () => {
         console.log("Current page is" + currentPage)
 
         const commentsFormServer = await fetchComments(currentPage);
-
-
         window.scrollTo(0, 0)
-
-
         setServicios(commentsFormServer)
-        setTablaUsuarios(commentsFormServer)
+
     };
 
-    const handleChange = (e) => {
+    const handleOnChange = (e) => {
         e.preventDefault();
+       
         setBusqueda(e.target.value);
-        filtrar(e.target.value)
+        
+    };
+
+    const handleSubmit = e => {
+        e.preventDefault();
+       setFiltro(busqueda)
+        
     }
 
 
-
-    const filtrar = (terminoBusqueda) => {
-        var resultadosBusqueda = tablaUsuarios.filter((elemento) => {
-            if (elemento.service_name.toString().toLowerCase().includes(terminoBusqueda.toLowerCase())
-                || elemento.service_id.toString().toLowerCase().includes(terminoBusqueda.toLowerCase())
-                || elemento.service_description.toString().toLowerCase().includes(terminoBusqueda.toLowerCase())
-            ) {
-                return elemento;
-            }
-        });
-        setServicios(resultadosBusqueda);
-
-    }
+   
 
 
 
@@ -196,13 +182,15 @@ const Home = () => {
                         <form id="searchbox" className=" d-flex" onSubmit={e => { e.preventDefault(); }}>
 
                             <input type="text" className="form-control  me-2 " type="search"
+                                name="busqueda"
                                 value={busqueda}
                                 placeholder="Buscar..."
-                                onChange={handleChange}
                                 aria-label="Search"
+                                onChange={(e) => handleOnChange(e)}
+
                             />
                             {/* <button typle="submit" className="btn btn-outline-success  "> Search </button> */}
-                            <button className="btn btn-success">
+                            <button className="btn btn-success" onClick={handleSubmit}>
                                 <FontAwesomeIcon icon={faSearch} /> </button>
                         </form>
                     </div>
