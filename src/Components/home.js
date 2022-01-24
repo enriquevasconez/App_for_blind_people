@@ -1,16 +1,17 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useContext } from "react";
 import Navbar from './navbar'
 import ReactPaginate from 'react-paginate';
 import { Link, useNavigate } from "react-router-dom";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faSearch } from '@fortawesome/free-solid-svg-icons';
 import Service from "./serviceRegister";
+import { GlobalContext } from "../globals/globalContext"
 
 
 const Home = () => {
 
-    // const  {serviceValues}  = useContext(GlobalContext);
-    // console.log("usando contexto", GlobalContext);
+    const { serviceValuesasa } = useContext(GlobalContext);
+    console.log("usando contexto", GlobalContext);
 
     const [servicios, setServicios] = useState([]);
     const [busqueda, setBusqueda] = useState("");
@@ -101,7 +102,7 @@ const Home = () => {
                             <h5 className="card-title">{service.service_name}</h5>
                             <p className="card-text">
                                 {service.service_id} <br />
-                                {service.service_price} 
+                                {service.service_price}
 
 
                             </p>
@@ -157,7 +158,9 @@ const Home = () => {
     };
 
     const handleSubmit = e => {
-        e.preventDefault();
+        try{
+            e.preventDefault();
+        }catch(e){}
         setFiltro(busqueda)
 
     }
@@ -179,11 +182,32 @@ const Home = () => {
 
             <div id="main-content" style={{ 'margin': '50px' }} className="py-5 p-.5  mb-4">
 
-                <div className="row" className="  row height d-flex justify-content-end align-items-center ">
-                    <div className="col-md-6" >
-                        <form id="searchbox" className=" d-flex" onSubmit={e => { e.preventDefault(); }}>
+                <div className="row" className="  row height d-flex justify-content-center align-items-center ">
 
-                            <input type="text" className="form-control  me-2 " type="search"
+                    <div className="col-md-9" >
+                        <form id="searchbox" className=" d-flex" onSubmit={e => { e.preventDefault(); }}>
+                            <div class="input-group input-group-lg mb-5 mt-5">
+                                <input 
+                                type="text" className="form-control" type="search"
+                                name="busqueda"
+                                value={busqueda}
+                                placeholder="Buscar..."
+                                aria-label="Buscar"
+                                onChange={(e) => handleOnChange(e)}
+                                onKeyPress={
+                                    (event) => {
+                                    if(event.key === 'Enter'){
+                                        handleSubmit();
+                                    }
+                                  }
+                                }
+                                />
+                                <button class="btn btn-success" onClick={handleSubmit} type="button">Search</button>
+                                {/* <span class="input-group-text" id="basic-addon2">
+                                    <i class="fas fa-search"></i>
+                                </span> */}
+                            </div>
+                            {/* <input type="text" className="form-control  me-2 " type="search"
                                 name="busqueda"
                                 value={busqueda}
                                 placeholder="Buscar..."
@@ -191,13 +215,17 @@ const Home = () => {
                                 onChange={(e) => handleOnChange(e)}
 
                             />
-                            {/* <button typle="submit" className="btn btn-outline-success  "> Search </button> */}
                             <button className="btn btn-success" onClick={handleSubmit}>
-                                <FontAwesomeIcon icon={faSearch} /> </button>
+                                <FontAwesomeIcon icon={faSearch} /> </button> */}
                         </form>
                     </div>
                 </div>
-
+                <div className="row">
+                    <div className="col-md-12">
+                        <h1>Categorias</h1>
+                    </div>
+                </div>
+                <hr />
                 <div className="row">
                     <div className="col-md-12">
                         <h1>Servicios Disponibles</h1>

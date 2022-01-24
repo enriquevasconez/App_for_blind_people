@@ -13,16 +13,17 @@ import {
 import Profile from './Components/editProfile';
 import Service from './Components/serviceRegister';
 import ServiceDetail from './Components/serviceDetail';
+import Footer from './Components/footer';
 
 import GlobalProvider from './globals/globalContext'
 import { FirebaseCnn } from "./Classes/firebase.base"
 
 function App() {
-  const firebase = new FirebaseCnn().init();
+  new FirebaseCnn().init();
 
   return (
     <div>
-      <GlobalProvider>
+      
         <Router>
           <div className="App" className="App">
 
@@ -30,8 +31,8 @@ function App() {
               {/* <Navbar /> */}
             </header>
             <Routes>
-              <Route path="/register" element={<Register />} />
-              <Route exact path="/" element={<Home />} />
+              <Route path="/register" element={<GlobalProvider><Register /></GlobalProvider>} />
+              <Route exact path="/" element={<GlobalProvider><Home /></GlobalProvider>} />
               <Route exact path="/login" element={<Login />} />
               <Route exact path="/editProfile" element={<Profile />} />
               <Route exact path="/home" element={<Home />} />
@@ -41,7 +42,7 @@ function App() {
             </Routes>
           </div>
         </Router>
-      </GlobalProvider>
+      {/* <Footer/> */}
     </div>
 
   );
