@@ -44,7 +44,7 @@ const Navbar = (props) => {
                         type="button"
                         data-bs-toggle="collapse"
                         data-bs-target="#navbarNav"
-                        class="navbar-toggler"
+                        className="navbar-toggler"
                         aria-controls="navbarNav"
                         aria-expanded="false"
                         aria-label="Toggle navigation"
@@ -69,7 +69,7 @@ const Navbar = (props) => {
                                             </Link>
 
                                         </li>
-                                        <li class="nav-item active">
+                                        <li className="nav-item active">
                                             < Link to="/home" className="nav-link" onClick={logOut}>
                                                 Cerrar Sesión
                                             </Link>

@@ -32,11 +32,11 @@ const Home = () => {
                 }
 
             );
-            const response=await res.json();
+            const response = await res.json();
             const data = response.result;
-            const count= response.count;
+            const count = response.count;
             console.log(data, count);
-            setpageCount(Math.ceil(count/12));
+            setpageCount(Math.ceil(count / 12));
 
             setServicios(data);
 
@@ -87,22 +87,22 @@ const Home = () => {
         content = servicios.map((service, key) =>
 
 
-            <div key={service.service_id} class="col-md-4 mb-3">
+            <div key={service.service_id} className="col-md-4 mb-3">
                 <Link style={{ "color": "black" }} to={"/serviceDetail/" + service.service_id} className="nav-link"  >
-                    <div class="card">
+                    <div className="card">
 
                         <img
                             style={{ "maxwidth": "250", "maxheight": "250" }}
                             src={service.service_image}
-                            class="card-img-top ListItem-img"
+                            className="card-img-top ListItem-img"
                             alt={service.service_name}
                         />
-                        <div class="card-body">
-                            <h5 class="card-title">{service.service_name}</h5>
-                            <p class="card-text">
-                               <p>{service.service_id} <br/>
-                               {service.service_price} </p> 
-                           
+                        <div className="card-body">
+                            <h5 className="card-title">{service.service_name}</h5>
+                            <p className="card-text">
+                                {service.service_id} <br />
+                                {service.service_price} 
+
 
                             </p>
                         </div>
@@ -151,19 +151,19 @@ const Home = () => {
 
     const handleOnChange = (e) => {
         e.preventDefault();
-       
+
         setBusqueda(e.target.value);
-        
+
     };
 
     const handleSubmit = e => {
         e.preventDefault();
-       setFiltro(busqueda)
-        
+        setFiltro(busqueda)
+
     }
 
 
-   
+
 
 
 
@@ -179,8 +179,8 @@ const Home = () => {
 
             <div id="main-content" style={{ 'margin': '50px' }} className="py-5 p-.5  mb-4">
 
-                <div class="row" className="  row height d-flex justify-content-end align-items-center ">
-                    <div class="col-md-6" >
+                <div className="row" className="  row height d-flex justify-content-end align-items-center ">
+                    <div className="col-md-6" >
                         <form id="searchbox" className=" d-flex" onSubmit={e => { e.preventDefault(); }}>
 
                             <input type="text" className="form-control  me-2 " type="search"
