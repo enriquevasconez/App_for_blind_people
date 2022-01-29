@@ -55,14 +55,14 @@ const Service = () => {
         }).then(data => {
 
 
-            setCategorias(data);
-            console.log(data);
+            console.log("OJO", data);
+            setCategorias(data.result);
 
 
         }).catch((error) => {
             console.log(error);
         });
-
+        console.log("res", res)
     }, [])
 
 
@@ -93,7 +93,7 @@ const Service = () => {
                                 service_price: values.service_price,
                                 service_image: url,
                                 user: user.user_id,
-                                city: 1,
+                                city: selectedCity,
                                 sc: values.sc,
                             })
                     })
@@ -268,13 +268,17 @@ const Service = () => {
                                 onChange={handleCitySelect}
 
                             >
+
                                 {/* <option selected >Open this select menu</option> */}
                                 <option value="titulo" selected hidden> Seleccione ciudad </option>
-                                {cities.map((city, key) => (
-                                    <option key={key} value={city}>
-                                        {city}
-                                    </option>
-                                ))}
+                                {console.log("CIT",cities)}
+                                {
+                                    cities.map((city, key) => (
+                                        <option key={key} value={city.id}>
+                                            {city.name}
+                                        </option>
+                                    ))
+                                }
                             </select>
                             {errors.selectedCity && <p>  {errors.selectedCity}</p>}
 
