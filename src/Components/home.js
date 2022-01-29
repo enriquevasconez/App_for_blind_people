@@ -6,7 +6,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faSearch } from '@fortawesome/free-solid-svg-icons';
 import Service from "./serviceRegister";
 import { GlobalContext } from "../globals/globalContext"
-
+import Categories from "./homeComponents/categories"
 
 const Home = () => {
 
@@ -225,6 +225,7 @@ const Home = () => {
                         <h1>Categorias</h1>
                     </div>
                 </div>
+                <Categories/>
                 <hr />
                 <div className="row">
                     <div className="col-md-12">
