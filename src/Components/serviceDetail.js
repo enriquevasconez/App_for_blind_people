@@ -165,10 +165,10 @@ useLayoutEffect(() => {
 
 
                             <input type="text" id="price"
-                                name="Province"
+                                name="State"
                                 readOnly
                                 className="form-control form-control-lg"
-                                value={"asdasd"}
+                                value={service?.city?.state}
                                 style={{"backgroundColor":"white"}}
 
                             />
@@ -179,17 +179,13 @@ useLayoutEffect(() => {
 
                             <input type="text" id="price"
                                 name="City"
-
                                 className="form-control form-control-lg" readOnly
-                                value={"asdasd"}
+                                value={service?.city?.city}
                                 style={{"backgroundColor":"white"}}
 
                             />
-
-
                  
                         </div>
-
                     </div>
                     
 

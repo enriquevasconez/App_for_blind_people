@@ -18,6 +18,7 @@ const Register = () => {
   
   const [redirect, setRedirect] = useState(false)
   const [passError, setPassError] = useState("")
+  const hStyle = { color: 'red' };
 
   async function submit() {
      
@@ -190,9 +191,9 @@ const Register = () => {
                           value={values.user_name}
                           onChange={handleChange}
                           />
-                           {errors.user_name && <p>{errors.user_name}</p>}
+                           {errors.user_name && <p style={hStyle}>{errors.user_name}</p>}
                         
-                        {/*onChange={e => setName(e.target.value)} 
+                        {/*onChange={e => setName(e.target.value)}
                          {userEmty && <p>{userEmty}</p>} */}
 
                       </div>
@@ -212,7 +213,7 @@ const Register = () => {
                           value={values.user_email}
                           onChange={handleChange}
                           />
-                          {errors.email && <p>{errors.email}</p>}
+                          {errors.email && <p style={hStyle}>{errors.email}</p>}
                         
                         {/*onChange={e => setEmail(e.target.value)} 
                         {emailEmty && <label aria-labelledby={emailEmty} > {emailEmty}</label>} */}
@@ -230,7 +231,7 @@ const Register = () => {
                           value={values.user_phone}
                           onChange={handleChange}
                           />
-                          {errors.user_phone && <p>{errors.user_phone}</p>}
+                          {errors.user_phone && <p style={hStyle} >{errors.user_phone}</p>}
                         {/* onChange={e => setPhone(e.target.value)}  
                         {phoneErr && <p>{phoneErr}</p>} */}
 
@@ -254,7 +255,7 @@ const Register = () => {
                           value={values.password2}
                           onChange={handleChange}
                           />
-                           {errors.password && <p>{errors.password}</p>}
+                           {errors.password && <p style={hStyle} s>{errors.password}</p>}
                         {/*onChange={e => setPassword(e.target.value)}  
                         {passError && <p>{passError}</p>} */}
 
@@ -272,7 +273,7 @@ const Register = () => {
                           value={values.password}
                           onChange={handleChange}
                         />
-                          {errors.password && <p>{errors.password}</p>}
+                          {errors.password && <p style={hStyle}>{errors.password}</p>}
                         {/* onChange={e => setRepeat(e.target.value)}
                          {passError && <p>{passError}</p>} */}
                       </div>
