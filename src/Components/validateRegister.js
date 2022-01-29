@@ -5,13 +5,13 @@ export default function validateRegister(values) {
     let errors = {};
 
     if (!values.user_name) {
-        errors.user_name = "Campo no puede estar vacío"
+        errors.user_name = "Ingrese un nombre"
     }
 
 
     if (!values.user_email) {
 
-        errors.email = "Campo no puede estar vacío"
+        errors.email = "Ingrese un correo"
 
 
     } else {
@@ -26,21 +26,21 @@ export default function validateRegister(values) {
 
     if (!values.password) {
 
-        errors.password = "El campo no puede estar vacío";
+        errors.password = "Ingrese una contraseña";
 
     } else {
         if (!/^(?=.*?[A-Za-z])(?=.*?[0-9]).{6,}$/.test(values.password)) {
 
-            errors.password = "Contraseña debe tener un formato válido";
+            errors.password = "Contraseña debe tener un mínimo de 8 caracteres incluyendo una mayúscula y un número";
         } else {
             if (values.password !== values.password2) {
-                errors.password = "Cantraseñas deben coincidir"
+                errors.password = "Las contraseñas deben coincidir"
             }
         }
     }
 
     if (!values.user_phone) {
-        errors.user_phone = "El campo no puede estar vacío"
+        errors.user_phone = "Ingrese un número telefónico"
     } else {
         if (!/^[0-9]+$/.test(values.user_phone)) {
 
