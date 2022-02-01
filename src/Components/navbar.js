@@ -28,12 +28,15 @@ const Navbar = (props) => {
         history("/home")
     }
 
+    function refreshPage(){ 
+        window.location.href="/"; 
+    }
 
     return (
 
         <nav className="navbar fixed-top navbar-expand-md navbar-dark bg-primary  ">
             <div className="container  d-flex  justify-content-between ">
-                <Link to="/" className="navbar-brand mb-0 h1 "> Blind Service  </Link>
+                <Link to={"/" }onClick={refreshPage} className="navbar-brand mb-0 h1 "> Blind Service  </Link>
 
              
                 <div>
@@ -41,7 +44,7 @@ const Navbar = (props) => {
                         type="button"
                         data-bs-toggle="collapse"
                         data-bs-target="#navbarNav"
-                        class="navbar-toggler"
+                        className="navbar-toggler"
                         aria-controls="navbarNav"
                         aria-expanded="false"
                         aria-label="Toggle navigation"
@@ -62,11 +65,18 @@ const Navbar = (props) => {
                                         </li>
                                         <li >
                                             <Link to="/serviceRegister" className="nav-link"  >
-                                                Vender
+                                                Ofertar
                                             </Link>
 
                                         </li>
-                                        <li class="nav-item active">
+                                        <li >
+                                            <Link to="/editProfile" className="nav-link" >
+                                                Solicitar
+                                            </Link>
+
+                                        </li>
+
+                                        <li className="nav-item active">
                                             < Link to="/home" className="nav-link" onClick={logOut}>
                                                 Cerrar Sesión
                                             </Link>

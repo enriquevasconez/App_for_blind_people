@@ -98,11 +98,15 @@ useLayoutEffect(() => {
 
                         </div>
 
-                        {/* {imgPreview.filepreview !== null ?
-                    <img className="previewimg" src={} alt="uploadimage" /> : null
-                } */}
+                    </div>
+                    <div className="row">
+                        <div class="col-md-4">
+                      {/* Poner sistema de calificación*/}
+
+                        </div>
 
                     </div>
+                    
                     <div className="row">
                         <div className="col-md-4  mb-4" style={{ border: '0px solid gray' }}>
                             {/* <!-- Datos del vendedor y titulo del producto --> */}
@@ -165,10 +169,10 @@ useLayoutEffect(() => {
 
 
                             <input type="text" id="price"
-                                name="Province"
+                                name="State"
                                 readOnly
                                 className="form-control form-control-lg"
-                                value={"asdasd"}
+                                value={service?.city?.state}
                                 style={{"backgroundColor":"white"}}
 
                             />
@@ -179,17 +183,13 @@ useLayoutEffect(() => {
 
                             <input type="text" id="price"
                                 name="City"
-
                                 className="form-control form-control-lg" readOnly
-                                value={"asdasd"}
+                                value={service?.city?.city}
                                 style={{"backgroundColor":"white"}}
 
                             />
-
-
                  
                         </div>
-
                     </div>
                     
 
