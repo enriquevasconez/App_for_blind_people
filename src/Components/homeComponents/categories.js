@@ -8,6 +8,7 @@ import { Link } from "react-router-dom";
 const Categories = ({ }) => {
     const [category, setCategory] = useState([]);
     const [categoryCount, setCategoryCount] = useState(0);
+    const [buscar, setBuscar] = useState("");
 
     useEffect(() => {
         const getComments = async () => {
@@ -68,17 +69,17 @@ const Categories = ({ }) => {
     }
 
 
+    const handleOnChange = (e) => {
+        
+       
+        console.log(buscar);
+
+    };
 
 
     return (
         <div>
-            <div class='container-fluid' >
-                <div className="row title" style={{ marginBottom: "20px" }} >
-                    <div class="col-sm-12 btn btn-info">
-                        Owl Carousel In React Application
-                    </div>
-                </div>
-            </div>
+     
             <div class='container-fluid' >
                 <OwlCarousel items={3}
                     className="owl-theme "
@@ -87,9 +88,12 @@ const Categories = ({ }) => {
                     margin={8} >
 
                     {category.map((category, key) => (
-                        <div key={category.sc_id} >
+                 
+                       
+                       <div key={category.sc_id} >
+                            <Link style={{ "color": "black" }} to={"/serviceDetail/"+ category.sc_name} className="nav-link"  >
                             <div className="col-md">
-                                <div className="card h-100 "  >
+                                <div className="card h-100 " >
                                     <div className="card-body ">
                                         <h5 className="card-title">{category.sc_name}</h5>
                                         <p className="card-text">
@@ -98,7 +102,9 @@ const Categories = ({ }) => {
                                     </div>
                                 </div>
                             </div>
+                            </Link>
                         </div>
+  
                     ))}
                 </OwlCarousel>
             </div>

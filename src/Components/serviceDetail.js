@@ -98,11 +98,15 @@ useLayoutEffect(() => {
 
                         </div>
 
-                        {/* {imgPreview.filepreview !== null ?
-                    <img className="previewimg" src={} alt="uploadimage" /> : null
-                } */}
+                    </div>
+                    <div className="row">
+                        <div class="col-md-4">
+                      {/* Poner sistema de calificación*/}
+
+                        </div>
 
                     </div>
+                    
                     <div className="row">
                         <div className="col-md-4  mb-4" style={{ border: '0px solid gray' }}>
                             {/* <!-- Datos del vendedor y titulo del producto --> */}

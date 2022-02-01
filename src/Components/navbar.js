@@ -65,10 +65,17 @@ const Navbar = (props) => {
                                         </li>
                                         <li >
                                             <Link to="/serviceRegister" className="nav-link"  >
-                                                Vender
+                                                Ofertar
                                             </Link>
 
                                         </li>
+                                        <li >
+                                            <Link to="/editProfile" className="nav-link" >
+                                                Solicitar
+                                            </Link>
+
+                                        </li>
+
                                         <li className="nav-item active">
                                             < Link to="/home" className="nav-link" onClick={logOut}>
                                                 Cerrar Sesión
