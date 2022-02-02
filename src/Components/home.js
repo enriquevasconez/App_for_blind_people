@@ -101,8 +101,7 @@ const Home = () => {
                         <div className="card-body">
                             <h5 className="card-title">{service.service_name}</h5>
                             <p  className="card-text">
-                                {service.service_id} <br />
-                                {service.service_price}
+                                Precio($ ): {service.service_price} 
 
 
                             </p>

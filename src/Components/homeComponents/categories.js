@@ -1,14 +1,23 @@
 // import './custom.css'
 import OwlCarousel from 'react-owl-carousel';
-import 'owl.carousel/dist/assets/owl.carousel.css';
-import 'owl.carousel/dist/assets/owl.theme.default.css';
+//import 'owl.carousel/dist/assets/owl.carousel.css';
+//import 'owl.carousel/dist/assets/owl.theme.default.css';
+import { Swiper, SwiperSlide } from 'swiper/react/swiper-react';
+import { Navigation, Pagination } from 'swiper';
+
+import 'swiper/swiper.scss';
+
+import 'swiper/swiper.scss'; // core Swiper
+import 'swiper/modules/navigation/navigation.scss'; // Navigation module
+import 'swiper/modules/pagination/pagination.scss'; // Pagination module
+
 import React, { useEffect, useState, useContext } from "react";
 import { Link } from "react-router-dom";
 
 const Categories = ({ }) => {
     const [category, setCategory] = useState([]);
     const [categoryCount, setCategoryCount] = useState(0);
-    const [buscar, setBuscar] = useState("");
+
 
     useEffect(() => {
         const getComments = async () => {
@@ -38,56 +47,11 @@ const Categories = ({ }) => {
 
     }, [])
 
-    let content = null
-
-    if (category) {
 
 
-        content = category.map((category, key) =>
 
-
-            <div key={category.sc_id} className="col-md-4 mb-3">
-                <Link style={{ "color": "black" }} to={"/serviceDetail/" + category.sc_id} className="nav-link"  >
-                    <div className="card">
-
-                        <div className="card-body">
-                            <h5 className="card-title">{category.sc_name}</h5>
-                            <p className="card-text">
-                                {category.sc_id} <br />
-                                {category.sc_description}
-                            </p>
-                        </div>
-
-                    </div>
-                </Link>
-            </div>
-
-
-        )
-    } else {
-        content = "Error inesperado"
-    }
-
-
-    const handleOnChange = (e) => {
-        
-       
-        console.log(buscar);
-
-    };
-
-
-    return (
-        <div>
-     
-            <div class='container-fluid' >
-                <OwlCarousel items={3}
-                    className="owl-theme "
-
-                    nav
-                    margin={8} >
-
-                    {category.map((category, key) => (
+    /*
+            {category.map((category, key) => (
                  
                        
                        <div key={category.sc_id} >
@@ -106,10 +70,48 @@ const Categories = ({ }) => {
                         </div>
   
                     ))}
-                </OwlCarousel>
-            </div>
+    */
 
-        </div>
+
+    return (
+        <div>
+            <Swiper
+                slidesPerView={3}
+                spaceBetween={1}
+                pagination={{
+                    clickable: true,
+                }}
+
+                modules={[Pagination, Navigation]}
+                className="mySwiper"
+                navigation={true}
+            >
+                {category.map((category, key) => (
+
+                    <SwiperSlide  >
+
+
+                        <div className='container-' key={category.sc_id}  >
+
+                            <div class="row">
+                                <div class="col">
+                                    <Link style={{ "color": "black" }} to={"/serviceDetail/" + category.sc_name} className="nav-link"  >
+                                        <div class="card h-100">
+                                            <div class="card-body">
+                                                <h5 class="card-title">{category.sc_name}</h5>
+                                                <p class="card-text">{category.sc_description}</p>
+                                            </div>
+                                        </div>
+                                    </Link>
+                                </div>
+                            </div>
+                        </div>
+
+                    </SwiperSlide >
+                ))}
+
+            </Swiper >
+        </div >
     );
 }
 

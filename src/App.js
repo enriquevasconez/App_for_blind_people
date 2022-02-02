@@ -13,6 +13,7 @@ import {
 import Profile from './Components/editProfile';
 import Service from './Components/serviceRegister';
 import ServiceDetail from './Components/serviceDetail';
+import Forum from './Components/forum';
 import Footer from './Components/footer';
 
 import GlobalProvider from './globals/globalContext'
@@ -39,6 +40,7 @@ function App() {
               <Route exact path="/serviceList" element={<serviceList />} />
               <Route exact path="/serviceRegister" element={<Service />} />
               <Route exact path="/serviceDetail/:service_id" element={<ServiceDetail />} />
+              <Route exact path="/forum" element={<Forum />} />
             </Routes>
           </div>
         </Router>

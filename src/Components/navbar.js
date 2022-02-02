@@ -70,7 +70,7 @@ const Navbar = (props) => {
 
                                         </li>
                                         <li >
-                                            <Link to="/editProfile" className="nav-link" >
+                                            <Link to="/Forum" className="nav-link" >
                                                 Solicitar
                                             </Link>
 
