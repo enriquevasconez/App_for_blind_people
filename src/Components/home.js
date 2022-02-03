@@ -23,7 +23,7 @@ const Home = () => {
     useEffect(() => {
         const getComments = async () => {
             const res = await fetch(
-                `https://blind-people-app-backend.herokuapp.com/service?service_price=${filtro}&service_name=${filtro}&order=desc&take=12&skip=0`,
+                `https://blind-people-app-backend.herokuapp.com/service?service_description=${filtro}&service_price=${filtro}&service_name=${filtro}&order=desc&take=12&skip=0`,
                 {
                     headers: {
                         'Content-type': 'application/json',
@@ -123,7 +123,7 @@ const Home = () => {
 
     const fetchComments = async (currentPage) => {
         const res = await fetch(
-            `https://blind-people-app-backend.herokuapp.com/service?service_price=${filtro}&service_name=${filtro}&order=desc&take=12&skip=${currentPage}`, {
+            `https://blind-people-app-backend.herokuapp.com/service?service_description=${filtro}&service_price=${filtro}&service_name=${filtro}&order=desc&take=12&skip=${currentPage}`, {
             headers: {
                 'Content-type': 'application/json',
                 "x-api-key": "420f77de-2cea-4e13-841a-b43ca729a7a9"
