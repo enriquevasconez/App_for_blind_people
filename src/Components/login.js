@@ -10,6 +10,8 @@ import { useNavigate } from 'react-router-dom'
 
 const Login = () => {
   
+  const hStyle = { color: 'red' };
+
   const {handleChange, values, handleSubmit, errors} = useForm(submit, validate);
   
   const [redirect, setRedirect] = useState(false)
@@ -145,7 +147,7 @@ const Login = () => {
               <div className="card-body p-4 p-md-5">
                 <Navbar />
                 <h3 className="mb-4 pb-2 pb-md-0 mb-md-5"> Llenar Datos</h3>
-                   {passError && <p> {passError} </p>}
+                   {passError && <p style={hStyle}> {passError} </p>}
                 <form className='from'  onSubmit={handleSubmit} >
     
                   <div className="row">
@@ -157,13 +159,11 @@ const Login = () => {
                           placeholder=" Ingrese correo"
                           value={values.email}
                           onChange={handleChange}
-                         // onChange={e => setEmail(e.target.value)} 
+               
                          />
-                         {errors.email && <p>{errors.email}</p>}
+                         {errors.email && <p style={hStyle}>{errors.email}</p>}
                    
-                         
-                          
-                        {/* {emailEmty && <p>{emailEmty}</p>} */}
+                 
                       </div>
 
                     </div>
@@ -182,7 +182,7 @@ const Login = () => {
                           onChange={handleChange}
                           //onChange={e => setPassword(e.target.value)}
                            />
-                           {errors.password && <p>{errors.password}</p>}
+                           {errors.password && <p style={hStyle}>{errors.password}</p>}
                
                       
                            

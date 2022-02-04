@@ -1,23 +1,25 @@
 import React, { useEffect, useState, } from "react";
 import Navbar from './navbar';
-import useForm from "./useForm";
-import validate from "./validateInfo";
+import useForm from "./forumForm";
+import validate from "./validateForum";
 import { useNavigate } from 'react-router-dom'
 
 const Forum = () => {
 
+  const hStyle = { color: 'red' };
   let user = JSON.parse(localStorage.getItem('user-info'))
   const current = new Date();
   const date = `${current.getDate()}/${current.getMonth() + 1}/${current.getFullYear()}`;
 
-  const { handleChange, values, handleSubmit, errors } = useForm(submit, validate);
+  const { handleChange, comment, handleSubmit, errors } = useForm(submit, validate);
 
-  const [redirect, setRedirect] = useState(false)
-  const [passError, setPassError] = useState("")
+  const [redirect, setRedirect] = useState(false);
+  const[commentList, setCommentList] = useState([]);
+  const [passError, setPassError] = useState("");
 
   async function submit() {
 
-    let response = await fetch('https://blind-people-app-backend.herokuapp.com/auth/login', {
+  /*   let response = await fetch('https://blind-people-app-backend.herokuapp.com/auth/login', {
       method: 'POST',
       headers: { 'Content-type': 'application/json', "x-api-key": "420f77de-2cea-4e13-841a-b43ca729a7a9" },
       body: JSON.stringify({
@@ -31,7 +33,7 @@ const Forum = () => {
 
         console.log(resp);
 
-        setPassError("Usuario no encontrado verificar que correo y contraseña sean las correctas")
+        setPassError("Error inesperado")
 
       } else {
         setPassError("")
@@ -48,8 +50,10 @@ const Forum = () => {
     }).catch((error) => {
       console.log(error)
 
-    });
+    }); */
+    console.log("hol"+comment)
   }
+ 
 
   const history = useNavigate();
   useEffect(() => {
@@ -111,13 +115,16 @@ const Forum = () => {
                     <div className="form-outlin mb-4">
                       <div className="form-outline">
                         <label className="form-label" htmlFor="date-and-name" > {date}{' '}{user.user_name} </label> 
+                        
                         <textarea class="form-control"
-                              name="service_description"
+                          name="comment"
+                          value={comment}
                           placeholder="Ingrese servicio a solicitar"
                           arial-label="Area para ingresar solicitud"
+                          onChange={handleChange}
                           style={{ "resize": "none", "height": "50px", "backgroundColor": "white" }}
                         />
-                        {errors.email && <p>{errors.email}</p>}
+                        {errors.comment && <p style={hStyle}>{errors.comment}</p>}
                       </div>
                     </div>
                   </div>
