@@ -18,10 +18,9 @@ const Home = () => {
     const [redirect, setRedirect] = useState(false);
     const [pageCount, setpageCount] = useState(0);
     const [filtro, setFiltro] = useState(busqueda);
-
-
+    const [categorySelected,setCategorySelected] = useState(null)
     useEffect(() => {
-        const getComments = async () => {
+        const getComments = async (props) => {
             const res = await fetch(
                 `https://blind-people-app-backend.herokuapp.com/service?service_description=${filtro}&service_price=${filtro}&service_name=${filtro}&order=desc&take=12&skip=0`,
                 {
@@ -164,6 +163,7 @@ const Home = () => {
 
     }
 
+    console.log("Imprime", categorySelected)
 
 
 
@@ -224,8 +224,13 @@ const Home = () => {
                         <h1>Categorias</h1>
                     </div>
                 </div>
-                <Categories/>
-                <hr />
+                <div className="card bg-light" >
+                <div class="card-body">
+                <Categories categorySelectedF={setCategorySelected}/>
+                </div>
+                </div>
+               
+        
                 <div className="row">
                     <div className="col-md-12">
                         <h1>Servicios Disponibles</h1>

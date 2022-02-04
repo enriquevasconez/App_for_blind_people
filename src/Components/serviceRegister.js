@@ -297,15 +297,16 @@ const Service = () => {
                             <li className="active">Detalle del producto</li>
 
                         </ul>
-                        <div style={{ width: '100%', borderTop: '1px solid silver' }}>
-                            <p style={{ padding: '15px' }}>
+                        <div style={{ width: '100%'}}>
+                           
                                 <textarea class="form-control"
                                     name="service_description"
                                     value={values.service_description}
                                     onChange={handleChange}
                                 />
-                            </p>
-                            {errors.service_description && <p>  {errors.service_description}</p>}
+                                {errors.service_description && <p>  {errors.service_description}</p>}
+                         
+                          
 
                         </div>
 

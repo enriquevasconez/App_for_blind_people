@@ -142,3 +142,8 @@ footer {
 .custom-card-categories{
   width: 18rem;
 }
+
+/*Carruser filtros*/ 
+.carruselFiltro {
+  cursor: pointer;
+}

@@ -14,7 +14,7 @@ import 'swiper/modules/pagination/pagination.scss'; // Pagination module
 import React, { useEffect, useState, useContext } from "react";
 import { Link } from "react-router-dom";
 
-const Categories = ({ }) => {
+const Categories = ({categorySelectedF }) => {
     const [category, setCategory] = useState([]);
     const [categoryCount, setCategoryCount] = useState(0);
 
@@ -22,7 +22,7 @@ const Categories = ({ }) => {
     useEffect(() => {
         const getComments = async () => {
             const res = await fetch(
-                `https://blind-people-app-backend.herokuapp.com/service-category`,
+                `https://blind-people-app-backend.herokuapp.com/service-category?relations=service`,
                 {
                     headers: {
                         'Content-type': 'application/json',
@@ -94,15 +94,16 @@ const Categories = ({ }) => {
                         <div className='container-' key={category.sc_id}  >
 
                             <div class="row">
-                                <div class="col">
-                                    <Link style={{ "color": "black" }} to={"/serviceDetail/" + category.sc_name} className="nav-link"  >
-                                        <div class="card h-100">
+                                <div class="col">                      
+                                        <div class="card h-100 carruselFiltro"    onClick={ 
+                                            (event)=>{  
+                                                categorySelectedF(category.sc_name)
+                                            } }>
                                             <div class="card-body">
                                                 <h5 class="card-title">{category.sc_name}</h5>
                                                 <p class="card-text">{category.sc_description}</p>
                                             </div>
                                         </div>
-                                    </Link>
                                 </div>
                             </div>
                         </div>
