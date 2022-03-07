@@ -43,70 +43,62 @@ const Navbar = (props) => {
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
-                <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                    <div className="d-flex ms-auto">
-                        {
-                            localStorage.getItem('user-info') ?
-                                <ul class="navbar-nav">
-                                    <li class="nav-item dropdown active">
+                {/* <div class="collapse navbar-collapse" id="navbarSupportedContent"> */}
+
+                    {
+                        localStorage.getItem('user-info') ?
+                        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                               
+                                <ul class="navbar-nav me-auto">
+                                    <li class="nav-item">
                                         <a
                                             class="btn btn-primary"
-                                            href="#"
-                                            role="button"
-                                            data-bs-toggle="dropdown"
-                                            aria-expanded="false"
-                                            aria-label="Ver opciones de usuario."
-                                            title="Ver opciones de usuario."
+                                            href="/serviceRegister"
+                                            aria-label="Publicar servicio que estes ofertando."
+                                            title="Publicar servicio que estes ofertando."
                                         >
-                                            {user.user_name}
+                                            Publicar servicio
                                         </a>
-                                        <ul class="dropdown-menu dropdown-menu-end">
-                                            <li>
-                                                <a
-                                                    class="dropdown-item"
-                                                    href="/editProfile"
-                                                    aria-label="Ir a la pagina de configuracion de usuario."
-                                                    title="Ir a la pagina de configuracion de usuario."
-                                                >
-                                                    Ver usuario
-                                                </a>
-                                            </li>
-                                            <li>
-                                                <a
-                                                    class="dropdown-item"
-                                                    href="/serviceRegister"
-                                                    aria-label="Publicar servicio que estes ofertando."
-                                                    title="Publicar servicio que estes ofertando."
-                                                >
-                                                    Publicar servicio
-                                                </a>
-                                            </li>
-                                            <li>
-                                                <a
-                                                    class="dropdown-item"
-                                                    href="/Forum"
-                                                    aria-label="Solicitar algun servicio que aun no se encuentra ofertado en la plataforma."
-                                                    title="Solicitar algun servicio que aun no se encuentra ofertado en la plataforma."
-                                                >
-                                                    Solicitar servicio
-                                                </a>
-                                            </li>
-                                            <li><hr class="dropdown-divider" /></li>
-                                            <li>
-                                                <button
-                                                    class="dropdown-item"
-                                                    type="button"
-                                                    onClick={logOut}
-                                                    aria-label="Cerrar sesion en la aplicacion."
-                                                    title="Cerrar sesion en la aplicacion."
-                                                >
-                                                    Cerrar Sesión
-                                                </button>
-                                            </li>
-                                        </ul>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a
+                                            class="btn btn-primary"
+                                            href="/Forum"
+                                            aria-label="Solicitar algun servicio que aun no se encuentra ofertado en la plataforma."
+                                            title="Solicitar algun servicio que aun no se encuentra ofertado en la plataforma."
+                                        >
+                                            Solicitar servicio
+                                        </a>
                                     </li>
                                 </ul>
-                                :
+                                <ul class="navbar-nav d-flex ms-auto">
+                                    <li class="nav-item">
+                                        <a
+                                            class="btn btn-primary"
+                                            href="/editProfile"
+                                            aria-label="Ir a la pagina de configuracion de usuario."
+                                            title="Ir a la pagina de configuracion de usuario."
+                                        >
+                                            Ver usuario
+                                        </a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <button
+                                            class="btn btn-success"
+                                            type="button"
+                                            onClick={logOut}
+                                            aria-label="Cerrar sesion en la aplicacion."
+                                            title="Cerrar sesion en la aplicacion."
+                                        >
+                                            Cerrar Sesión
+                                        </button>
+                                    </li>
+                                </ul>
+                            </div>
+                            :
+                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+
+                            <div className="d-flex ms-auto">
                                 <div class="btn-toolbar"
                                     role="toolbar"
                                     aria-label="Registro y acceso para usuarios."
@@ -130,9 +122,10 @@ const Navbar = (props) => {
                                         Registrarse
                                     </button>
                                 </div>
-                        }
-                    </div>
-                </div>
+                            </div>
+                            </div>
+                    }
+                {/* </div> */}
 
             </div>
         </nav >
