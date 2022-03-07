@@ -1,5 +1,5 @@
 // import './custom.css'
-import OwlCarousel from 'react-owl-carousel';
+// import OwlCarousel from 'react-owl-carousel';
 //import 'owl.carousel/dist/assets/owl.carousel.css';
 //import 'owl.carousel/dist/assets/owl.theme.default.css';
 import { Swiper, SwiperSlide } from 'swiper/react/swiper-react';
@@ -14,7 +14,7 @@ import 'swiper/modules/pagination/pagination.scss'; // Pagination module
 import React, { useEffect, useState, useContext } from "react";
 import { Link } from "react-router-dom";
 
-const Categories = ({categorySelectedF }) => {
+const Categories = ({ categorySelectedF }) => {
     const [category, setCategory] = useState([]);
     const [categoryCount, setCategoryCount] = useState(0);
 
@@ -74,8 +74,9 @@ const Categories = ({categorySelectedF }) => {
 
 
     return (
-        <div>
-            <Swiper
+        <div className="brand-image">
+            <h1>text</h1>
+            {/* <Swiper
                 slidesPerView={3}
                 spaceBetween={1}
                 pagination={{
@@ -94,16 +95,16 @@ const Categories = ({categorySelectedF }) => {
                         <div className='container-' key={category.sc_id}  >
 
                             <div class="row">
-                                <div class="col">                      
-                                        <div class="card h-100 carruselFiltro"    onClick={ 
-                                            (event)=>{  
-                                                categorySelectedF(category.sc_name)
-                                            } }>
-                                            <div class="card-body">
-                                                <h5 class="card-title">{category.sc_name}</h5>
-                                                <p class="card-text">{category.sc_description}</p>
-                                            </div>
+                                <div class="col">
+                                    <div class="card h-100 carruselFiltro" onClick={
+                                        (event) => {
+                                            categorySelectedF(category.sc_name)
+                                        }}>
+                                        <div class="card-body">
+                                            <h5 class="card-title">{category.sc_name}</h5>
+                                            <p class="card-text">{category.sc_description}</p>
                                         </div>
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -111,7 +112,7 @@ const Categories = ({categorySelectedF }) => {
                     </SwiperSlide >
                 ))}
 
-            </Swiper >
+            </Swiper > */}
         </div >
     );
 }

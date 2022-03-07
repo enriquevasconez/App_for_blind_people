@@ -1,14 +1,14 @@
 import React, { useState, useEffect } from "react";
 
 import './login'
-import './footer'
+import './general/footer'
 
 import Navbar from './navbar'
 import { Navigate } from 'react-router-dom';
 import validate from "./validateRegister";
 import useForm from "./useForm";
 import { useNavigate } from 'react-router-dom'
-import Footer from "./footer";
+import Footer from "./general/footer";
 
 
 

@@ -1,4 +1,5 @@
 import './App.css';
+import './bootstrap.config.scss';
 
 import Login from './Components/login';
 import Register from './Components/register';
@@ -14,7 +15,6 @@ import Profile from './Components/editProfile';
 import Service from './Components/serviceRegister';
 import ServiceDetail from './Components/serviceDetail';
 import Forum from './Components/forum';
-import Footer from './Components/footer';
 
 import GlobalProvider from './globals/globalContext'
 import { FirebaseCnn } from "./Classes/firebase.base"

@@ -6,7 +6,8 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faSearch } from '@fortawesome/free-solid-svg-icons';
 import Service from "./serviceRegister";
 import { GlobalContext } from "../globals/globalContext"
-import Categories from "./homeComponents/categories"
+import Footer from "./general/footer"
+// import Categories from "./homeComponents/categories"
 
 const Home = () => {
 
@@ -18,7 +19,7 @@ const Home = () => {
     const [redirect, setRedirect] = useState(false);
     const [pageCount, setpageCount] = useState(0);
     const [filtro, setFiltro] = useState(busqueda);
-    const [categorySelected,setCategorySelected] = useState(null)
+    const [categorySelected, setCategorySelected] = useState(null)
     useEffect(() => {
         const getComments = async (props) => {
             const res = await fetch(
@@ -99,8 +100,8 @@ const Home = () => {
                         />
                         <div className="card-body">
                             <h5 className="card-title">{service.service_name}</h5>
-                            <p  className="card-text">
-                                Precio($ ): {service.service_price} 
+                            <p className="card-text">
+                                Precio($ ): {service.service_price}
 
 
                             </p>
@@ -156,9 +157,9 @@ const Home = () => {
     };
 
     const handleSubmit = e => {
-        try{
+        try {
             e.preventDefault();
-        }catch(e){}
+        } catch (e) { }
         setFiltro(busqueda)
 
     }
@@ -172,65 +173,46 @@ const Home = () => {
 
 
     return (
-
-
         <div className="home">
-
             <Navbar />
-
-
-            <div id="main-content" style={{ 'margin': '50px' }} className="py-5 p-.5  mb-4">
-
+            <div className="brand-image">
                 <div className="row" className="  row height d-flex justify-content-center align-items-center ">
 
-                    <div className="col-md-9" >
-                        <form id="searchbox" className=" d-flex" onSubmit={e => { e.preventDefault(); }}>
+                    <div className="col-md-7" >
+                        <form id="searchbox" className="d-flex" onSubmit={e => { e.preventDefault(); }}>
                             <div class="input-group input-group-lg mb-5 mt-5">
-                                <input 
-                                type="text" className="form-control" type="search"
-                                name="busqueda"
-                                value={busqueda}
-                                placeholder="Buscar..."
-                                aria-label="Buscar"
-                                onChange={(e) => handleOnChange(e)}
-                                onKeyPress={
-                                    (event) => {
-                                    if(event.key === 'Enter'){
-                                        handleSubmit();
+                                <input
+                                    type="text" className="form-control" type="search"
+                                    name="busqueda"
+                                    value={busqueda}
+                                    placeholder="Buscar..."
+                                    aria-label="Buscar servicio en la plataforma."
+                                    onChange={(e) => handleOnChange(e)}
+                                    onKeyPress={
+                                        (event) => {
+                                            if (event.key === 'Enter') {
+                                                handleSubmit();
+                                            }
+                                        }
                                     }
-                                  }
-                                }
                                 />
                                 <button class="btn btn-success" onClick={handleSubmit} type="button">Search</button>
-                                {/* <span class="input-group-text" id="basic-addon2">
-                                    <i class="fas fa-search"></i>
-                                </span> */}
                             </div>
-                            {/* <input type="text" className="form-control  me-2 " type="search"
-                                name="busqueda"
-                                value={busqueda}
-                                placeholder="Buscar..."
-                                aria-label="Search"
-                                onChange={(e) => handleOnChange(e)}
-
-                            />
-                            <button className="btn btn-success" onClick={handleSubmit}>
-                                <FontAwesomeIcon icon={faSearch} /> </button> */}
                         </form>
                     </div>
                 </div>
+            </div>
+            <div id="main-content" style={{ 'margin': '50px' }} className="py-5 p-.5  mb-4">
                 <div className="row">
                     <div className="col-md-12">
                         <h1>Categorias</h1>
                     </div>
                 </div>
                 <div className="card bg-light" >
-                <div class="card-body">
-                <Categories categorySelectedF={setCategorySelected}/>
+                    <h1>txt</h1>
                 </div>
-                </div>
-               
-        
+
+
                 <div className="row">
                     <div className="col-md-12">
                         <h1>Servicios Disponibles</h1>
@@ -245,7 +227,7 @@ const Home = () => {
                 </div>
 
             </div>
-            <nav aria-label="Sección de paginación ">
+            {/* <nav aria-label="Sección de paginación ">
                 <ReactPaginate
 
                     previousLabel={'Previous'}
@@ -267,7 +249,8 @@ const Home = () => {
                     activeClassName={'active'}
                 />
 
-            </nav>
+            </nav> */}
+            <Footer />
         </div>
     );
 

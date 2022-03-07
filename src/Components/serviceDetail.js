@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useRef, useLayoutEffect } from "react";
 
 
-import './footer'
+import './general/footer'
 import Navbar from './navbar'
 import './service.css'
 import { useNavigate, useParams } from 'react-router-dom'

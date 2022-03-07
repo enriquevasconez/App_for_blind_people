@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useRef } from "react";
 
 
-import './footer'
+import './general/footer'
 import Navbar from './navbar'
 import './service.css'
 import { Navigate } from 'react-router-dom';
