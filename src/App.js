@@ -3,7 +3,7 @@ import './bootstrap.config.scss';
 
 import Login from './Components/login';
 import Register from './Components/register';
-import Home from './Components/home';
+import Home from './Components/pages/home/home';
 
 import {
   BrowserRouter as Router,
@@ -34,9 +34,9 @@ function App() {
             <Routes>
               <Route path="/register" element={<GlobalProvider><Register /></GlobalProvider>} />
               <Route exact path="/" element={<GlobalProvider><Home /></GlobalProvider>} />
+              <Route exact path="/home" element={<Home />} />
               <Route exact path="/login" element={<Login />} />
               <Route exact path="/editProfile" element={<Profile />} />
-              <Route exact path="/home" element={<Home />} />
               <Route exact path="/serviceList" element={<serviceList />} />
               <Route exact path="/serviceRegister" element={<Service />} />
               <Route exact path="/serviceDetail/:service_id" element={<ServiceDetail />} />

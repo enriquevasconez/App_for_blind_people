@@ -1,8 +1,7 @@
 import React, { useEffect, useState, } from "react";
 import { Navigate } from 'react-router-dom';
 import { validEmail, validPassword } from './Regex.js';
-import Navbar from './navbar';
-import Home from './home'
+import Navbar from './general/navbar';
 import useForm from "./useForm";
 import validate from "./validateInfo";
 

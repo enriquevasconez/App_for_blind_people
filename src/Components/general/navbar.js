@@ -1,15 +1,11 @@
 import React, { useEffect } from "react"
-import './register'
-import '../App'
-import './login'
-import './editProfile'
+import '../register'
+import '../../App'
+import '../login'
+import '../editProfile'
 
 
 
-import Home from './home'
-
-
-import { useState } from 'react'
 import { Link, useNavigate } from "react-router-dom";
 
 
@@ -100,7 +96,7 @@ const Navbar = (props) => {
 
                             <div className="d-flex ms-auto">
                                 <div class="btn-toolbar"
-                                    role="toolbar"
+                                    role="Botones de acceso."
                                     aria-label="Registro y acceso para usuarios."
                                 >
                                     <button

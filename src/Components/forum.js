@@ -1,5 +1,5 @@
 import React, { useEffect, useState, } from "react";
-import Navbar from './navbar';
+import Navbar from './general/navbar';
 import useForm from "./forumForm";
 import validate from "./validateForum";
 import { useNavigate } from 'react-router-dom'

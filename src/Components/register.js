@@ -3,7 +3,7 @@ import React, { useState, useEffect } from "react";
 import './login'
 import './general/footer'
 
-import Navbar from './navbar'
+import Navbar from './general/navbar'
 import { Navigate } from 'react-router-dom';
 import validate from "./validateRegister";
 import useForm from "./useForm";

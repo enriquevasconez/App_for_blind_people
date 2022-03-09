@@ -1,16 +1,15 @@
-require('dotenv').config()
-
 export class RQRS {
     constructor(resource) {
-        this.URI = process.env.URI;
+        this.URI = process.env.REACT_APP_URI;
         this.contentType = 'application/json'
-        this.APIKEY = process.env.APIKEY;
+        this.APIKEY = process.env.REACT_APP_API_KEY_BK;
         this.resource = resource;
         this.headers = {
             'Content-type': this.contentType,
             "x-api-key": this.APIKEY
         }
     }
+
     excectPromise = (promise) => {
         return new Promise(
             (resolve, reject) => {
@@ -26,7 +25,7 @@ export class RQRS {
                         }
                     ).catch(
                         err => {
-                            reject("ERROR", err);
+                            reject(err);
                         }
                     )
             }
@@ -37,7 +36,8 @@ export class RQRS {
         const queryParams = params.queryParams || {}
         const subResourse = params.subResourse || undefined
         const uri = this.parseUri(queryParams, subResourse);
-        return excectPromise(
+        console.log("URI", uri);
+        return this.excectPromise(
             fetch(
                 uri,
                 {
@@ -52,13 +52,15 @@ export class RQRS {
         const bodyParams = params.bodyParams || {}
         const subResourse = params.subResourse || undefined
         const uri = this.parseUri(queryParams, subResourse);
-        return fetch(
-            uri,
-            {
-                method: 'POST',
-                headers: this.headers,
-                body: JSON.stringify(bodyParams)
-            }
+        return this.excectPromise(
+            fetch(
+                uri,
+                {
+                    method: 'POST',
+                    headers: this.headers,
+                    body: JSON.stringify(bodyParams)
+                }
+            )
         );
     };
 
@@ -67,13 +69,15 @@ export class RQRS {
         const bodyParams = params.bodyParams || {}
         const subResourse = params.subResourse || undefined
         const uri = this.parseUri(queryParams, subResourse);
-        return fetch(
-            uri,
-            {
-                method: 'PATCH',
-                headers: this.headers,
-                body: JSON.stringify(bodyParams)
-            }
+        return this.excectPromise(
+            fetch(
+                uri,
+                {
+                    method: 'PATCH',
+                    headers: this.headers,
+                    body: JSON.stringify(bodyParams)
+                }
+            )
         );
     };
 
