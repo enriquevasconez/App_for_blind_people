@@ -4,28 +4,31 @@
   /* text-align: center; */
 }
 
- /* Register css */
-#card{
-  margin-top: 40px;
+/* Register css */
+#card {
+  margin-top   : 40px;
   border-radius: 50px;
-  
- }
-#Submit{
+
+}
+
+#Submit {
 
   margin-top: 8px;
 }
 
 .card-registration .select-input.form-control[readonly]:not([disabled]) {
-  font-size: 1rem;
-  line-height: 4.15;
-  padding-left: .80em;
+  font-size    : 1rem;
+  line-height  : 4.15;
+  padding-left : .80em;
   padding-right: .75em;
 }
+
 .card-registration .select-arrow {
-  top:13px;
+  top: 13px;
 }
+
 .App-logo {
-  height: 40vmin;
+  height        : 40vmin;
   pointer-events: none;
 }
 
@@ -37,7 +40,7 @@
 
 
 .App-header {
-   /* background-color: #282c34;
+  /* background-color: #282c34;
   min-height: 100vh;
   display: flex;
   flex-direction: column;
@@ -45,7 +48,7 @@
   justify-content: center;
   font-size: calc(10px + 2vmin);
   color: white;  */
-  
+
 }
 
 .App-link {
@@ -56,44 +59,51 @@
   from {
     transform: rotate(0deg);
   }
+
   to {
     transform: rotate(360deg);
   }
 }
 
 /* Home section */
-#menu-tile, #specials-tile, #map-tile{
-  height: 250px;
-  width: 100%;
+#menu-tile,
+#specials-tile,
+#map-tile {
+  height       : 250px;
+  width        : 100%;
   margin-bottom: 15px;
-  position: relative;
-  border: 2px solid #3f0c1f;
-  overflow: hidden;   
+  position     : relative;
+  border       : 2px solid #3f0c1f;
+  overflow     : hidden;
 }
 
-#menu-tile:hover, #specials-tile:hover, #map-tile:hover{
-  box-shadow: 0 1px 5px 1px #cccccc;
+#menu-tile:hover,
+#specials-tile:hover,
+#map-tile:hover {
+  box-shadow     : 0 1px 5px 1px #cccccc;
   text-decoration: none;
 }
 
-#menu-tile{
+#menu-tile {
 
   background-position: center;
 }
 
 
 
-#menu-tile span, #specials-tile span, #map-tile span{
-  position: sticky;
-  bottom: 0;
-  right: 0;
-  width: 100%;
-  text-align: center;
-  font-size: 1.6em;
-  text-transform: uppercase;
+#menu-tile span,
+#specials-tile span,
+#map-tile span {
+  position        : sticky;
+  bottom          : 0;
+  right           : 0;
+  width           : 100%;
+  text-align      : center;
+  font-size       : 1.6em;
+  text-transform  : uppercase;
   background-color: #000;
-  color: #fff;
-  opacity: .8 ;
+  color           : #fff;
+  opacity         : .8;
 }
 
 /* Footer section */
@@ -101,37 +111,38 @@
 
 
 footer {
-  bottom:0;
-  width:100%;
+  bottom: 0;
+  width : 100%;
 
 }
 
-.sidebar{
+.sidebar {
   margin-top: 20px;
- 
+
 }
 
 /* img home */
 
 .ListItem-main-card {
-  width: 320px;
+  width : 320px;
   height: 415px;
 }
 
 .ListItem-img {
-  height: auto;
+  height    : auto;
   max-height: 200px;
-  width: auto;
-  max-width: 500px;
+  width     : auto;
+  max-width : 500px;
 }
+
 .ServiceItem-img {
-  display: block;
-  margin-left: auto;
+  display     : block;
+  margin-left : auto;
   margin-right: auto;
-  height: auto;
-  max-height: 1000px;
-  width: auto;
-  max-width: 1000px;
+  height      : auto;
+  max-height  : 1000px;
+  width       : auto;
+  max-width   : 1000px;
 }
 
 .crazy {
@@ -139,20 +150,24 @@ footer {
 }
 
 
-.custom-card-categories{
+.custom-card-categories {
   width: 18rem;
 }
 
-/*Carruser filtros*/ 
+/*Carruser filtros*/
 .carruselFiltro {
   cursor: pointer;
 }
 
 .brand-image {
-  background-image:url("./resources/brand.jpg");
-  background-repeat: no-repeat;
-  background-size: cover;
-  background-position: center;
+  background-image        : url("./resources/brand.jpg");
+  background-repeat       : no-repeat;
+  background-size         : cover;
+  background-position     : center;
   /* background-attachment: fixed; */
 }
 
+.img-size {
+  max-height: 300px;
+  width     : 500px;
+}

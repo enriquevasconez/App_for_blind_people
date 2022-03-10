@@ -1,5 +1,5 @@
-import './App.css';
 import './bootstrap.config.scss';
+import './App.css';
 
 import Login from './Components/login';
 import Register from './Components/register';

@@ -7,11 +7,11 @@ const Breadcrumb = ({ routes }) => {
         (key, index) => {
             if (index !== keys.length - 1) {
                 items.push(
-                    <li id={`breadcrumb-${index}`} class="breadcrumb-item"><a href={routes[key]}>{key}</a></li>
+                    <li key={`breadcrumb-${index}`} class="breadcrumb-item"><a href={routes[key]}>{key}</a></li>
                 );
             } else {
                 items.push(
-                    <li id={`breadcrumb-${index}`} class="breadcrumb-item active" aria-current="page">{key}</li>
+                    <li key={`breadcrumb-${index}`} class="breadcrumb-item active" aria-current="page">{key}</li>
                 );
             }
         }
