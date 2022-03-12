@@ -20,28 +20,27 @@ const Card = ({ imageUri, title, description, serviceLink, price }) => {
                                 </span>
                             </h5>
                         </a>
-                        <div classname="container ">
-                            <div classname="row ">
-                                <div classname="col-sm-10">
+                        <div class="">
+                            <div class="row">
+                                <div class="col-10 col-sm-9">
                                     <a href={serviceLink} className="text-decoration-none">
                                         <p class="card-text"><b>Precio: </b>{price}</p>
                                     </a>
                                     <a href={serviceLink} className="text-decoration-none">
                                         <p class="card-text"><b>Categoria: </b>{price}</p>
                                     </a>
-                                    {/* <a href={serviceLink} className="text-decoration-none">
-                                    <p class="card-text"><b>Descripcion: </b>{description}</p>
-                                </a> */}
+                                    <a href={serviceLink} className="text-decoration-none">
+                                        <p class="card-text"><b>Descripcion: </b>{description}</p>
+                                    </a>
                                     <a href={serviceLink} className="text-decoration-none">
                                         <p class="card-text mt-2"><small class="text-muted"><b>Fecha de creacion: </b>12/12/2022</small></p>
                                     </a>
                                 </div>
-                                <div classname="col-sm">
+                                <div class="col d-flex align-items-end">
                                     <a href={serviceLink} className="text-decoration-none">
                                         <p class="card-text mt-2"><small >Calificacion</small></p>
-                                        {/* <h1>4.5</h1> */}
+                                        <h1>4.5</h1>
                                     </a>
-
                                 </div>
                             </div>
                         </div>

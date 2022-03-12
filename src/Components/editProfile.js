@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from "react";
 
-import './login'
 
 
 import Navbar from './general/navbar'

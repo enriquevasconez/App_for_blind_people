@@ -17,7 +17,7 @@ const SearchBar=({value, handleOnChange, handleSubmit})=>{
                                     onKeyPress={
                                         (event) => {
                                             if (event.key === 'Enter') {
-                                                handleSubmit();
+                                                handleSubmit(event);
                                             }
                                         }
                                     }
@@ -27,6 +27,7 @@ const SearchBar=({value, handleOnChange, handleSubmit})=>{
                                     type="button"
                                     aria-label="Buscar servicios"
                                 >
+                                    <i class="fa-solid fa-magnifying-glass me-2"></i>
                                     Buscar
                                 </button>
                             </div>

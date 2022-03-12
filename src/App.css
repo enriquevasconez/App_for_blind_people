@@ -167,6 +167,11 @@ footer {
   /* background-attachment: fixed; */
 }
 
+.half-image{
+  background-size: 100% 50%;
+  background-position: left top;
+}
+
 .img-size {
   max-height: 300px;
   width     : 500px;

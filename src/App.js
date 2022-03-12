@@ -1,8 +1,8 @@
 import './bootstrap.config.scss';
 import './App.css';
 
-import Login from './Components/login';
-import Register from './Components/register';
+import Login from './Components/pages/login/login';
+import Register from './Components/pages/user/register';
 import Home from './Components/pages/home/home';
 
 import {

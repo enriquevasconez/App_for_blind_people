@@ -52,6 +52,7 @@ export class RQRS {
         const bodyParams = params.bodyParams || {}
         const subResourse = params.subResourse || undefined
         const uri = this.parseUri(queryParams, subResourse);
+        console.log("URI", uri, bodyParams);
         return this.excectPromise(
             fetch(
                 uri,
