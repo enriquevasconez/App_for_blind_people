@@ -4,6 +4,7 @@ import './App.css';
 import Login from './Components/pages/login/login';
 import Register from './Components/pages/user/register';
 import Home from './Components/pages/home/home';
+import RecoverPassword from './Components/pages/recoverPassword/recoverPassword';
 
 import {
   BrowserRouter as Router,
@@ -41,6 +42,7 @@ function App() {
               <Route exact path="/serviceRegister" element={<Service />} />
               <Route exact path="/serviceDetail/:service_id" element={<ServiceDetail />} />
               <Route exact path="/forum" element={<Forum />} />
+              <Route exact path="/forgotpass" element={<RecoverPassword />} />
             </Routes>
           </div>
         </Router>
