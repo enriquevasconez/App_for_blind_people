@@ -12,9 +12,9 @@ import {
   Route
 
 } from "react-router-dom";
-import Profile from './Components/editProfile';
+import Profile from './Components/pages/user/profile';
 import Service from './Components/serviceRegister';
-import ServiceDetail from './Components/serviceDetail';
+import ServiceDetail from './Components/pages/serviceDetail/serviceDetail';
 import Forum from './Components/forum';
 
 import GlobalProvider from './globals/globalContext'

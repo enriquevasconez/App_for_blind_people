@@ -41,7 +41,6 @@ class RecoverPassword extends React.Component {
       "Reiniciar contraseña": () => {
         this.stateSetter("step", 0)
         window.location.href = "/login";
-
       }
     }
     console.log("forgot", this);

@@ -33,8 +33,8 @@ export class RQRS {
     }
 
     get = (params) => {
-        const queryParams = params.queryParams || {}
-        const subResourse = params.subResourse || undefined
+        const queryParams = params?.queryParams || {}
+        const subResourse = params?.subResourse || undefined
         const uri = this.parseUri(queryParams, subResourse);
         console.log("URI", uri);
         return this.excectPromise(
@@ -48,9 +48,9 @@ export class RQRS {
     }
 
     post = (params) => {
-        const queryParams = params.queryParams || {}
-        const bodyParams = params.bodyParams || {}
-        const subResourse = params.subResourse || undefined
+        const queryParams = params?.queryParams || {}
+        const bodyParams = params?.bodyParams || {}
+        const subResourse = params?.subResourse || undefined
         const uri = this.parseUri(queryParams, subResourse);
         console.log("URI", uri, bodyParams);
         return this.excectPromise(
@@ -66,9 +66,9 @@ export class RQRS {
     };
 
     patch = (params) => {
-        const queryParams = params.queryParams || {}
-        const bodyParams = params.bodyParams || {}
-        const subResourse = params.subResourse || undefined
+        const queryParams = params?.queryParams || {}
+        const bodyParams = params?.bodyParams || {}
+        const subResourse = params?.subResourse || undefined
         const uri = this.parseUri(queryParams, subResourse);
         return this.excectPromise(
             fetch(
