@@ -2,38 +2,26 @@ import { useState, useEffect } from "react";
 
 const useForm = (callback, validate) => {
 
-    const [values, setValues] = useState({
-
-        user_name: '',
-        user_email: '',
-        password: '',
-        password2: '',
-        user_phone: '',
-
-    })
+    const [comment, setComment] = useState("")
 
  
-     const [errors, setErrors] = useState({});
+    const [errors, setErrors] = useState({});
     const [isSubmitting, setIsSubmitting] = useState(false)
 
    
     
     const handleChange = e => {
-        const { name, value } = e.target
-        setValues({
-            ...values,
-            [name]: value
-        })
-
-     
+        setComment(e.target.value)
     }
 
     const handleSubmit = e => {
         e.preventDefault();
+     
 
-        setErrors(validate(values));
+        setErrors(validate(comment));
 
         setIsSubmitting(true);
+       
 
 
     };
@@ -45,12 +33,13 @@ const useForm = (callback, validate) => {
         if (Object.keys(errors).length === 0 && isSubmitting) {
 
             callback();
+            setComment("")
 
         }
     },
         [errors]
     )
-    return { handleChange, values, handleSubmit, errors }
+    return { handleChange, comment, handleSubmit, errors }
 };
 
 export default useForm;

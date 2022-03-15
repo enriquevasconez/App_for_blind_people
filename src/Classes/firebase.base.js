@@ -6,12 +6,12 @@ export class FirebaseCnn {
 
     init = () => {
         const firebaseConfig = {
-            apiKey: process.env.API_KEY || "AIzaSyDs1syJw90-lcmWdeF6yofajvaKMhk1iY0",
-            authDomain: process.env.AUTH_DOMAIN || "blind-people-image-storage.firebaseapp.com",
-            projectId: process.env.PROJECT_ID || "blind-people-image-storage",
-            storageBucket: process.env.STORAGE_BUCKET || "blind-people-image-storage.appspot.com",
-            messagingSenderId: process.env.MESSAGING_SENDER_ID || "951998931962",
-            appId: process.env.APP_ID || "1:951998931962:web:ff1c42da54540b8dc57a43"
+            apiKey: process.env.REACT_APP_API_KEY,
+            authDomain: process.env.REACT_APP_AUTH_DOMAIN,
+            projectId: process.env.REACT_APP_PROJECT_ID,
+            storageBucket: process.env.REACT_APP_STORAGE_BUCKET,
+            messagingSenderId: process.env.REACT_APP_MESSAGING_SENDER_ID,
+            appId: process.env.REACT_APP_APP_ID
         };
         const app = initializeApp(firebaseConfig);
         return app;
@@ -21,7 +21,7 @@ export class FirebaseCnn {
         return new Promise(
             (resolve, reject) => {
                 const storage = getStorage();
-                const storageRef = ref(storage, file.name);
+                const storageRef = ref(storage, `${generateId()}${file.name}`);
                 uploadBytes(storageRef, file)
                     .then(
                         snap => {
@@ -47,4 +47,14 @@ export class FirebaseCnn {
         )
     }
 
+}
+
+function dec2hex(dec) {
+    return dec.toString(16).padStart(2, "0")
+}
+
+function generateId(len) {
+    var arr = new Uint8Array((len || 40) / 2)
+    window.crypto.getRandomValues(arr)
+    return Array.from(arr, dec2hex).join('')
 }

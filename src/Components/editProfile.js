@@ -1,9 +1,8 @@
 import React, { useState, useEffect } from "react";
 
-import './login'
 
 
-import Navbar from './navbar'
+import Navbar from './general/navbar'
 import { Navigate } from 'react-router-dom';
 import validate from "./validateRegister";
 import UpdateForm from "./updateForm";
