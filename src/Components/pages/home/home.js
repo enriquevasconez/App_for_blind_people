@@ -19,6 +19,13 @@ class Home extends React.Component {
             currentPage: 0,
             maxServicesPage: 12,
             gettingServices: false,
+            filters: {
+                category_name: "",
+                city_name: "",
+                score_min: "",
+                price_min: "",
+                price_max: "",
+            }
         };
     }
 
@@ -35,21 +42,35 @@ class Home extends React.Component {
     componentStateSetter = (keyName, value) => {
         let stateCopy = { ...this.state };
         stateCopy[keyName] = value;
+        console.log("b", this.state[keyName],"a", stateCopy[keyName])
         this.setState(stateCopy);
     }
 
+
     getServices = async () => {
+        console.log('filters', {
+            service_description: this.state.searchBarStr,
+            service_price: this.state.searchBarStr,
+            service_name: this.state.searchBarStr,
+            order: "desc",
+            relations: "sc,city",
+            take: this.state.maxServicesPage,
+            skip: this.state.maxServicesPage * this.state.currentPage,
+            ...this.state.filters
+        })
         this.componentStateSetter("gettingServices", true);
         await new RQRS("service")
             .get(
                 {
                     queryParams: {
                         service_description: this.state.searchBarStr,
-                        service_price: this.state.searchBarStr,
+                        // service_price: this.state.searchBarStr,
                         service_name: this.state.searchBarStr,
                         order: "desc",
+                        relations: "sc,city",
                         take: this.state.maxServicesPage,
-                        skip: this.state.maxServicesPage * this.state.currentPage
+                        skip: this.state.maxServicesPage * this.state.currentPage,
+                        ...this.state.filters
                     }
                 }
             )
@@ -95,12 +116,18 @@ class Home extends React.Component {
                 />
                 <Filter
                     mobileVersion={true}
-                />
+                    applyFilterf={this.getServices}
+                    state={this.state.filters}
+                    setState={(value)=>{this.componentStateSetter("filters", value)}}
+                    />
                 <main className="container mt-4">
                     <div className="row">
                         <div className="col-lg-4 ">
                             <Filter
                                 mobileVersion={false}
+                                applyFilterf={this.getServices}
+                                state={this.state.filters}
+                                setState={(value)=>{this.componentStateSetter("filters", value)}}
                             />
                         </div>
                         <div className="col-lg-8">

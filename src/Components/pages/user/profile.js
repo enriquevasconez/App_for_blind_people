@@ -2,7 +2,9 @@ import React from "react";
 import Navbar from "../../general/navbar"
 import { RQRS } from '../../../Classes/rqrp'
 import ServicePresenter from "../../general/servicePresenter"
-
+import Modal from '../../general/modal'
+import UserForm from './userForm/UserForm'
+import ProfileForm from './userForm/editProfile'
 class Profile extends React.Component {
 
     constructor(props) {
@@ -91,7 +93,15 @@ class Profile extends React.Component {
                                     <h4><b>Correo: </b>{this.state.user?.user_email}</h4>
                                 </div>
                                 <div className="col d-flex flex-column ">
-                                    <button type="button" class="btn btn-success">Editar Perfil</button>
+                                    <Modal
+                                        btnTitle="Editar Perfil"
+                                        btnClass="btn btn-success"
+                                    >
+                                        {/* <ProfileForm/> */}
+                                        <UserForm
+                                            userData={this.state.user}
+                                        />
+                                    </Modal>
                                     <button type="button" class="btn btn-primary mt-2">Editar contraseña</button>
                                 </div>
                             </div>
@@ -104,10 +114,10 @@ class Profile extends React.Component {
                                     class={`nav-link btn btn-success ${this.state.tabActive === 0 ? "active" : ""}`}
                                     aria-current={this.state.tabActive === 0 ? "page" : "false"}
                                     aria-label={this.state.tabActive === 0 ? "Se encuentra en la pestaña de servicios publicados" : "Ir a servicios solicitados"}
-                                    onClick={(event)=>{
-                                        this.componentStateSetter("tabActive",0);
+                                    onClick={(event) => {
+                                        this.componentStateSetter("tabActive", 0);
                                     }}
-                                    >
+                                >
                                     Servicios publicados
                                 </button>
                             </li>
@@ -116,8 +126,8 @@ class Profile extends React.Component {
                                     class={`nav-link btn btn-success ${this.state.tabActive === 1 ? "active" : ""}`}
                                     aria-label={this.state.tabActive === 0 ? "Se encuentra en la pestaña de servicios solicitados" : "Ir a servicios publicados"}
                                     aria-current={this.state.tabActive === 1 ? "page" : "false"}
-                                    onClick={(event)=>{
-                                        this.componentStateSetter("tabActive",1);
+                                    onClick={(event) => {
+                                        this.componentStateSetter("tabActive", 1);
                                     }}
                                 >
                                     Servicios solicitados

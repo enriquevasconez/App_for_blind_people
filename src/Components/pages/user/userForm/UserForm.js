@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import { RQRS } from "../../../../Classes/rqrp";
 import { validateForm } from './validateForm';
 
@@ -27,6 +27,8 @@ const UserForm = ({ userData }) => {
             }
         }
     );
+
+   console.log("createUserFlag", createUserFlag)
 
     const stateSetter = (keyName, subkey, value) => {
         let stateCopy = { ...state };
@@ -154,7 +156,7 @@ const UserForm = ({ userData }) => {
                         type="number"
                         class="form-control"
                         id="phoneInput"
-                        aria-label="Ingrese su contraseña."
+                        aria-label="Ingrese su telefono."
                         minLength="7"
                         maxLength="10"
                         pattern="^[0-9].{7,10}$"
@@ -196,7 +198,7 @@ const UserForm = ({ userData }) => {
                                 type="password"
                                 class="form-control"
                                 id="repasswordInput"
-                                aria-label="Ingrese su contraseña."
+                                aria-label="Repita su contraseña."
                                 placeholder="************"
                                 minLength="6"
                                 pattern="^(?=.*?[A-Za-z])(?=.*?[0-9]).{6,}$"

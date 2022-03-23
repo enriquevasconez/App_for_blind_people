@@ -1,5 +1,5 @@
 
-const Card = ({ imageUri, title, description, serviceLink, price }) => {
+const Card = ({ imageUri, title, description, serviceLink, price, category }) => {
 
     return (
         <div class="card mb-3 ">
@@ -27,7 +27,7 @@ const Card = ({ imageUri, title, description, serviceLink, price }) => {
                                         <p class="card-text"><b>Precio: </b>{price}</p>
                                     </a>
                                     <a href={serviceLink} className="text-decoration-none">
-                                        <p class="card-text"><b>Categoria: </b>{price}</p>
+                                        <p class="card-text"><b>Categoria: </b>{category}</p>
                                     </a>
                                     <a href={serviceLink} className="text-decoration-none">
                                         <p class="card-text"><b>Descripcion: </b>{description}</p>
