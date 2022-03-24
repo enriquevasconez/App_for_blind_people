@@ -50,7 +50,8 @@ class Profile extends React.Component {
                     queryParams: {
                         order: "desc",
                         take: this.state.maxServicesPage,
-                        skip: this.state.maxServicesPage * this.state.currentPage
+                        skip: this.state.maxServicesPage * this.state.currentPage,
+                        relations: "sc"
                     }
                 }
             )
