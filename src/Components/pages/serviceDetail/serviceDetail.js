@@ -2,7 +2,7 @@ import React, { useState, useEffect, useRef, useLayoutEffect } from "react";
 import Navbar from '../../general/navbar'
 import { useParams } from 'react-router-dom'
 import { RQRS } from '../../../Classes/rqrp'
-import Comments from "./commnets";
+import Comments from "./comments";
 const ServiceDetail = () => {
 
     const { service_id } = useParams();
