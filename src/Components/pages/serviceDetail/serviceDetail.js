@@ -82,6 +82,7 @@ const ServiceDetail = () => {
                             <Comments serviceID={service_id} />
                         </section>
                     </div>
+                    
                     <div className="col-4 bg-light p-2">
                         <h4>Solicitudes que probablemente pueda solucionar.</h4>
                     </div>

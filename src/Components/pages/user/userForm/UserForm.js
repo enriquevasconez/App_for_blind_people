@@ -107,6 +107,7 @@ const UserForm = ({ userData }) => {
         event.preventDefault();
         stateSetter("formState", "name", "was-validated")
     }
+    
     return (
         <form onSubmit={createUser} onError={error} className={`container ${state.formState.name}`}>
             <h3 className=" text-center">{`¡Hola! ${createUserFlag ? "Completa" : "Modifica"} tus datos`}</h3>
