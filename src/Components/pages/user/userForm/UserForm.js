@@ -66,7 +66,7 @@ const UserForm = ({ userData }) => {
                 )
                 .catch(
                     error => {
-                        stateSetter("error", "msg", "Error, este correo esta actualemente siendo utilizado.")
+                        stateSetter("error", "msg", "Error, este correo está actualmente siendo utilizado.")
                         stateSetter("error", "status", true);
                     }
                 )
@@ -152,7 +152,7 @@ const UserForm = ({ userData }) => {
                     />
                 </div>
                 <div className="col-6">
-                    <label for="phoneInput" class="form-label">Telefono</label>
+                    <label for="phoneInput" class="form-label">Teléfono</label>
                     <input
                         type="number"
                         class="form-control"
@@ -217,7 +217,7 @@ const UserForm = ({ userData }) => {
 
                         </div>
                         <small id="passwordHelp" class={`form-text  ${state.extras.equalserr ? "text-danger" : "text-muted"}`}>
-                            {state.extras.equalserr ? "Las contraseñas ingresadas deben ser iguales" : "La contraseña debe contener al menos 8 digitos y valores alfanumericos."}
+                            {state.extras.equalserr ? "Las contraseñas ingresadas deben ser iguales" : "La contraseña debe contener al menos 8 dígitos y valores alfanumericos."}
                         </small>
                     </div>
                 </div> : null}

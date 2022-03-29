@@ -47,8 +47,8 @@ const Navbar = ({ navigate }) => {
                                                     <a
                                                         class="btn btn-primary"
                                                         href="/serviceRegister"
-                                                        aria-label="Publicar servicio que estes ofertando."
-                                                        title="Publicar servicio que estes ofertando."
+                                                        aria-label="Publicar servicio que estés ofertando."
+                                                        title="Publicar servicio que estés ofertando."
                                                     >
                                                         Publicar servicio
                                                     </a>
@@ -57,8 +57,8 @@ const Navbar = ({ navigate }) => {
                                                     <a
                                                         class="btn btn-primary"
                                                         href="/Forum"
-                                                        aria-label="Solicitar algun servicio que aun no se encuentra ofertado en la plataforma."
-                                                        title="Solicitar algun servicio que aun no se encuentra ofertado en la plataforma."
+                                                        aria-label="Solicitar algún servicio que aún no se encuentra ofertado en la plataforma."
+                                                        title="Solicitar algún servicio que aún no se encuentra ofertado en la plataforma."
                                                     >
                                                         Solicitar servicio
                                                     </a>
@@ -69,8 +69,8 @@ const Navbar = ({ navigate }) => {
                                                     <a
                                                         class="btn btn-primary"
                                                         href="/editProfile"
-                                                        aria-label="Ir a la pagina de configuracion de usuario."
-                                                        title="Ir a la pagina de configuracion de usuario."
+                                                        aria-label="Ir a la página de configuración de usuario."
+                                                        title="Ir a la página de configuración de usuario."
                                                     >
                                                         <i class="fa-solid fa-user me-2"></i>
                                                         Ver usuario
@@ -81,8 +81,8 @@ const Navbar = ({ navigate }) => {
                                                         class="btn btn-success"
                                                         type="button"
                                                         onClick={logOut}
-                                                        aria-label="Cerrar sesion en la aplicacion."
-                                                        title="Cerrar sesion en la aplicacion."
+                                                        aria-label="Cerrar sesión en la aplicación."
+                                                        title="Cerrar sesión en la aplicación."
                                                     >
                                                         <i class="fa-solid fa-arrow-right-from-bracket me-2"></i>
                                                         Cerrar Sesión
@@ -102,8 +102,8 @@ const Navbar = ({ navigate }) => {
                                                         type="button "
                                                         onClick={goToIniciarSesion}
                                                         class="btn btn-primary me-2"
-                                                        aria-label="Iniciar sesion en la aplicacion."
-                                                        title="Iniciar sesion en la aplicacion."
+                                                        aria-label="Iniciar sesión en la aplicación."
+                                                        title="Iniciar sesión en la aplicación."
                                                     >
                                                         <i class="fa-solid fa-arrow-right-to-bracket me-2"></i>
                                                         Iniciar Sesión
@@ -112,8 +112,8 @@ const Navbar = ({ navigate }) => {
                                                         type="button"
                                                         onClick={goToRegister}
                                                         class="btn btn-success"
-                                                        aria-label="Registrarse en la aplicacion."
-                                                        title="Registrarse sesion en la aplicacion."
+                                                        aria-label="Registrarse en la aplicación."
+                                                        title="Registrarse en la aplicación."
                                                     >
                                                         Registrarse
                                                     </button>

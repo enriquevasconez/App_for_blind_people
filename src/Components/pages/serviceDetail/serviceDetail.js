@@ -53,9 +53,9 @@ const ServiceDetail = () => {
                         <h4 className="pb-2">Acerca del usuario.</h4>
                         <h5><i class="fa-solid fa-user pe-2"></i>Nombre:</h5>
                         <p>{service?.user?.user_name}</p>
-                        <h6><i class="fa-solid fa-location-dot"></i>Localizacion:</h6>
+                        <h6><i class="fa-solid fa-location-dot"></i>Localización:</h6>
                         <p>{`${service?.city?.city}/${service?.city?.state}`}</p>
-                        <h6><i class="fa-solid fa-phone"></i>Telefono de contacto:</h6>
+                        <h6><i class="fa-solid fa-phone"></i>Teléfono de contacto:</h6>
                         <p>{service?.user?.user_phone}</p>
                         <h6><i class="fa-solid fa-circle-star"></i>Calificación:</h6>
                         <p>--</p>
@@ -69,8 +69,8 @@ const ServiceDetail = () => {
                                 <p><b>Precio: </b>{service.service_price}</p>
                                 <p><b>Calificación: </b>{service.service_price}</p>
                                 <p><b>Lugar: </b>{`${service?.city?.city}/${service?.city?.state}`}</p>
-                                <p><b>Telefono de contacto: </b>{`${service?.user?.user_phone}`}</p>
-                                <p><b>Categoria: </b>{`${service?.sc?.sc_name}`}</p>
+                                <p><b>Teléfono de contacto: </b>{`${service?.user?.user_phone}`}</p>
+                                <p><b>Categoría: </b>{`${service?.sc?.sc_name}`}</p>
 
                             </div>
                             <div className="col bg-primary">
@@ -79,7 +79,13 @@ const ServiceDetail = () => {
                                 <h3>Descripción del servicio.</h3>
                                 {service.service_description}
                             </p>
+                            {
+                                localStorage.getItem('user-info') ?
+
                             <Comments serviceID={service_id} />
+                            :
+                            <p>Inicio sesión para ver comentarios y realizar comentarios</p>
+                            }
                         </section>
                     </div>
                     

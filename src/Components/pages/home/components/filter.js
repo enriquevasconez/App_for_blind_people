@@ -63,7 +63,7 @@ const Filter = ({ mobileVersion, applyFilterf, state, setState }) => {
                     value={state["category_name"]}
                     onChange={(event) => { changeValue("category_name", event.target.value) }}
                 >
-                    <option value="">-- Seleccione una categoria --</option>
+                    <option value="">-- Seleccione una categoría --</option>
                     {categoriesState}
                 </select>
             </div>

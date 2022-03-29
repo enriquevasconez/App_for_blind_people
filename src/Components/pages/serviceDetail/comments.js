@@ -1,6 +1,5 @@
 
 import React, { useState, useEffect } from 'react'
-import CommentForm from "./commentsform";
 import { RQRS } from "../../../Classes/rqrp";
 
 
@@ -82,7 +81,7 @@ const Comments = ({ serviceID }) => {
                    stateSetter("error", "status", true);
                 }
             )
-            .finally(() => {  })
+            .finally(() => {  stateSetter("formState", "name", "needs-validation") })
     }
     const error = (event) => {
         event.preventDefault();
