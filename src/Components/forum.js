@@ -99,14 +99,14 @@ const Forum = () => {
  */
 
   return (
-
+    <div> <Navbar />
     <section className="vh-100   gradient-custom">
 
       <div >
     
             <div  style={{ 'margin': '50px' }} >
               <div className=" p-4 p-md-5 ">
-                <Navbar />
+               
                 <h3 className="mb-4 pb-2 pb-md-0 mb-md-5 d-flex justify-content-center" > Foro de Comentarios</h3>
                 {passError && <p> {passError} </p>}
                 <form className='from' onSubmit={handleSubmit} >
@@ -122,9 +122,10 @@ const Forum = () => {
                           placeholder="Ingrese servicio a solicitar"
                           arial-label="Area para ingresar solicitud"
                           onChange={handleChange}
-                          style={{ "resize": "none", "height": "50px", "backgroundColor": "white" }}
+                          style={{ "resize": "none", "height": "150px", "backgroundColor": "white" }}
+                          required
                         />
-                        {errors.comment && <p style={hStyle}>{errors.comment}</p>}
+                       
                       </div>
                     </div>
                   </div>
@@ -141,13 +142,30 @@ const Forum = () => {
                 <hr />
                 <h3 className="mb-4 pb-2 pb-md-0 mb-md-5 d-flex justify-content-center" > Solicitudes Realizadas</h3>
               </div>
+
+              <h4>Comentarios</h4>
+            {
+                
+                        <div  className="card mt-2">
+                            <div className="card-body">
+                                <h5 class="card-text mt-2"></h5>
+                                <p class="card-text mt-2"></p>
+                                <p class="card-text mt-2"><small class="text-muted"></small></p>
+                                <p>{}</p>
+                            </div>
+                        </div>
+            }
             
             </div>
+
+           
            
           </div>
-   
+        
+       
 
     </section>
+    </div>
 
   );
 }

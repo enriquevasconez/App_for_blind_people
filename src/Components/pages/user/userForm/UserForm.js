@@ -94,7 +94,7 @@ const UserForm = ({ userData }) => {
                 )
                 .catch(
                     error => {
-                        stateSetter("error", "msg", "Errorpor favor verifique los datos ingresados.")
+                        stateSetter("error", "msg", "Error por favor verifique los datos ingresados.")
                         stateSetter("error", "status", true);
                     }
                 )

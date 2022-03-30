@@ -23,7 +23,7 @@ const comments = [
     }
 ]
 
-const Comments = ({ serviceID }) => {
+const Comments = ({ serviceID, commentaries, setService }) => {
 
     let user = JSON.parse(localStorage.getItem('user-info'))
     
@@ -62,10 +62,11 @@ const Comments = ({ serviceID }) => {
                         ...state.comments
                     }
                 }
-            )
+            )           
             .then(
                 (result) => {
                     state.comments.comment=""
+                  
                     return result.json();
                 }
             )
@@ -81,7 +82,12 @@ const Comments = ({ serviceID }) => {
                    stateSetter("error", "status", true);
                 }
             )
-            .finally(() => {  stateSetter("formState", "name", "needs-validation") })
+            .finally(() => {  stateSetter("formState", "name", "needs-validation") });
+
+            setService([
+                ...setService,
+                {comment:  stateSetter("comments", "comment", event.target.value)}
+            ]);
     }
     const error = (event) => {
         event.preventDefault();
@@ -115,7 +121,8 @@ const Comments = ({ serviceID }) => {
       }
   
    */
-
+   
+    
     return (
         <section role="Comentarios de usuarios" className="mt-2">
             <h4>Agregar comentario</h4>
@@ -142,12 +149,12 @@ const Comments = ({ serviceID }) => {
 
             <h4>Comentarios</h4>
             {
-                comments.map(
+                commentaries?.map(
                     (element, key) =>
                         <div key={key} className="card mt-2">
                             <div className="card-body">
-                                <h5 class="card-text mt-2">{element.name}</h5>
-                                <p class="card-text mt-2">{element.description}</p>
+                                <h5 class="card-text mt-2">{element.user.user_name}</h5>
+                                <p class="card-text mt-2">{element.comment}</p>
                                 <p class="card-text mt-2"><small class="text-muted">{element.date}</small></p>
                                 <p>{serviceID}</p>
                             </div>
@@ -155,8 +162,9 @@ const Comments = ({ serviceID }) => {
             }
         </section>
     )
-
 }
+
+
 
 
 export default Comments;
