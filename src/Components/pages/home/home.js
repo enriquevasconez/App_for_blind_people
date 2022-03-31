@@ -14,11 +14,13 @@ class Home extends React.Component {
         super(props);
         this.state = {
             serviceResponse: [],
+            scoreResponse:[],
             searchBarStr: "",
             pageMaxCount: 0,
             currentPage: 0,
             maxServicesPage: 12,
             gettingServices: false,
+            gettingScore:false,
             filters: {
                 category_name: "",
                 city_name: "",
@@ -96,6 +98,9 @@ class Home extends React.Component {
             .finally(() => {
                 this.componentStateSetter("gettingServices", false);
             })
+     
+
+
     }
 
     render() {
@@ -135,6 +140,7 @@ class Home extends React.Component {
                             <h2>Servicios disponibles</h2>
                             <ServicePresenter
                                 services={this.state.serviceResponse}
+                               
                                 onCurrentPageChange={(value) => {
                                     this.componentStateSetter("currentPage", value);
                                 }}

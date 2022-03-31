@@ -80,19 +80,7 @@ const Filter = ({ mobileVersion, applyFilterf, state, setState }) => {
                     {citiesState}
                 </select>
             </div>
-            <div class="mb-3">
-                <label for={`${mobileVersion ? "mobile" : "desktop"}-calificacion`} class="form-label">Calificación</label>
-                <input
-                    type="number"
-                    class="form-control"
-                    id={`${mobileVersion ? "mobile" : "desktop"}-calificacion`}
-                    min="0"
-                    max="5"
-                    placeholder="5"
-                    value={state["score_min"]}
-                    onChange={(event) => { changeValue("score_min", event.target.value) }}
-                />
-            </div>
+
             <div class="row mb-3">
                 <div className="col-6">
                     <label for={`${mobileVersion ? "mobile" : "desktop"}-minPrice`} class="form-label">Precio minimo</label>

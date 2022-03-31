@@ -1,6 +1,37 @@
+import { RQRS } from '../../Classes/rqrp'
+import React, { useState, useEffect} from "react";
 
-const Card = ({ imageUri, title, description, serviceLink, price, category }) => {
+const Card = ({ imageUri, title, description, serviceLink, price, category,serviceID }) => {
 
+    
+    const[scoreService, setScoreService] = useState("")
+    
+    useEffect(async () => {
+        await new RQRS(`score/service-score`)
+        .get(
+            {
+                subResourse: serviceID,
+
+            }
+        )
+        .then(
+            (resp) => {
+                return resp.json();
+            }
+        ).then(
+            data => {
+                setScoreService(data)
+                console.log(scoreService)
+            }).catch((error) => {
+                console.log(error)
+            });
+
+    }, [serviceID])
+    
+    
+    
+    
+    
     return (
         <div class="card mb-3 ">
             <div class="row align-items-center  ">
@@ -39,7 +70,13 @@ const Card = ({ imageUri, title, description, serviceLink, price, category }) =>
                                 <div class="col d-flex align-items-end">
                                     <a href={serviceLink} className="text-decoration-none">
                                         <p class="card-text mt-2"><small >Calificacion</small></p>
-                                        <h1>4.5</h1>
+                                        { scoreService!=0 ?
+                                        <h1 style={{"textAlign":"center"}}>{parseFloat(scoreService).toFixed(1)}</h1>
+                                        :
+                                        <h1 style={{"textAlign":"center"}}>--</h1>
+                                    
+                                    }
+                                       
                                     </a>
                                 </div>
                             </div>

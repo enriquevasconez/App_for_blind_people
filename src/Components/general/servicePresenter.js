@@ -50,6 +50,8 @@ const ServicePresenter = ({ services, onCurrentPageChange, maxPages, currentPage
                                 serviceLink={`/serviceDetail/${service.service_id}`}
                                 price={service.service_price}
                                 category={service.sc.sc_name}
+                                serviceID ={service.service_id}
+                                
                             />
                             :
                             cardFunction(service, key)

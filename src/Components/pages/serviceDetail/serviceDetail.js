@@ -6,34 +6,115 @@ import Comments from "./comments";
 import { render } from "@testing-library/react";
 const ServiceDetail = () => {
 
+    
     const { service_id } = useParams();
 
     const [service, setService] = useState([]);
+    const[scoreUser, setscoreUser] = useState("")
+    const[scoreService, setScoreService] = useState("")
 
     // useLayoutEffect(() => {
     //     window.scrollTo(0, 0)
     // });
 
-    useEffect(() => {
-        new RQRS(`service`)
-            .get(
-                {
-                    subResourse: service_id,
+    const getServices = async ()  =>{
+      await new RQRS(`service`)
+        .get(
+            {
+                subResourse: service_id,
 
-                }
-            )
-            .then(
-                (resp) => {
-                    return resp.json();
-                }
-            ).then(
-                data => {
-                    setService(data)
-                }).catch((error) => {
-                    console.log(error)
-                });
+            }
+        )
+        .then(
+            (resp) => {
+                return resp.json();
+            }
+        ).then(
+            data => {
+                setService(data)
+            }).catch((error) => {
+                console.log(error)
+            });
+
+    }
+   
+    useEffect( () => {
+        getServices()
 
     }, [service_id])
+
+    useEffect(async () => {
+        await new RQRS(`score/service-score`)
+        .get(
+            {
+                subResourse: service_id,
+
+            }
+        )
+        .then(
+            (resp) => {
+                return resp.json();
+            }
+        ).then(
+            data => {
+                setScoreService(data)
+                console.log(scoreService)
+            }).catch((error) => {
+                console.log(error)
+            });
+
+    }, [service_id])
+
+    useEffect(async () => {
+        await new RQRS(`score/service-score`)
+        .get(
+            {
+                subResourse: service_id,
+
+            }
+        )
+        .then(
+            (resp) => {
+                return resp.json();
+            }
+        ).then(
+            data => {
+                setScoreService(data)
+                console.log(scoreService)
+            }).catch((error) => {
+                console.log(error)
+            });
+
+    }, [service_id])
+
+    useEffect(async () => {
+        await new RQRS(`score/user-score`)
+        .get(
+            {
+                subResourse: service?.user?.user_id,
+
+            }
+        )
+        .then(
+            (resp) => {
+                return resp.json();
+            }
+        ).then(
+            data => {
+                setscoreUser(data)
+               
+            }).catch((error) => {
+                console.log(error)
+            });
+
+    }, [service?.user?.user_id])
+
+
+
+
+
+
+
 
         return (
             <div>
@@ -60,7 +141,12 @@ const ServiceDetail = () => {
                             <h6><i class="fa-solid fa-phone"></i>Teléfono de contacto:</h6>
                             <p>{service?.user?.user_phone}</p>
                             <h6><i class="fa-solid fa-circle-star"></i>Calificación:</h6>
-                            <p>--</p>
+                            {scoreUser !=0?
+                              <p>{parseFloat(scoreUser).toFixed(1)}</p>
+                            :
+                            <p>El usaurio no tiene calificaciones</p>
+                            }
+                          
                         </section>
                     </div>
                     <div className="row mt-4">
@@ -69,13 +155,19 @@ const ServiceDetail = () => {
                                 <div className="col-9">
                                     <h2>{service.service_name}</h2>
                                     <p><b>Precio: </b>{service.service_price}</p>
-                                    <p><b>Calificación: </b>{service.service_price}</p>
+                                    {scoreService!=0 ?
+                                    <p><b>Calificación: </b>
+                                    {parseFloat(scoreService).toFixed(1)}</p>
+                                    :
+                                    <p><b>Calificación: </b>
+                                    Este servicio no ha sido calificado </p>
+                                    }
                                     <p><b>Lugar: </b>{`${service?.city?.city}/${service?.city?.state}`}</p>
                                     {
                                         localStorage.getItem('user-info') ?
                                             <p><b>Teléfono de contacto: </b>{`${service?.user?.user_phone}`}</p>
                                             :
-                                            <p><b>Teléfono de contacto: </b>Registrese o inicie sesión para ver</p>
+                                            <p><b>Teléfono de contacto: </b> Registrese o inicie sesión para ver</p>
                                     }
                                     <p><b>Categoría: </b>{`${service?.sc?.sc_name}`}</p>
 
@@ -90,9 +182,10 @@ const ServiceDetail = () => {
                                     localStorage.getItem('user-info') ?
 
                                         <Comments serviceID={service_id}
-                                            commentaries={service?.comment}
-
-
+                                         commentaries={service?.comment}
+                                         setService = {setService}
+                                         getServices = {getServices}
+                                       
                                         />
 
                                         :
@@ -112,4 +205,5 @@ const ServiceDetail = () => {
         );
     }
 
+    
 export default ServiceDetail;
