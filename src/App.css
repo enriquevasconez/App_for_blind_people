@@ -106,6 +106,18 @@
   opacity         : .8;
 }
 
+
+/* StarRating section */
+input[type ="radio"]{
+  display: none;
+}
+
+.star{
+  cursor: pointer;
+  transition: color 200ms;
+}
+
+
 /* Footer section */
 
 

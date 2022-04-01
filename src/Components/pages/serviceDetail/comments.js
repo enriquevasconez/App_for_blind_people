@@ -101,25 +101,25 @@ const Comments = ({ serviceID, commentaries, setService, getServices }) => {
 
     }
 
-   
+
     const error = (event) => {
         event.preventDefault();
         stateSetter("formState", "name", "was-validated")
     }
 
-    const editComment = (clikedid,comment) => {
+    const editComment = (clikedid, comment) => {
         setEdit({
             edits: !edit.edits,
             clickedComment: clikedid
         })
 
-       update.comments.comment = comment
+        update.comments.comment = comment
 
     }
 
     const updateComment = async (event) => {
         event.preventDefault();
-        await new RQRS("comment/"+ edit.clickedComment)
+        await new RQRS("comment/" + edit.clickedComment)
             .patch(
                 {
                     bodyParams: {
@@ -132,7 +132,7 @@ const Comments = ({ serviceID, commentaries, setService, getServices }) => {
                     getServices()
                     edit.edits = false
 
-                   
+
                     return result.json();
                 }
             )
@@ -157,8 +157,8 @@ const Comments = ({ serviceID, commentaries, setService, getServices }) => {
     return (
         <section role="Comentarios de usuarios" className="mt-2">
             <h4>Agregar comentario</h4>
-            <form onSubmit={newCommnet} onError={error} >
-
+            <form aria-label='Ingrese comentario' onSubmit={newCommnet} onError={error} >
+            
                 <textarea class="form-control"
                     placeholder="Ingrese comentario"
                     arial-label="Area para ingresar comentario "
@@ -187,7 +187,7 @@ const Comments = ({ serviceID, commentaries, setService, getServices }) => {
                         <div key={element.comment_id} className="card mt-2">
 
                             {edit.edits && edit.clickedComment == element.comment_id ?
-                                <form onSubmit={updateComment} onError={error}>
+                                <form aria-label ="Sección para ingresar comentarios" onSubmit={updateComment} onError={error}>
                                     <textarea class="form-control"
                                         placeholder="Ingrese comentario"
                                         arial-label="Area para ingresar comentario"
@@ -202,7 +202,7 @@ const Comments = ({ serviceID, commentaries, setService, getServices }) => {
                                         <div className="col-md-6 mb-4 pb-2 d-flex justify-content-center">
                                             <div className="form-outlin mb-4">
                                                 <input id="Submit" className=" container btn btn-primary btn-lg" type="submit" value="Actualizar" />
-                                               
+
                                             </div>
                                         </div>
                                     </div>
@@ -210,27 +210,27 @@ const Comments = ({ serviceID, commentaries, setService, getServices }) => {
                                 </form>
                                 :
                                 <div>
-                                <div className="card-body">
-                                    <h5 class="card-text mt-2">{element.user.user_name}</h5>
-                                    <p class="card-text mt-2">{element.comment}</p>
-                                    <p class="card-text mt-2">  {new Date(element.createdDate).toLocaleDateString().toString()}</p>
+                                    <div className="card-body">
+                                        <h5 class="card-text mt-2">{element.user.user_name}</h5>
+                                        <p class="card-text mt-2">{element.comment}</p>
+                                        <p class="card-text mt-2"> <b>Publicado el:</b> {new Date(element.createdDate).toLocaleDateString().toString()}</p>
+                                    </div>
+                                    <div className=" d-flex justify-content-end ">
+                                        <div className=" pb-1 me-1 d-flex ">
+                                            <div className="form-outlin ">
+                                                {
+                                                    element.user.user_id == user.user_id ?
+                                                        <button className=" container btn btn-primary" type='button' onClick={() => editComment(element.comment_id, element.comment)}> Editar Comentario</button>
+                                                        :
+                                                        null
+                                                }
+                                            </div>
+                                        </div>
+                                    </div>
                                 </div>
-                                   <div className=" d-flex justify-content-end ">
-                                   <div className=" pb-1 me-1 d-flex ">
-                                       <div className="form-outlin ">
-                                           {
-                                               element.user.user_id == user.user_id ?
-                                                   <button className=" container btn btn-primary" type='button' onClick={() => editComment(element.comment_id, element.comment)}> Editar Comentario</button>
-                                                   :
-                                                   null
-                                           }
-                                       </div>
-                                   </div>
-                               </div>
-                               </div>
                             }
-                         
-                           
+
+
                         </div>)
             }
 
