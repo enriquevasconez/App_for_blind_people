@@ -28,15 +28,15 @@ const UserForm = ({ userData }) => {
         }
     );
 
-    useEffect(async () => {
-        if (!localStorage.getItem('user-info')) {
-            const user = await JSON.parse(localStorage.getItem('user-info'));
-            let stateCopy = { ...state };
-            stateCopy["user"] = user;
-            createUserFlag = false;
-            setState(stateCopy);
-        }
-    }, [])
+    // useEffect(async () => {
+    //     if (!localStorage.getItem('user-info')) {
+    //         const user = await JSON.parse(localStorage.getItem('user-info'));
+    //         let stateCopy = { ...state };
+    //         stateCopy["user"] = user;
+    //         createUserFlag = false;
+    //         setState(stateCopy);
+    //     }
+    // }, [])
 
     console.log("createUserFlag", createUserFlag)
 
@@ -82,12 +82,12 @@ const UserForm = ({ userData }) => {
                 )
                 .finally(() => { })
         else {
-            let {password, ...user}=state.user;
+            // let {password, ...user}=state.user;
             await new RQRS("user")
                 .post(
                     {
                         bodyParams: {
-                            ...user
+                            ...state.user
                         }
                     }
                 )
