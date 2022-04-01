@@ -5,6 +5,8 @@ import ServicePresenter from "../../general/servicePresenter"
 import Modal from '../../general/modal'
 import UserForm from './userForm/UserForm'
 import ProfileForm from './userForm/editProfile'
+import DemandServicePresenter from "./extras/demandServicePresenter"
+
 class Profile extends React.Component {
 
     constructor(props) {
@@ -44,6 +46,7 @@ class Profile extends React.Component {
 
     getServices = async () => {
         this.componentStateSetter("gettingServices", true);
+        const user = await JSON.parse(localStorage.getItem('user-info'));
         await new RQRS("service")
             .get(
                 {
@@ -51,7 +54,8 @@ class Profile extends React.Component {
                         order: "desc",
                         take: this.state.maxServicesPage,
                         skip: this.state.maxServicesPage * this.state.currentPage,
-                        relations: "sc"
+                        relations: "sc",
+                        user_id:user.user_id
                     }
                 }
             )
@@ -147,7 +151,7 @@ class Profile extends React.Component {
                                         currentPage={this.state.currentPage}
                                         charging={this.state.gettingServices}
                                     />
-                                    : null}
+                                    : <DemandServicePresenter/>}
                         </div>
                     </section>
                 </div>
