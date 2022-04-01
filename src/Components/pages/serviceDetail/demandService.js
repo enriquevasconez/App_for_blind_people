@@ -6,7 +6,7 @@ const Demand = ({ demand }) => {
 
     return (
         
-        <section role="Comentarios de usuarios" className="mt-2">
+        <section role="Solicitudes que probablemente pueda solucionar" className="mt-2">
             
             {
                 demand?.map(

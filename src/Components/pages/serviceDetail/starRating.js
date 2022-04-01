@@ -86,7 +86,7 @@ const Star = ({ serviceID }) => {
   
     return (
         
-        <section role="Comentarios de usuarios" className="mt-2">
+        <section role="De su calificación" className="mt-2">
             <h5>De su calificación</h5>
             
                        
