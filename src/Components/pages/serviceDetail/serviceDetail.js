@@ -176,8 +176,14 @@ const ServiceDetail = () => {
                             </div>
                             
                             <div className="col ">
+                            { localStorage.getItem('user-info') ?
                                <Star   
                                serviceID ={service_id}/>
+                               :
+                               <p><a class="text-decoration-none" href="/register"> Registrese</a> o  <a class="text-decoration-none" href="/login"> inicie sesión</a> para calificar </p>
+                            }
+                            
+                            
                             </div>
                             
                             <p>
