@@ -174,7 +174,8 @@ const ServiceDetail = () => {
                                 <p><b>Categoría: </b>{`${service?.sc?.sc_name}`}</p>
 
                             </div>
-                            <div className="col bg-primary">
+
+                            <div className="col">
                                <Star   
                                serviceID ={service_id}/>
                             </div>

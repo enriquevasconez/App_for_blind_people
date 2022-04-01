@@ -156,10 +156,10 @@ const Comments = ({ serviceID, commentaries, setService, getServices }) => {
 
     return (
         <section role="Comentarios de usuarios" className="mt-2">
-            <h4>Agregar comentario</h4>
+
             <form aria-label='Ingrese comentario' onSubmit={newCommnet} onError={error} >
-            
-                <textarea class="form-control"
+                <label for="Agregarcomentario"> <h4>Agregar comentario</h4></label>
+                <textarea id ="Agregarcomentario" class="form-control"
                     placeholder="Ingrese comentario"
                     arial-label="Area para ingresar comentario "
                     value={state.comments.comment}

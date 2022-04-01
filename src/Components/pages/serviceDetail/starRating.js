@@ -88,31 +88,27 @@ const Star = ({ serviceID }) => {
         <section role="Comentarios de usuarios" className="mt-2">
             <h5>De su calificación</h5>
             
-                        <div  className="card mt-2 ">
+                       
                             <div>
-                                <div className="card-body">
+                                <div className="input-group">
                                     {[...Array(5)].map ((star, position) => {
 
-                                   
-                                                                                                       
                                         return( 
+                                        <div className="d-flex justify-content-center flex-wrap input">
+                                        <label className='d-none df' for={"star"+position}  > Sistema </label> 
 
-                                        <label> 
-                                            <input  type="radio" name="ratingvalue" value={ state.score.score_number} onClick={()=>setRating( position+1)} />
-                                            <i  aria-label='Sistema de calificacionb' className="fa-solid fa-star star"
+                                            <input id={"star"+position}  type="radio" name="ratingvalue" value={ state.score.score_number} onClick={()=>setRating( position+1)} />
+                                            <i  aria-label='Sistema de calificacion' className="fa-solid fa-star star"
                                              style = {  state.score.score_number <= rating  ?   {"color":"black"} :  {"color":"gray"} }  > </i>
-                                         
-                                        
-                                        
-                                        </label> 
-                                        
+                                                                                 
+                                        </div>
                                         )
                                     })}                                   
                                 </div>
                               
                             </div>
 
-                        </div>
+                       
             
 
         </section>
