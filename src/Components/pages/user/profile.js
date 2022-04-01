@@ -54,8 +54,8 @@ class Profile extends React.Component {
                         order: "desc",
                         take: this.state.maxServicesPage,
                         skip: this.state.maxServicesPage * this.state.currentPage,
-                        relations: "sc",
-                        user_id:user.user_id
+                        relations: "sc,user",
+                        user_id: user.user_id
                     }
                 }
             )
@@ -104,7 +104,7 @@ class Profile extends React.Component {
                                     >
                                         {/* <ProfileForm/> */}
                                         <UserForm
-                                            userData={this.state.user}
+                                            userData={{...this.state.user}}
                                         />
                                     </Modal>
                                     <button type="button" class="btn btn-primary mt-2">Editar contraseña</button>
@@ -126,7 +126,7 @@ class Profile extends React.Component {
                                     Servicios publicados
                                 </button>
                             </li>
-                            <li class="nav-item">
+                            {/* <li class="nav-item">
                                 <button
                                     class={`nav-link btn btn-success ${this.state.tabActive === 1 ? "active" : ""}`}
                                     aria-label={this.state.tabActive === 0 ? "Se encuentra en la pestaña de servicios solicitados" : "Ir a servicios publicados"}
@@ -137,7 +137,7 @@ class Profile extends React.Component {
                                 >
                                     Servicios solicitados
                                 </button>
-                            </li>
+                            </li> */}
                         </ul>
                         <div className="container">
                             {
@@ -151,7 +151,7 @@ class Profile extends React.Component {
                                         currentPage={this.state.currentPage}
                                         charging={this.state.gettingServices}
                                     />
-                                    : <DemandServicePresenter/>}
+                                    : <DemandServicePresenter />}
                         </div>
                     </section>
                 </div>

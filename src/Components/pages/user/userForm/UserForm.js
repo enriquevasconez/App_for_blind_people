@@ -28,7 +28,17 @@ const UserForm = ({ userData }) => {
         }
     );
 
-   console.log("createUserFlag", createUserFlag)
+    useEffect(async () => {
+        if (!localStorage.getItem('user-info')) {
+            const user = await JSON.parse(localStorage.getItem('user-info'));
+            let stateCopy = { ...state };
+            stateCopy["user"] = user;
+            createUserFlag = false;
+            setState(stateCopy);
+        }
+    }, [])
+
+    console.log("createUserFlag", createUserFlag)
 
     const stateSetter = (keyName, subkey, value) => {
         let stateCopy = { ...state };
@@ -71,12 +81,13 @@ const UserForm = ({ userData }) => {
                     }
                 )
                 .finally(() => { })
-        else
+        else {
+            let {password, ...user}=state.user;
             await new RQRS("user")
                 .post(
                     {
                         bodyParams: {
-                            ...state.user
+                            ...user
                         }
                     }
                 )
@@ -100,14 +111,16 @@ const UserForm = ({ userData }) => {
                 )
                 .finally(() => {
                     stateSetter("formState", "name", "needs-validation")
-                })
+                }
+            )
+        }
     }
 
     const error = (event) => {
         event.preventDefault();
         stateSetter("formState", "name", "was-validated")
     }
-    
+
     return (
         <form onSubmit={createUser} onError={error} className={`container ${state.formState.name}`}>
             <h3 className=" text-center">{`¡Hola! ${createUserFlag ? "Completa" : "Modifica"} tus datos`}</h3>

@@ -1,37 +1,42 @@
 import { RQRS } from '../../Classes/rqrp'
-import React, { useState, useEffect} from "react";
+import React, { useState, useEffect } from "react";
 
-const Card = ({ imageUri, title, description, serviceLink, price, category,serviceID }) => {
+const Card = ({ imageUri, title, description, serviceLink, price, category, serviceID, extras }) => {
 
-    
-    const[scoreService, setScoreService] = useState("")
-    
+
+    const [scoreService, setScoreService] = useState("")
+    const [state, setState] = useState({})
+
     useEffect(async () => {
         await new RQRS(`score/service-score`)
-        .get(
-            {
-                subResourse: serviceID,
-
-            }
-        )
-        .then(
-            (resp) => {
-                return resp.json();
-            }
-        ).then(
-            data => {
-                setScoreService(data)
-                console.log(scoreService)
-            }).catch((error) => {
+            .get(
+                {
+                    subResourse: serviceID,
+                }
+            )
+            .then(
+                (resp) => {
+                    return resp.json();
+                }
+            ).then(
+                data => {
+                    setScoreService(data)
+                    console.log(scoreService)
+                }
+            ).catch((error) => {
                 console.log(error)
             });
 
     }, [serviceID])
-    
-    
-    
-    
-    
+
+
+    useEffect(async () => {
+        const user = await JSON.parse(localStorage.getItem('user-info'));
+        setState(user);
+        console.log("userState", state)
+    }, [])
+
+
     return (
         <div class="card mb-3 ">
             <div class="row align-items-center  ">
@@ -49,6 +54,10 @@ const Card = ({ imageUri, title, description, serviceLink, price, category,servi
                                 <span class="text-body">
                                     {title}
                                 </span>
+                                {
+                                    state?.user?.user_id === extras?.user?.user_id && state?.user?.user_id !== undefined ?
+                                        <i class="fas fa-edit ms-3"></i> : null
+                                }
                             </h5>
                         </a>
                         <div class="">
@@ -70,13 +79,13 @@ const Card = ({ imageUri, title, description, serviceLink, price, category,servi
                                 <div class="col d-flex align-items-end">
                                     <a href={serviceLink} className="text-decoration-none">
                                         <p class="card-text mt-2"><small >Calificacion</small></p>
-                                        { scoreService!=0 ?
-                                        <h1 style={{"textAlign":"center"}}>{parseFloat(scoreService).toFixed(1)}</h1>
-                                        :
-                                        <h1 style={{"textAlign":"center"}}>--</h1>
-                                    
-                                    }
-                                       
+                                        {scoreService != 0 ?
+                                            <h1 style={{ "textAlign": "center" }}>{parseFloat(scoreService).toFixed(1)}</h1>
+                                            :
+                                            <h1 style={{ "textAlign": "center" }}>--</h1>
+
+                                        }
+
                                     </a>
                                 </div>
                             </div>

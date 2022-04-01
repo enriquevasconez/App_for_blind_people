@@ -51,7 +51,7 @@ const ServicePresenter = ({ services, onCurrentPageChange, maxPages, currentPage
                                 price={service.service_price}
                                 category={service.sc.sc_name}
                                 serviceID ={service.service_id}
-                                
+                                extras={service}
                             />
                             :
                             cardFunction(service, key)
