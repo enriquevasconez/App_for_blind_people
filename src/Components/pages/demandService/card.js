@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import Modal from '../../general/modal'
 import PropuestasPresenter from './propuestasPresenter'
 import ServicesAdder from './servicesAdder'
+import EditDemandService from './editDemandService'
 
 const Card = ({ dKey, dService, customerLoggedService, update }) => {
     const [state, setState] = useState({
@@ -13,7 +14,7 @@ const Card = ({ dKey, dService, customerLoggedService, update }) => {
         setState({ user_id: user.user_id });
     }, []);
 
-    console.log("user_id",  dService.service)
+    console.log("user_id", dService.service)
     return (
         <div key={`dservice${dKey}`} className="card m-3 bg-success">
             <div className="row">
@@ -32,15 +33,25 @@ const Card = ({ dKey, dService, customerLoggedService, update }) => {
                             modalLarge={false}
                             keyName={`dservice${dKey}`}
                         >
-                            <PropuestasPresenter services={dService.service}/>
+                            <PropuestasPresenter services={dService.service} />
                         </Modal>
                         <Modal
-                            btnTitle={state.user_id === dService.user.user_id ? "Edita solicitud" : "Agregar mis servicios"}
+                            btnTitle={state.user_id === dService.user.user_id ? "Editar solicitud" : "Agregar mis servicios"}
                             btnClass="btn btn-secondary"
                             keyName={`dservice${dKey}s`}
                         >
-                            {state.user_id === dService.user.user_id ? "Edita solicitud" : 
-                            <ServicesAdder services={customerLoggedService} dserviceId={dService.demand_id} update={update}/>
+                            {state.user_id === dService.user.user_id ?
+                                <EditDemandService
+                                    data={
+                                        {
+                                            id:dService.demand_id,
+                                            title: dService.demand_title,
+                                            description: dService.demand_description
+                                        }
+                                    }
+                                    update={update} />
+                                :
+                                <ServicesAdder services={customerLoggedService} dserviceId={dService.demand_id} update={update} />
                             }
                         </Modal>
                     </div>
