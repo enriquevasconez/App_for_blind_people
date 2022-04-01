@@ -1,6 +1,7 @@
 
 
-const SearchBar=({value, handleOnChange, handleSubmit})=>{
+const SearchBar=({value, handleOnChange, handleSubmit, message})=>{
+const messageAux=message?message:"Ingrese nombre del servicio";
     return(
         <div className="brand-image ">
                 <div className="row" className="  row height d-flex justify-content-center align-items-center ">
@@ -11,8 +12,8 @@ const SearchBar=({value, handleOnChange, handleSubmit})=>{
                                     type="text" className="form-control" type="search"
                                     name="busqueda"
                                     value={value}
-                                    placeholder="Ingrese nombre del servicio"
-                                    aria-label="Ingrese nombre de servicio a buscar en la plataforma."
+                                    placeholder={`${messageAux}`}
+                                    aria-label={`${messageAux} a buscar en la plataforma.`}
                                     onChange={handleOnChange}
                                     onKeyPress={
                                         (event) => {

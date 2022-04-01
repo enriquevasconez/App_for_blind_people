@@ -1,14 +1,17 @@
 
 
-const Modal = ({ children, btnTitle, btnClass }) => {
-
+const Modal = ({ children, btnTitle, btnClass, modalLarge, keyName }) => {
+    console.log(`#generalModal${keyName}`);
     return (
         <div>
-            <button type="button" class={btnClass ? btnClass : "btn"} data-bs-toggle="modal" data-bs-target="#generalModal">
+            <button type="button" class={btnClass ? btnClass : "btn"} data-bs-toggle="modal" href={`#generalModal${keyName}`}
+            // data-bs-target={`#generalModal${key}`}
+            >
                 {btnTitle}
             </button>
-            <div class="modal fade" id="generalModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                <div class="modal-dialog modal-dialog-centered">
+            {/* <a class={btnClass ? btnClass : "btn"} href={`#generalModal${keyName}`} role="button">{btnTitle}</a> */}
+            <div class="modal fade" id={`generalModal${keyName}`} tabindex="-1" aria-hidden="true">
+                <div class={`modal-dialog ${modalLarge ? "modal-xl" : ""} modal-dialog-centered modal-dialog-scrollable`}>
                     <div class="modal-content">
                         <div class="modal-body">
                             {children}

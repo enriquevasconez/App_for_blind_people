@@ -19,7 +19,7 @@ import Forum from './Components/forum';
 
 import GlobalProvider from './globals/globalContext'
 import { FirebaseCnn } from "./Classes/firebase.base"
-
+import DemandService from "./Components/pages/demandService/demandService"
 function App() {
   new FirebaseCnn().init();
 
@@ -41,7 +41,8 @@ function App() {
               <Route exact path="/serviceList" element={<serviceList />} />
               <Route exact path="/serviceRegister" element={<Service />} />
               <Route exact path="/serviceDetail/:service_id" element={<ServiceDetail />} />
-              <Route exact path="/forum" element={<Forum />} />
+              <Route exact path="/forum" element={<DemandService />} />
+              {/* <Route exact path="/forum" element={<Forum />} /> */}
               <Route exact path="/forgotpass" element={<RecoverPassword />} />
             </Routes>
           </div>
