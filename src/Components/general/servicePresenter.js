@@ -41,7 +41,7 @@ const ServicePresenter = ({ services, onCurrentPageChange, maxPages, currentPage
                 services.length>0?
                 services.map(
                     (service, key) =>
-                        cardFunction !== undefined || cardFunction !== null ?
+                        cardFunction === undefined || cardFunction === null ?
                             <Card
                                 key={`service-card-${key}`}
                                 imageUri={service.service_image}
