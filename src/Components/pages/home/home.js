@@ -65,7 +65,7 @@ class Home extends React.Component {
             .get(
                 {
                     queryParams: {
-                        service_description: this.state.searchBarStr,
+                        // service_description: this.state.searchBarStr,
                         // service_price: this.state.searchBarStr,
                         service_name: this.state.searchBarStr,
                         order: "desc",

@@ -6,6 +6,8 @@ import Comments from "./comments";
 import { render } from "@testing-library/react";
 import Demand from "./demandService";
 import Star from "./starRating";
+import Breadcrumb from '../../general/breadcrumb';
+
 const ServiceDetail = () => {
 
 
@@ -114,15 +116,20 @@ const ServiceDetail = () => {
 
 
 
-
-
+   let routeBreadcrumb= {
+        "Inicio": "/"
+    }
+    routeBreadcrumb[service.service_name]=""
 
 
     return (
         <div>
             <Navbar />
-            <div className="container" >
-                <div className="row mt-4">
+            <div className="container mt-3" >
+                <Breadcrumb
+                    routes={routeBreadcrumb}
+                />
+                <div className="row">
                     <div className="col-8">
                         <div class="card">
                             <div class="card-body">
@@ -151,6 +158,7 @@ const ServiceDetail = () => {
 
                     </section>
                 </div>
+
                 <div className="row mt-4">
                     <div className="col-8">
                         <section className="row" role="Caracteristicas del servicio.">
@@ -174,18 +182,18 @@ const ServiceDetail = () => {
                                 <p><b>Categoría: </b>{`${service?.sc?.sc_name}`}</p>
 
                             </div>
-                            
+
                             <div className="col ">
-                            { localStorage.getItem('user-info') ?
-                               <Star   
-                               serviceID ={service_id}/>
-                               :
-                               <p><a class="text-decoration-none" href="/register"> Registrese</a> o  <a class="text-decoration-none" href="/login"> inicie sesión</a> para calificar </p>
-                            }
-                            
-                            
+                                {localStorage.getItem('user-info') ?
+                                    <Star
+                                        serviceID={service_id} />
+                                    :
+                                    <p><a class="text-decoration-none" href="/register"> Registrese</a> o  <a class="text-decoration-none" href="/login"> inicie sesión</a> para calificar </p>
+                                }
+
+
                             </div>
-                            
+
                             <p>
                                 <h3>Descripción del servicio.</h3>
                                 {service.service_description}
