@@ -7,7 +7,7 @@ import './service.css'
 import { Navigate } from 'react-router-dom';
 import validate from "./validateService";
 import ServiceForm from "./serviceForm";
-
+import Breadcrumb from './general/breadcrumb';
 import { useNavigate, Link } from 'react-router-dom'
 import { FirebaseCnn } from "../Classes/firebase.base"
 import PageWHalfImage from './pages/pageWHalfImage'
@@ -153,7 +153,13 @@ const Service = () => {
         <div>
             <PageWHalfImage>
                 <main className="col-10 col-md-8 col-lg-4 col-xl-4 ">
+
                     <div class="card" role="Inicio de sesion" >
+                        <Breadcrumb
+                            routes={{
+                                Inicio: "/",
+                                Registar_Servicio: "/serviceRegister"
+                            }} />
                         <div className="card-body ">
                             <h2>Completa los datos de tu servicio</h2>
                             <form onSubmit={handleSubmit}>

@@ -6,6 +6,7 @@ import Modal from '../../general/modal'
 import SearchBar from "../../general/searchBar";
 import CreateDemandService from "./createDemandService"
 import Card from './card'
+import Breadcrumb from '../../general/breadcrumb';
 
 class DemandService extends React.Component {
 
@@ -129,6 +130,12 @@ class DemandService extends React.Component {
                     message="Ingrese el nombre del servicio demandado"
                 />
                 <div className="container mt-3">
+                <Breadcrumb
+                    routes={{ Inicio: "/",
+                              Foro:"/Forum"
+                
+                }}
+                />
                     <CreateDemandService update={this.getDemandServices}/>
                     <main className="mt-3">
                         <h2>Servicios solicitados recientemente</h2>

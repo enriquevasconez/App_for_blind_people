@@ -2,6 +2,7 @@ import React, { useEffect, useState, } from "react";
 import PageWHalfImage from "../pageWHalfImage"
 import { RQRS } from "../../../Classes/rqrp";
 import LoadingModal from "../../general/loadingModal"
+import Breadcrumb from '../../general/breadcrumb';
 
 class Login extends React.Component {
   constructor(props) {
@@ -68,6 +69,11 @@ class Login extends React.Component {
         <main className="col-10 col-md-8 col-lg-4 col-xl-4 ">
           <div class="card" role="Inicio de sesion" >
             <div className="card-body ">
+            <Breadcrumb
+                            routes={{
+                                Inicio: "/",
+                                Inicio_Sesión: "/login"
+                            }} />
               <form onSubmit={this.loginUser} className="container needs-validation">
                 <h3 className=" text-center">¡Hola! Ingresa tu correo y contraseña</h3>
                 {this.state.error.status ? <div class="alert alert-danger" role="alert">

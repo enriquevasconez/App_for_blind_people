@@ -6,6 +6,7 @@ import Modal from '../../general/modal'
 import UserForm from './userForm/UserForm'
 import ProfileForm from './userForm/editProfile'
 import DemandServicePresenter from "./extras/demandServicePresenter"
+import Breadcrumb from '../../general/breadcrumb';
 
 class Profile extends React.Component {
 
@@ -88,6 +89,11 @@ class Profile extends React.Component {
             <div>
                 <Navbar />
                 <div className="container mt-4">
+                <Breadcrumb
+                    routes={{ Inicio: "/",
+                              Perfil:"/editProfile"
+                
+                }}/>
                     <section role="Datos de usuario" className="card">
                         <div className="card-body">
                             <h1>{this.state.user?.user_name}</h1>

@@ -6,7 +6,7 @@ const Star = ({ serviceID }) => {
     
     let user = JSON.parse(localStorage.getItem('user-info'))
 
-    const [rating, setRating] = useState(null);
+    
     
     const colors = {
         yellow:"#ffc107",
@@ -82,8 +82,10 @@ const Star = ({ serviceID }) => {
         console.log(state.score.score_number)
     }
 
+    
+    
+    
 
-  
     return (
         
         <section role="De su calificación" className="mt-2">
@@ -95,6 +97,8 @@ const Star = ({ serviceID }) => {
                                     {[...Array(5)].map ((star, i) => {
                                         
                                         const ratingvalue = i + 1;
+
+                                       
                                        
                                         return( 
                                         
@@ -105,7 +109,7 @@ const Star = ({ serviceID }) => {
                                         <div className=' null' onClick={newScore}>   
                                         <fieldset>
                                             <legend></legend>
-                                            <input    id={"star"+i} type="radio" name="rating" value={ratingvalue}  />
+                                            <input    id={"star"+i} type="radio"  name="rating" value={ratingvalue}    />
                                              <i   className="fa-solid fa-star star"
                                             onClick={(event) => stateSetter("score", "score_number", ratingvalue)}
                                              style = {  ratingvalue <= state.score.score_number  ?   {"color":"black"} :  {"color":"gray"} }
