@@ -50,7 +50,7 @@ const Card = ({ imageUri, title, description, serviceLink, price, category, serv
                 <div class="col-sm-8">
                     <div class="card-body">
                         <a href={serviceLink} className="text-decoration-none">
-                            <h5 class="card-title">
+                            <h5 class="card-title" alt={`Nombre del servicio: ${title}`}>
                                 <span class="text-body">
                                     {title}
                                 </span>

@@ -3,7 +3,7 @@ import Navbar from '../general/navbar'
 const PageWHalfImage = ({ children }) => {
     // TODO corregir overflow-hidden ya que en pantallas muy pequeñas puede dar problemas.
     return (
-        <div className="vh-100 brand-image bg-light half-image overflow-hidden">
+        <div className="vh-100 brand-image bg-light half-image">
             <div className="w-100 position-fixed">
                 <Navbar navigate={false} />
             </div>

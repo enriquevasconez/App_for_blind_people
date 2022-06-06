@@ -59,7 +59,7 @@ const Filter = ({ mobileVersion, applyFilterf, state, setState }) => {
                 <select
                     id={`${mobileVersion ? "mobile" : "desktop"}-categorias`}
                     class="form-select"
-                    aria-label="Seleccione una categoria de la lista."
+                    aria-label="Seleccione una categoria de la lista para filtrar servicios en la busqueda."
                     value={state["category_name"]}
                     onChange={(event) => { changeValue("category_name", event.target.value) }}
                 >
@@ -72,7 +72,7 @@ const Filter = ({ mobileVersion, applyFilterf, state, setState }) => {
                 <select
                     id={`${mobileVersion ? "mobile" : "desktop"}-ciudad`}
                     class="form-select"
-                    aria-label="Seleccione una ciudad."
+                    aria-label="Seleccione una ciudad para filtrar servicios en la busqueda."
                     value={state["city_name"]}
                     onChange={(event) => { changeValue("city_name", event.target.value) }}
                 >
@@ -85,6 +85,7 @@ const Filter = ({ mobileVersion, applyFilterf, state, setState }) => {
                 <div className="col-6">
                     <label for={`${mobileVersion ? "mobile" : "desktop"}-minPrice`} class="form-label">Precio minimo</label>
                     <input
+                        aria-label="Ingrese un valor minimo para filtrar servicios en la busqueda."
                         type="number"
                         class="form-control"
                         id={`${mobileVersion ? "mobile" : "desktop"}-minPrice`}
@@ -99,6 +100,7 @@ const Filter = ({ mobileVersion, applyFilterf, state, setState }) => {
                     <input
                         type="number"
                         class="form-control"
+                        aria-label="Ingrese un valor maximo para filtrar servicios en la busqueda."
                         id={`${mobileVersion ? "mobile" : "desktop"}-maxPrice`}
                         min="0"
                         placeholder="99999"
