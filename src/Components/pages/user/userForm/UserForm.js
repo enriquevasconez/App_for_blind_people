@@ -71,9 +71,9 @@ const UserForm = ({ userData }) => {
                 )
                 .then(
                     (result) => {
-                        localStorage.setItem("user-info", JSON.stringify(result));
+
                         stateSetter("error", "status", false);
-                        window.location.href = "/";
+                        window.location.href = "/login";
                     }
                 )
                 .catch(
@@ -85,8 +85,10 @@ const UserForm = ({ userData }) => {
                 .finally(() => { })
         else {
             // let {password, ...user}=state.user;
-            await new RQRS("user")
-                .post(
+            event.preventDefault();
+            let user = JSON.parse(localStorage.getItem("user-info"))
+            await new RQRS("user/" + user.user_id)
+                .patch(
                     {
                         bodyParams: {
                             ...state.user
@@ -95,6 +97,7 @@ const UserForm = ({ userData }) => {
                 )
                 .then(
                     (result) => {
+
                         return result.json();
                     }
                 )
@@ -102,7 +105,7 @@ const UserForm = ({ userData }) => {
                     (result) => {
                         localStorage.setItem("user-info", JSON.stringify(result));
                         stateSetter("error", "status", true);
-                        window.location.href = "/";
+                        window.location.href = "/login";
                     }
                 )
                 .catch(
@@ -169,7 +172,7 @@ const UserForm = ({ userData }) => {
                 <div className="col-6">
                     <label for="phoneInput" class="form-label">Teléfono</label>
                     <input
-                        type="number"
+                        type="text"
                         class="form-control"
                         id="phoneInput"
                         aria-label="Ingrese su telefono."
@@ -177,11 +180,15 @@ const UserForm = ({ userData }) => {
                         maxLength="10"
                         pattern="^[0-9].{7,10}$"
                         value={state.user.user_phone}
-                        onChange={(event) => {
-                            stateSetter("user", "user_phone", event.target.value)
+                        onChange={  (event) => {
+                            if ( isFinite(event.target.value)){
+                                stateSetter("user", "user_phone", event.target.value)
+                            }
+                            
                         }}
                         placeholder="0999999999"
                         aria-describedby="passwordHelp"
+                        
                         required
                     />
 

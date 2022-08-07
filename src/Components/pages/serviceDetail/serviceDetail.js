@@ -63,33 +63,14 @@ const ServiceDetail = () => {
                 data => {
                     setScoreService(data)
                     console.log(scoreService)
+                    
                 }).catch((error) => {
                     console.log(error)
                 });
 
     }, [service_id])
 
-    useEffect(async () => {
-        await new RQRS(`score/service-score`)
-            .get(
-                {
-                    subResourse: service_id,
 
-                }
-            )
-            .then(
-                (resp) => {
-                    return resp.json();
-                }
-            ).then(
-                data => {
-                    setScoreService(data)
-                    console.log(scoreService)
-                }).catch((error) => {
-                    console.log(error)
-                });
-
-    }, [service_id])
 
     useEffect(async () => {
         await new RQRS(`score/user-score`)
