@@ -108,9 +108,10 @@
 
 
 /* StarRating section */
-  input[type ="radio"]{
+
+   input[type ="radio"]{
   display: none;
-}   
+}    
 
 .star{
   cursor: pointer;
@@ -148,15 +149,6 @@ footer {
   max-width : 500px;
 }
 
-.ServiceItem-img {
-  display     : block;
-  margin-left : auto;
-  margin-right: auto;
-  height      : auto;
-  max-height  : 1000px;
-  width       : auto;
-  max-width   : 1000px;
-}
 
 .crazy {
   position: absolute;
@@ -197,9 +189,20 @@ footer {
   width: 100%;
 }
 
+.ServiceItem-img {
+  display     : block;
+  margin-left : auto;
+  margin-right: auto;
+  height      : auto;
+  max-height  : 1000px;
+  width       : auto;
+  max-width   : 1000px;
+}
+
+
 .img-bg {
   pointer-events: none;
-  position: absolute;
+  position: static;
   width: 100%;
   height: 100%;
   z-index: -1;

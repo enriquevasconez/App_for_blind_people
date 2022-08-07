@@ -132,9 +132,8 @@ class DemandService extends React.Component {
                 <div className="container mt-3">
                 <Breadcrumb
                     routes={{ Inicio: "/",
-                              Foro:"/Forum"
-                
-                }}
+                            "Solicitar Servicio":"/Forum"
+                 }}
                 />
                     <CreateDemandService update={this.getDemandServices}/>
                     <main className="mt-3">

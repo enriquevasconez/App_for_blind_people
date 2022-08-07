@@ -26,7 +26,7 @@ const Service = () => {
 
 
     let user = JSON.parse(localStorage.getItem('user-info'))
-    //'application/json', 'Content-type':'application/json'  }), 
+  
 
     useEffect(async () => {
 
@@ -55,7 +55,6 @@ const Service = () => {
         }).then(data => {
 
 
-            console.log("OJO", data);
             setCategorias(data.result);
 
 
@@ -75,9 +74,7 @@ const Service = () => {
 
     async function submit() {
         const formData = new FormData();
-
-        // formData.append('service_image', 'https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d1994.9056586446607!2d-78.47027376508179!3d-0.10735069635238306!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x91d58ff788cdc717%3A0x21a2388f2fae63c1!2sGADERE!5e0!3m2!1ses!2sec!4v1624144214641!5m2!1ses!2sec');
-        // formData.append('user',user.user_id);
+     
 
         await firebase.uploadImage(imgPreview.file)
             .then(
@@ -91,7 +88,7 @@ const Service = () => {
                                 service_name: values.service_name,
                                 service_description: values.service_description,
                                 service_price: values.service_price,
-                                service_image: url,
+                                service_image: imgPreview.file.length !=0 ? url:"https://static.wikia.nocookie.net/videojuego/images/9/9c/Imagen_no_disponible-0.png/revision/latest?cb=20170910134200",
                                 user: user.user_id,
                                 city: selectedCity,
                                 sc: values.sc,
@@ -155,19 +152,20 @@ const Service = () => {
                 <main className="col-10 col-md-8 col-lg-4 col-xl-4 ">
 
                     <div class="card" role="Inicio de sesion" >
+                       
+                        <div className="card-body ">
                         <Breadcrumb
                             routes={{
                                 Inicio: "/",
                                 Registar_Servicio: "/serviceRegister"
                             }} />
-                        <div className="card-body ">
                             <h2>Completa los datos de tu servicio</h2>
                             <form onSubmit={handleSubmit}>
                                 {passError && <p> {passError} </p>}
                                 <div className="row position-relative">
                                     <div className="div-container">
                                         {imgPreview.filepreview !== null ?
-                                            <img className="previewimg ServiceItem-img img-bg" src={imgPreview.filepreview} alt="uploadimage" /> : null
+                                            <img className="previewimg  img-bg" src={imgPreview.filepreview} alt="uploadimage" /> : null
                                         }
                                         <div className="  col-md-12 col-xs-4 item-photo mb-5 p-5 ">
                                             {/* <img style={{ maxWidth: '100%' }} src="https://ak1.ostkcdn.com/images/products/8818677/Samsung-Galaxy-S4-I337-16GB-AT-T-Unlocked-GSM-Android-Cell-Phone-85e3430e-6981-4252-a984-245862302c78_600.jpg" /> */}

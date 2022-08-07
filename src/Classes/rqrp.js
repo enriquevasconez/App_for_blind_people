@@ -18,6 +18,7 @@ export class RQRS {
                         resp => {
                             if (resp.status >= 300) {
                                 reject("Validate your internet connection");
+                                console.log("Promise ", resp)
                             }
                             else {
                                 resolve(resp);

@@ -36,7 +36,7 @@ class Profile extends React.Component {
         let aux = { ...this.state }
         aux.user = await JSON.parse(localStorage.getItem('user-info'));
         this.setState(aux);
-        console.log(this.state)
+        console.log( this.state)
     }
 
     componentStateSetter = (keyName, value) => {
@@ -99,7 +99,6 @@ class Profile extends React.Component {
                             <h1>{this.state.user?.user_name}</h1>
                             <div className="row">
                                 <div className="col-10">
-                                    <h4><b>Ciudad: </b>{this.state.user?.user_name}</h4>
                                     <h4><b>Telefono: </b>{this.state.user?.user_phone}</h4>
                                     <h4><b>Correo: </b>{this.state.user?.user_email}</h4>
                                 </div>
@@ -113,6 +112,7 @@ class Profile extends React.Component {
                                             userData={{...this.state.user}}
                                         />
                                     </Modal>
+                                    
                                     <button type="button" class="btn btn-primary mt-2">Editar contraseña</button>
                                 </div>
                             </div>
