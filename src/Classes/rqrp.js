@@ -17,8 +17,17 @@ export class RQRS {
                     .then(
                         resp => {
                             if (resp.status >= 300) {
-                                reject("Validate your internet connection");
-                                console.log("Promise ", resp)
+                                console.log(resp);
+                                resp.json().then(
+                                    result => {
+                                        console.log(result, "here")
+                                        reject(result?.detail);
+                                    }
+                                ).catch(
+                                    (error) => {
+                                        reject("Validate your internet connection", error);
+                                    }
+                                )
                             }
                             else {
                                 resolve(resp);

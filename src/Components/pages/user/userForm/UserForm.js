@@ -48,6 +48,7 @@ const UserForm = ({ userData }) => {
 
     const createUser = async (event) => {
         event.preventDefault();
+        stateSetter("error", "status", false);
         if (createUserFlag)
             await validateForm(state)
                 .then(
@@ -56,7 +57,8 @@ const UserForm = ({ userData }) => {
                             .post(
                                 {
                                     bodyParams: {
-                                        ...state.user
+                                        ...state.user,
+                                        blind_discapacity_percentage:0 //TODO: fix it
                                     }
                                 }
                             )
@@ -76,7 +78,7 @@ const UserForm = ({ userData }) => {
                 )
                 .catch(
                     error => {
-                        stateSetter("error", "msg", "Error, este correo está actualmente siendo utilizado.")
+                        stateSetter("error", "msg", "Error, este correo está actualmente siendo utilizado. Ref: "+error)
                         stateSetter("error", "status", true);
                     }
                 )
