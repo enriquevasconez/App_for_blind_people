@@ -2,13 +2,13 @@ import React, { useState, useEffect } from 'react'
 import { RQRS } from "../../../../Classes/rqrp";
 import { validateForm } from './validateForm';
 
-const UserForm = ({ userData, userDataf }) => {
+const UserForm = ({ userData }) => {
 
     const createUserFlag = userData ? false : true;
         const [state, setState] = useState(
         {
             user: {
-                user_name: userData?.user_name || userDataf().user_name,
+                user_name: userData?.user_name || "",
                 user_email: userData?.user_email || "",
                 password: userData?.password || "",
                 user_phone: userData?.user_phone || ""
@@ -28,15 +28,15 @@ const UserForm = ({ userData, userDataf }) => {
         }
     );
 
-     useEffect(async () => {
-     if (!localStorage.getItem('user-info')) {
-            const user = await JSON.parse(localStorage.getItem('user-info'));
-          let stateCopy = { ...state };
-            stateCopy["user"] = user;
-            createUserFlag = false;
-            setState(stateCopy);
-         }
-     }, [])
+    //  useEffect(async () => {
+    //  if (!localStorage.getItem('user-info')) {
+    //         const user = await JSON.parse(localStorage.getItem('user-info'));
+    //       let stateCopy = { ...state };
+    //         stateCopy["user"] = user;
+    //         createUserFlag = false;
+    //         setState(stateCopy);
+    //      }
+    //  }, [])
 
 
     const stateSetter = (keyName, subkey, value) => {
