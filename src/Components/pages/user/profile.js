@@ -39,6 +39,10 @@ class Profile extends React.Component {
         console.log( this.state)
     }
 
+    getUser = ()=>{
+        return this.state.user;
+    }
+
     componentStateSetter = (keyName, value) => {
         let stateCopy = { ...this.state };
         stateCopy[keyName] = value;
@@ -110,6 +114,7 @@ class Profile extends React.Component {
                                         {/* <ProfileForm/> */}
                                         <UserForm
                                             userData={{...this.state.user}}
+                                            userDataf={this.getUser}
                                         />
                                     </Modal>
                                     

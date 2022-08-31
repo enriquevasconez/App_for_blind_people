@@ -2,13 +2,13 @@ import React, { useState, useEffect } from 'react'
 import { RQRS } from "../../../../Classes/rqrp";
 import { validateForm } from './validateForm';
 
-const UserForm = ({ userData }) => {
+const UserForm = ({ userData, userDataf }) => {
 
     const createUserFlag = userData ? false : true;
-    const [state, setState] = useState(
+        const [state, setState] = useState(
         {
             user: {
-                user_name: userData?.user_name || "",
+                user_name: userData?.user_name || userDataf().user_name,
                 user_email: userData?.user_email || "",
                 password: userData?.password || "",
                 user_phone: userData?.user_phone || ""
@@ -28,17 +28,16 @@ const UserForm = ({ userData }) => {
         }
     );
 
-    // useEffect(async () => {
-    //     if (!localStorage.getItem('user-info')) {
-    //         const user = await JSON.parse(localStorage.getItem('user-info'));
-    //         let stateCopy = { ...state };
-    //         stateCopy["user"] = user;
-    //         createUserFlag = false;
-    //         setState(stateCopy);
-    //     }
-    // }, [])
+     useEffect(async () => {
+     if (!localStorage.getItem('user-info')) {
+            const user = await JSON.parse(localStorage.getItem('user-info'));
+          let stateCopy = { ...state };
+            stateCopy["user"] = user;
+            createUserFlag = false;
+            setState(stateCopy);
+         }
+     }, [])
 
-    console.log("createUserFlag", createUserFlag)
 
     const stateSetter = (keyName, subkey, value) => {
         let stateCopy = { ...state };
@@ -87,7 +86,7 @@ const UserForm = ({ userData }) => {
             // let {password, ...user}=state.user;
             event.preventDefault();
             let user = JSON.parse(localStorage.getItem("user-info"))
-            await new RQRS("user/" + user.user_id)
+             new RQRS("user/" + user.user_id)
                 .patch(
                     {
                         bodyParams: {
@@ -103,9 +102,15 @@ const UserForm = ({ userData }) => {
                 )
                 .then(
                     (result) => {
-                        localStorage.setItem("user-info", JSON.stringify(result));
-                        stateSetter("error", "status", true);
-                        window.location.href = "/login";
+                        
+                        if(result.affected === 1){
+                      //  const {password, ...info} = state.user;
+                        delete state.user["password"];
+                        state.user["user_id"] = user.user_id;
+                        localStorage.setItem("user-info", JSON.stringify(state.user));
+                        stateSetter("error", "status", false);
+                        window.location.href = "/editProfile";
+                        }
                     }
                 )
                 .catch(
@@ -134,7 +139,7 @@ const UserForm = ({ userData }) => {
             </div>
                 : null}
             <div class="mb-3 mt-3">
-                <label for="nameInput" class="form-label">Nombre</label>
+                <label for="nameInput" class="form-label">Nombre*</label>
                 <input
                     type="text"
                     class="form-control"
@@ -155,7 +160,7 @@ const UserForm = ({ userData }) => {
             </div>
             <div className="row mb-3">
                 <div className="col-6 ">
-                    <label for="emailInput" class="form-label">Correo</label>
+                    <label for="emailInput" class="form-label">Correo*</label>
                     <input
                         type="email"
                         class="form-control"
@@ -170,7 +175,7 @@ const UserForm = ({ userData }) => {
                     />
                 </div>
                 <div className="col-6">
-                    <label for="phoneInput" class="form-label">Teléfono</label>
+                    <label for="phoneInput" class="form-label">Teléfono*</label>
                     <input
                         type="text"
                         class="form-control"
@@ -198,7 +203,7 @@ const UserForm = ({ userData }) => {
                 <div>
                     <div className="row mb-3">
                         <div className="col-6 ">
-                            <label for="passwordInput" class="form-label">Contraseña</label>
+                            <label for="passwordInput" class="form-label">Contraseña*</label>
                             <input
                                 type="password"
                                 class="form-control"
@@ -216,7 +221,7 @@ const UserForm = ({ userData }) => {
                             />
                         </div>
                         <div className="col-6">
-                            <label for="repasswordInput" class="form-label">Reingrese contraseña</label>
+                            <label for="repasswordInput" class="form-label">Reingrese contraseña*</label>
                             <input
                                 type="password"
                                 class="form-control"

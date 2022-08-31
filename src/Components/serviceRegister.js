@@ -26,7 +26,7 @@ const Service = () => {
 
 
     let user = JSON.parse(localStorage.getItem('user-info'))
-  
+
 
     useEffect(async () => {
 
@@ -74,7 +74,7 @@ const Service = () => {
 
     async function submit() {
         const formData = new FormData();
-     
+
 
         await firebase.uploadImage(imgPreview.file)
             .then(
@@ -88,7 +88,7 @@ const Service = () => {
                                 service_name: values.service_name,
                                 service_description: values.service_description,
                                 service_price: values.service_price,
-                                service_image: imgPreview.file.length !=0 ? url:"https://static.wikia.nocookie.net/videojuego/images/9/9c/Imagen_no_disponible-0.png/revision/latest?cb=20170910134200",
+                                service_image: imgPreview.file.length != 0 ? url : "https://static.wikia.nocookie.net/videojuego/images/9/9c/Imagen_no_disponible-0.png/revision/latest?cb=20170910134200",
                                 user: user.user_id,
                                 city: selectedCity,
                                 sc: values.sc,
@@ -151,14 +151,14 @@ const Service = () => {
             <PageWHalfImage>
                 <main className="col-10 col-md-8 col-lg-4 col-xl-4 ">
 
-                    <div class="card" role="Inicio de sesion" >
-                       
+                    <div class="card">
+
                         <div className="card-body ">
-                        <Breadcrumb
-                            routes={{
-                                Inicio: "/",
-                                Registar_Servicio: "/serviceRegister"
-                            }} />
+                            <Breadcrumb
+                                routes={{
+                                    Inicio: "/",
+                                    "Registrar Servicio": "/serviceRegister"
+                                }} />
                             <h2>Completa los datos de tu servicio</h2>
                             <form onSubmit={handleSubmit}>
                                 {passError && <p> {passError} </p>}
@@ -169,7 +169,11 @@ const Service = () => {
                                         }
                                         <div className="  col-md-12 col-xs-4 item-photo mb-5 p-5 ">
                                             {/* <img style={{ maxWidth: '100%' }} src="https://ak1.ostkcdn.com/images/products/8818677/Samsung-Galaxy-S4-I337-16GB-AT-T-Unlocked-GSM-Android-Cell-Phone-85e3430e-6981-4252-a984-245862302c78_600.jpg" /> */}
-                                            <input ref={ref} class="form-control" type="file" id="formFile"
+                                            <label htmlFor="formFile" style={{  background: "grey", padding: "5px 10px",cursor:"pointer" }}>
+                                                Subir Imagen
+                                            </label>
+
+                                            <input id ="formFile" ref={ref}  style={{visibility:"hidden"}} class="form-control" type="file" alt="Elegir Imagen" 
 
                                                 onChange={handeInputChange}
                                             />

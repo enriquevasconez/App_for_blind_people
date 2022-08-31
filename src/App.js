@@ -26,7 +26,7 @@ function App() {
     <div>
       
         <Router>
-          <div className="App" className="App">
+          <div className="App">
 
             <header className="App-header">
               {/* <Navbar /> */}
